@@ -20,3 +20,12 @@ export const links = [
     href: '/contact-us',
   },
 ];
+
+export const hero = {
+  home: {
+    heading: 'Become a part of our community',
+    'sub-heading': 'Welcome to our church',
+    btn: 'Learn More',
+    caption: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.',
+  },
+};

@@ -1,9 +1,9 @@
-import Heading from '@/components/ui/Heading';
+import Hero from '@/components/ui/Hero';
 
 export default function Home() {
   return (
     <main>
-      <Heading>Homepage</Heading>
+      <Hero />
     </main>
   );
 }
