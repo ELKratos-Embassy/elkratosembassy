@@ -3,7 +3,7 @@ import { Roboto_Condensed } from 'next/font/google';
 import './globals.css';
 import Navigation from '@/components/ui/Navigation';
 
-export const roboto_condensed = Roboto_Condensed({
+const roboto_condensed = Roboto_Condensed({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-roboto-condensed',
