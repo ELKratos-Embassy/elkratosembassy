@@ -1,7 +1,9 @@
+import Heading from '@/components/ui/Heading';
+
 const Sermons = () => {
   return (
     <main>
-      <h1>Sermons</h1>
+      <Heading>Sermons</Heading>
     </main>
   );
 };

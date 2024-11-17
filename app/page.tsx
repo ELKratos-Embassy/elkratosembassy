@@ -1,7 +1,9 @@
+import Heading from '@/components/ui/Heading';
+
 export default function Home() {
   return (
     <main>
-      <h1>EL Kraots EMbassy</h1>
+      <Heading>Homepage</Heading>
     </main>
   );
 }
