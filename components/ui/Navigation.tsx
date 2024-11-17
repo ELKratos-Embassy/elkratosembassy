@@ -10,7 +10,7 @@ const Navigation = () => {
   const pathname = usePathname();
 
   return (
-    <header className="bg-secondary text-white px-24 py-3 md:py-0">
+    <header className="bg-secondary text-white md:px-24 py-3 md:py-0">
       <div className="md:w-10/12 flex flex-wrap flex-col md:flex-row items-center mx-auto justify-between">
         <div className="flex flex-wrap flex-col md:flex-row w-max gap-6 md:gap-16 items-center">
           <div className="">
