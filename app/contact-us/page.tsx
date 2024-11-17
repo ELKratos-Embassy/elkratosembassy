@@ -1,7 +1,9 @@
+import Heading from '@/components/ui/Heading';
+
 const ContactUs = () => {
   return (
     <main>
-      <h1>ContactUs</h1>
+      <Heading>Contact Us</Heading>
     </main>
   );
 };
