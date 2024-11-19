@@ -86,7 +86,7 @@ export const home = {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       btn: {
         text: "Read More",
-        icon: "/welcome/arrow-right.svg",
+        icon: "/global/arrow-right.svg",
       },
     },
   },
@@ -134,5 +134,54 @@ export const home = {
         },
       },
     ],
+  },
+  sermons: {
+    heading: {
+      caption: "Upcoming Sermons",
+      text: "Join Us And Become Part Of Something Great",
+    },
+    card: {
+      date: {
+        caption: "20",
+        text: "July",
+      },
+      info: {
+        desc: {
+          caption: "Upcoming event",
+          text: "Watch and listen to our sermons",
+          message:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+        },
+        time: {
+          icon: {
+            src: "/sermons/clock.svg",
+            alt: "Clock",
+            width: 20,
+            height: 20,
+          },
+          text: "Friday 23:39 1st Saturday 11:20 Isd",
+        },
+        location: {
+          icon: {
+            src: "/sermons/location.svg",
+            alt: "Location",
+            width: 20,
+            height: 25,
+          },
+          text: "No 233 Main St. New York, United States",
+        },
+        btn: "Register",
+      },
+    },
+    bg: {
+      src: "/sermons/bg.svg",
+      alt: "A woman and a man in black and white",
+      width: 845,
+      height: 512,
+    },
+    btn: {
+      text: "View all sermons",
+      icon: "/global/arrow-right.svg",
+    },
   },
 };
