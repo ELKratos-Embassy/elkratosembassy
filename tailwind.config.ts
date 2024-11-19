@@ -15,7 +15,7 @@ export default {
         secondary: '#0D0D0D',
         'secondary-black': '#161722',
         'secondary-orange': '#FFF5EB',
-        grey: '#F5F2F0',
+        grey: '#F5F2F099',
         'light-orange': '#FFF5EB',
       },
       backgroundColor: {
