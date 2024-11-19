@@ -184,4 +184,24 @@ export const home = {
       icon: "/global/arrow-right.svg",
     },
   },
+  cta: {
+    card: {
+      text: "We want to serve the world around us",
+      message:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.",
+      btn: "Visit",
+    },
+    icon: {
+      src: "/cta/quote.svg",
+      alt: "Quote icon",
+      width: 187,
+      height: 140,
+    },
+    bg: {
+      src: "/cta/bg.svg",
+      alt: "Church",
+      width: 1500,
+      height: 736,
+    },
+  },
 };
