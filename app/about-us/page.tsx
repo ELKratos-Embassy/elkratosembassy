@@ -1,9 +1,7 @@
-import Heading from '@/components/ui/Heading';
-
 const AboutUs = () => {
   return (
     <main>
-      <Heading>About Us</Heading>
+      <h1>About Us</h1>
     </main>
   );
 };

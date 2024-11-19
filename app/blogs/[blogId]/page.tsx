@@ -1,9 +1,7 @@
-import Heading from '@/components/ui/Heading';
-
 const Blog = () => {
   return (
     <main>
-      <Heading>A single Blog</Heading>
+      <h1>A single Blog</h1>
     </main>
   );
 };
