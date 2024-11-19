@@ -1,4 +1,4 @@
-import { hero } from '@/constants';
+import { home } from '@/constants';
 import Image from 'next/image';
 import Button from './Button';
 
@@ -8,15 +8,15 @@ export default function Hero() {
       {/* Text and Button Section */}
       <div className="absolute text-white px-4 md:ml-[110px] w-2/3 md:w-[592px] top-1/2 transform -translate-y-1/2">
         <h4 className="font-medium text-sm md:text-base lg:text-lg">
-          {hero.home['sub-heading'].toUpperCase()}
+          {home.hero['sub-heading']}
         </h4>
-        <h1 className="text-2xl md:text-h1 font-bold leading-snug">
-          {hero.home['heading'].toUpperCase()}
+        <h1 className="text-2xl md:text-h1 leading-snug">
+          {home.hero['heading']}
         </h1>
 
         {/* Button Section */}
         <div className="mt-6 mb-10 md:mt-8 md:mb-16">
-          <Button variant="primary" text={hero.home.btn} />
+          <Button variant="primary" text={home.hero.btn} />
         </div>
 
         {/* Caption Section */}
@@ -28,7 +28,7 @@ export default function Hero() {
             height={24}
             className="w-4 md:w-8 md:h-8"
           />
-          <p className="text-xs md:text-sm lg:text-base">{hero.home.caption}</p>
+          <p className="text-xs md:text-sm lg:text-base">{home.hero.caption}</p>
         </div>
       </div>
 

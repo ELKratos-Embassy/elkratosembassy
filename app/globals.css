@@ -2,12 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/* body {
-  font-family: Arial, Helvetica, sans-serif;
+h1,
+h2,
+h3,
+h4,
+.btn {
+  @apply uppercase;
 }
 
-@layer base {
-  :root {
-    --radius: 0.5rem;
-  }
-} */
+h1,
+h2 {
+  @apply font-bold;
+}
+
+h3,
+h4 {
+  @apply font-semibold;
+}

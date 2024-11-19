@@ -10,14 +10,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        // background: 'var(--background)',
-        // foreground: 'var(--foreground)',
         primary: '#FFD2A4',
         'primary-hover': '#F2C79B',
         secondary: '#0D0D0D',
         'secondary-black': '#161722',
         'secondary-orange': '#FFF5EB',
         grey: '#F5F2F0',
+        'light-orange': '#FFF5EB',
       },
       backgroundColor: {
         gradient: 'linear-gradient(#A54E2B, DC9853)',
