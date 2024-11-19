@@ -20,12 +20,12 @@ export default function Welcome() {
 			<div className="w-full md:w-2/3 mx-auto">
 				<Heading caption={caption} text={text} />
 				<p className="mt-8 mb-14 text-center">{message}</p>
-				<div className=" flex justify-center">
+				<div className="flex justify-center">
 					<Button text={btn} variant="primary" />
 				</div>
 			</div>
 
-			<div className="flex flex-row justify-center items-start gap-6 -mt-4">
+			<div className="flex flex-row justify-center items-center md:items-start gap-6 mt-5 md:-mt-4">
 				{gallery.map(({ src, alt, width, height }, index) => (
 					<Image
 						key={alt}
@@ -33,7 +33,11 @@ export default function Welcome() {
 						width={width}
 						height={height}
 						alt={alt}
-						className={clsx(index === 1 && "mt-12")}
+						className={clsx(
+							"max-sm:w-full max-sm:h-96",
+							index > 0 && "max-md:hidden",
+							index === 1 && "md:mt-12"
+						)}
 					/>
 				))}
 			</div>
