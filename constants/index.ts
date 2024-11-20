@@ -250,4 +250,13 @@ export const home = {
       ],
     },
   },
+  footer: {
+    contentleft: {
+      logo: "/footer/logo.svg",
+      caption: "© Copyright Finsweet 2022",
+      phoneNumber: "(480) 555-0103",
+      address: "4517 Washington Ave.",
+      email: "finsweet@example.com",
+    },
+  },
 };
