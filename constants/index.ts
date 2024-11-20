@@ -207,4 +207,59 @@ export const home = {
       height: 736,
     },
   },
+  blog: {
+    heading: {
+      caption: "Read our blog",
+      text: "Share, inspire, innovate",
+    },
+    post: {
+      card: [
+        {
+          id: "item-1",
+          caption: "Relationship",
+          text: "Watch and listen to our sermons",
+          message:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+          author: "By Matthew Johnson",
+          date: "Tuesday 13 May, 2021",
+        },
+        {
+          id: "item-2",
+          caption: "Relationship",
+          text: "Watch and listen to our sermons",
+          message:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+          author: "By Matthew Johnson",
+          date: "Tuesday 13 May, 2021",
+        },
+        {
+          id: "item-3",
+          caption: "Relationship",
+          text: "Watch and listen to our sermons",
+          message:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+          author: "By Matthew Johnson",
+          date: "Tuesday 13 May, 2021",
+        },
+        {
+          id: "item-4",
+          caption: "Relationship",
+          text: "Watch and listen to our sermons",
+          message:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+          author: "By Matthew Johnson",
+          date: "Tuesday 13 May, 2021",
+        },
+      ],
+    },
+  },
+  footer: {
+    contentleft: {
+      logo: "/footer/logo.svg",
+      caption: "© Copyright Finsweet 2022",
+      phoneNumber: "(480) 555-0103",
+      address: "4517 Washington Ave.",
+      email: "finsweet@example.com",
+    },
+  },
 };
