@@ -1,47 +1,50 @@
-import type { Config } from 'tailwindcss';
+import type { Config } from "tailwindcss";
 
 export default {
-  darkMode: ['class'],
-  content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
-  theme: {
-    extend: {
-      colors: {
-        primary: '#FFD2A4',
-        'primary-hover': '#F2C79B',
-        secondary: '#0D0D0D',
-        'secondary-black': '#161722',
-        'secondary-orange': '#FFF5EB',
-        grey: '#F5F2F099',
-        'light-orange': '#FFF5EB',
-        'gradient-100': '#A54E2B',
-        'gradient-200': '#DC9853',
-      },
-      backgroundColor: {
-        gradient: 'linear-gradient(#A54E2B, DC9853)',
-      },
-      fontSize: {
-        h1: '64px',
-        h2: '48px',
-        h3: '40px',
-        h4: '32px',
-        h5: '24px',
-        h6: '16px',
-        btn: ['16px', '16px'],
-      },
-      backdropBlur: {
-        '4xl': '80px',
-      },
+	darkMode: ["class"],
+	content: [
+		"./pages/**/*.{js,ts,jsx,tsx,mdx}",
+		"./components/**/*.{js,ts,jsx,tsx,mdx}",
+		"./app/**/*.{js,ts,jsx,tsx,mdx}",
+	],
+	theme: {
+		extend: {
+			colors: {
+				primary: "#FFD2A4",
+				"primary-hover": "#F2C79B",
+				secondary: "#0D0D0D",
+				"secondary-black": "#161722",
+				"secondary-orange": "#FFF5EB",
+				grey: "#F5F2F099",
+				"light-orange": "#FFF5EB",
+				"gradient-100": "#A54E2B",
+				"gradient-200": "#DC9853",
+			},
+			backgroundColor: {
+				gradient: "linear-gradient(#A54E2B, DC9853)",
+			},
+			fontSize: {
+				h1: "64px",
+				h2: "48px",
+				h3: "40px",
+				h4: "32px",
+				h5: "24px",
+				h6: "16px",
+				btn: ["16px", "16px"],
+			},
+			backdropBlur: {
+				"4xl": "80px",
+			},
+			backgroundImage: {
+				cta: "url('/cta/bg.svg')",
+			},
 
-      // borderRadius: {
-      // 	lg: 'var(--radius)',
-      // 	md: 'calc(var(--radius) - 2px)',
-      // 	sm: 'calc(var(--radius) - 4px)'
-      // }
-    },
-  },
-  plugins: [require('tailwindcss-animate')],
+			// borderRadius: {
+			// 	lg: 'var(--radius)',
+			// 	md: 'calc(var(--radius) - 2px)',
+			// 	sm: 'calc(var(--radius) - 4px)'
+			// }
+		},
+	},
+	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
