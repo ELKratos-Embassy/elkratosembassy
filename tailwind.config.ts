@@ -17,6 +17,8 @@ export default {
         'secondary-orange': '#FFF5EB',
         grey: '#F5F2F099',
         'light-orange': '#FFF5EB',
+        'gradient-100': '#A54E2B',
+        'gradient-200': '#DC9853',
       },
       backgroundColor: {
         gradient: 'linear-gradient(#A54E2B, DC9853)',

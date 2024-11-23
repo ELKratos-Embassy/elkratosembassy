@@ -6,13 +6,14 @@ h1,
 h2,
 h3,
 h4,
+h5,
 .btn {
   @apply uppercase;
 }
 
 h1,
 h2 {
-  @apply font-bold;
+  @apply font-extrabold;
 }
 
 h3,

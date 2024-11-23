@@ -1,25 +1,28 @@
-import clsx from "clsx";
+import clsx from 'clsx';
+import Image from 'next/image';
 
-type ButtonProps = {
-	text: string;
-	variant?: "primary" | "secondary" | "nav";
-};
-
-export default function Button({ text, variant }: ButtonProps) {
-	return (
-		<button
-			className={clsx(
-				"w-32 h-10 md:w-64 md:h-16 btn px-4 py-2 my-2 md:px-6 md:py-3 rounded-lg text-sm md:text-base font-medium transition-all duration-300 ease-in-out",
-				variant === "primary"
-					? "bg-primary text-secondary-black hover:bg-primary-hover"
-					: variant === "secondary"
-					? "bg-secondary-black text-primary hover:text-white"
-					: variant === "nav"
-					? "bg-transparent text-white hover:text-red-400"
-					: "bg-gray-200"
-			)}
-		>
-			{text}
-		</button>
-	);
+export default function Button({ text, variant, icon }: ButtonProps) {
+  if (icon)
+    return (
+      <button className="flex flex-wrap flex-row justify-center items-center gap-1">
+        <span>{text}</span>
+        <Image src={icon} width={18} height={10} alt="arrow right" />
+      </button>
+    );
+  return (
+    <button
+      className={clsx(
+        'w-32 h-10 md:w-64 md:h-16 btn px-4 py-2 my-2 md:px-6 md:py-3 rounded-lg text-sm md:text-base font-medium transition-all duration-300 ease-in-out',
+        variant === 'primary'
+          ? 'bg-primary text-secondary-black hover:bg-primary-hover'
+          : variant === 'secondary'
+          ? 'bg-secondary-black text-primary hover:text-white'
+          : variant === 'nav'
+          ? 'bg-transparent text-white hover:text-red-400'
+          : ''
+      )}
+    >
+      {text}
+    </button>
+  );
 }

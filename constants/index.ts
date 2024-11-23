@@ -21,6 +21,11 @@ export const links = [
   },
 ];
 
+export const section = {
+  main: 2,
+  gallery: 4,
+  sermon: 5,
+};
 export const home = {
   hero: {
     heading: 'Become a part of our community',
@@ -97,6 +102,7 @@ export const home = {
     },
     cards: [
       {
+        id: '1',
         caption: 'Watch And Listen To Our Sermons',
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.',
         bg: {
@@ -107,6 +113,7 @@ export const home = {
         },
       },
       {
+        id: '2',
         caption: 'Watch And Listen To Our Sermons',
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.',
         bg: {
@@ -117,6 +124,7 @@ export const home = {
         },
       },
       {
+        id: '3',
         caption: 'Watch And Listen To Our Sermons',
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.',
         bg: {
@@ -127,6 +135,8 @@ export const home = {
         },
       },
       {
+        id: '4',
+
         caption: 'Watch And Listen To Our Sermons',
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.',
         bg: {
@@ -162,7 +172,7 @@ export const home = {
             width: 20,
             height: 20,
           },
-          text: 'Friday 23:39 1st Saturday 11:20 Isd',
+          text: ['Friday 23:39 IST', 'Saturday 11:20 ISD'],
         },
         location: {
           icon: {
@@ -171,7 +181,7 @@ export const home = {
             width: 20,
             height: 25,
           },
-          text: 'No 233 Main St. New York, United States',
+          text: ['No 233 Main St. New York,', 'United States'],
         },
         btn: 'Register',
       },
