@@ -8,15 +8,15 @@ h3,
 h4,
 h5,
 .btn {
-  @apply uppercase;
+	@apply uppercase;
 }
 
 h1,
 h2 {
-  @apply font-extrabold;
+	@apply font-extrabold;
 }
 
 h3,
 h4 {
-  @apply font-semibold;
+	@apply font-semibold;
 }
