@@ -1,5 +1,6 @@
 import Container from "@/components/Container";
 import Benefits from "@/components/features/Benefits";
+import BlogPosts from "@/components/features/BlogPosts";
 import Cta from "@/components/features/Cta";
 import UpcomingSermons from "@/components/features/UpcomingSermons";
 import Welcome from "@/components/features/Welcome";
@@ -25,6 +26,9 @@ export default function Home() {
 			</Container>
 
 			<Cta />
+			<Container>
+				<BlogPosts />
+			</Container>
 		</main>
 	);
 }
