@@ -5,6 +5,7 @@ import Cta from "@/components/features/Cta";
 import UpcomingSermons from "@/components/features/UpcomingSermons";
 import Welcome from "@/components/features/Welcome";
 import WhatWeDo from "@/components/features/WhatWeDo";
+import Footer from "@/components/Footer";
 import Hero from "@/components/ui/Hero";
 
 export default function Home() {
@@ -28,6 +29,10 @@ export default function Home() {
 			<Cta />
 			<Container>
 				<BlogPosts />
+			</Container>
+
+			<Container containerClass="bg-[#161722] text-white">
+				<Footer />
 			</Container>
 		</main>
 	);

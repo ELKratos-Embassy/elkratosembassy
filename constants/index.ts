@@ -262,12 +262,66 @@ export const home = {
 		],
 	},
 	footer: {
-		contentleft: {
+		left: {
+			// logo: "/logo.png",
 			logo: "/footer/logo.svg",
 			caption: "© Copyright Finsweet 2022",
 			phoneNumber: "(480) 555-0103",
 			address: "4517 Washington Ave.",
 			email: "finsweet@example.com",
+		},
+		quicklinks: {
+			text: "Quicklinks",
+			nav: [
+				{
+					text: "About Us",
+					href: "/about-us",
+				},
+				{
+					text: "Sermons",
+					href: "/sermons",
+				},
+				{
+					text: "Events",
+					href: "/events",
+				},
+				{
+					text: "Blog",
+					href: "/blogs",
+				},
+			],
+		},
+		connect: {
+			text: "Connect",
+			icons: [
+				{
+					src: "/footer/facebook.svg",
+					alt: "Facebook",
+					href: "https://fb.com/elkratosembassy",
+				},
+				{
+					src: "/footer/twitter.svg",
+					alt: "Twitter",
+					href: "https://x.com/elkratosembassy",
+				},
+				{
+					src: "/footer/linkedIn.svg",
+					alt: "LinkedIn",
+					href: "https://linkedin.com/elkratosembassy",
+				},
+			],
+		},
+		subscribe: {
+			text: "Subscribe to get latest updates and news",
+			form: {
+				input: {
+					label: "Email Address",
+					placeholder: "Yourmail@gmail.com",
+				},
+				btn: {
+					text: "Subscribe",
+				},
+			},
 		},
 	},
 };
