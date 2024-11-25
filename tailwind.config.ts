@@ -24,13 +24,13 @@ export default {
 				gradient: "linear-gradient(#A54E2B, DC9853)",
 			},
 			fontSize: {
-				h1: "64px",
-				h2: "48px",
-				h3: "40px",
-				h4: "32px",
-				h5: "24px",
-				h6: "16px",
-				btn: ["16px", "16px"],
+				h1: ["clamp(2.5rem, 4vw, 4rem)", "1.2"], // 40px to 64px
+				h2: ["clamp(2rem, 3.5vw, 3rem)", "1.2"], // 32px to 48px
+				h3: ["clamp(1.75rem, 3vw, 2.5rem)", "1.2"], // 28px to 40px
+				h4: ["clamp(1.5rem, 2.5vw, 2rem)", "1.2"], // 24px to 32px
+				h5: ["clamp(1.25rem, 2vw, 1.5rem)", "1.2"], // 20px to 24px
+				h6: ["clamp(1rem, 1.5vw, 1rem)", "1.2"], // 16px fixed
+				btn: ["1rem", "1.2"], // Fixed 16px
 			},
 			backdropBlur: {
 				"4xl": "80px",
@@ -38,12 +38,6 @@ export default {
 			backgroundImage: {
 				cta: "url('/cta/bg.svg')",
 			},
-
-			// borderRadius: {
-			// 	lg: 'var(--radius)',
-			// 	md: 'calc(var(--radius) - 2px)',
-			// 	sm: 'calc(var(--radius) - 4px)'
-			// }
 		},
 	},
 	plugins: [require("tailwindcss-animate")],
