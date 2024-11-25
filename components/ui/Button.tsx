@@ -1,11 +1,14 @@
 import clsx from "clsx";
+import Image from "next/image";
 
-type ButtonProps = {
-	text: string;
-	variant?: "primary" | "secondary" | "nav";
-};
-
-export default function Button({ text, variant }: ButtonProps) {
+export default function Button({ text, variant, icon }: ButtonProps) {
+	if (icon)
+		return (
+			<button className="flex flex-wrap flex-row justify-center items-center gap-1">
+				<span>{text}</span>
+				<Image src={icon} width={18} height={10} alt="arrow right" />
+			</button>
+		);
 	return (
 		<button
 			className={clsx(
@@ -16,7 +19,7 @@ export default function Button({ text, variant }: ButtonProps) {
 					? "bg-secondary-black text-primary hover:text-white"
 					: variant === "nav"
 					? "bg-transparent text-white hover:text-red-400"
-					: "bg-gray-200"
+					: ""
 			)}
 		>
 			{text}
