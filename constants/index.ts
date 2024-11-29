@@ -325,3 +325,86 @@ export const home = {
 		},
 	},
 };
+
+export const aboutUs = {
+	welcome: [
+		{
+			heading: {
+				caption: "Our Mission & Vision",
+				text: "Striving for a better tomorrow",
+			},
+			message:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
+		},
+		{
+			heading: {
+				caption: "What we do",
+				text: "Bringing peace and joy to the world",
+			},
+			message:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
+		},
+	],
+	benefits: [
+		{
+			text: "Find fulfillment and joy",
+			message:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.",
+			img: {
+				src: "/about/fulfillment.png",
+				width: 500,
+				height: 320,
+			},
+		},
+		{
+			text: "Shared values",
+			message:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.",
+			img: {
+				src: "/about/shared-values.png",
+				width: 500,
+				height: 320,
+			},
+		},
+		{
+			text: "Charity events",
+			message:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.",
+			img: {
+				src: "/about/charity-events.png",
+				width: 500,
+				height: 320,
+			},
+		},
+		{
+			text: "All are welcome",
+			message:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.",
+			img: {
+				src: "/about/all-are-welcome.png",
+				width: 500,
+				height: 320,
+			},
+		},
+	],
+	team: {
+		heading: {
+			text: "Meet our Inspirational Team",
+			caption: "Church Members",
+		},
+		cards: [
+			{
+				img: {
+					src: "",
+				},
+				name: "Kim Bowen",
+				post: "Pastor, Church",
+				social: {
+					fb: "https://fb.com/kim",
+					x: "https://x.com/kim",
+					in: "https://in.com/kim",
+				},
+			},
+		],
+	},
+};

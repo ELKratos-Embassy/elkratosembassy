@@ -1,12 +1,12 @@
-import Container from "@/components/Container";
-import Benefits from "@/components/features/Benefits";
-import BlogPosts from "@/components/features/BlogPosts";
-import Cta from "@/components/features/Cta";
-import UpcomingSermons from "@/components/features/UpcomingSermons";
-import Welcome from "@/components/features/Welcome";
-import WhatWeDo from "@/components/features/WhatWeDo";
-import Footer from "@/components/Footer";
 import Hero from "@/components/ui/Hero";
+import Container from "@/components/Container";
+import WhatWeDo from "@/components/features/WhatWeDo";
+import Welcome from "@/components/features/Welcome";
+import Benefits from "@/components/features/Benefits";
+import UpcomingSermons from "@/components/features/UpcomingSermons";
+import Cta from "@/components/features/Cta";
+import BlogPosts from "@/components/features/BlogPosts";
+import Footer from "@/components/Footer";
 
 export default function Home() {
 	return (
