@@ -2,22 +2,23 @@ import Container from "@/components/Container";
 import Welcome from "@/components/features/Welcome";
 import Benefits from "@/components/features/Benefits";
 import Footer from "@/components/Footer";
-import Image from "next/image";
+import Team from "@/components/features/Team";
+import { aboutUs } from "@/constants";
+import Header from "@/components/features/Header";
 
 const AboutUs = () => {
+	const {
+		heading: { text, caption, bg },
+	} = aboutUs;
 	return (
 		<main>
-			<Image
-				src="/about/about.svg"
-				alt="About US"
-				height="1280"
-				width="512"
-				className="w-full -mb-20"
-			/>
+			<Header text={text} caption={caption} bg={bg} />
 
 			<Container>
 				<Welcome about />
 				<Benefits about />
+
+				<Team />
 			</Container>
 
 			<Container containerClass="bg-[#161722] text-white">

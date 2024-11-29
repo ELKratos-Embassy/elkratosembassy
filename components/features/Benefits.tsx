@@ -23,7 +23,7 @@ export default function Benefits({ about }: { about?: boolean }) {
 				<div className="flex flex-col md:flex-row justify-center gap-6 flex-wrap">
 					{cards.map(({ id, caption, text, bg }) => (
 						<div
-							className="relative w-full max-w-sm sm:w-80 h-80 group overflow-hidden rounded-lg"
+							className="relative w-full max-w-sm sm:w-80 h-80 group overflow-hidden rounded-lg  mx-auto"
 							key={id}
 						>
 							{/* Background Image */}

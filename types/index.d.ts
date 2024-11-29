@@ -33,6 +33,7 @@ declare interface HeadingProps {
 	text: string;
 	section?: section.main | section.sermon | section.gallery;
 	about?: boolean;
+	hero?: boolean;
 }
 
 declare interface PostProps {

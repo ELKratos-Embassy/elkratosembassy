@@ -327,6 +327,11 @@ export const home = {
 };
 
 export const aboutUs = {
+	heading: {
+		caption: "About us",
+		text: "Serving the world around us",
+		bg: 'bg-hero-about',
+	},
 	welcome: [
 		{
 			heading: {
@@ -395,15 +400,99 @@ export const aboutUs = {
 		cards: [
 			{
 				img: {
-					src: "",
+					src: "/about/team/kim-bowen.png",
 				},
 				name: "Kim Bowen",
 				post: "Pastor, Church",
-				social: {
-					fb: "https://fb.com/kim",
-					x: "https://x.com/kim",
-					in: "https://in.com/kim",
+				social: [
+					{
+						src: "/about/team/social/fb.svg",
+						href: "https://fb.com/kim",
+						alt: "Facebook",
+					},
+					{
+						src: "/about/team/social/x.svg",
+						href: "https://x.com/kim",
+						alt: "X",
+					},
+					{
+						src: "/about/team/social/in.svg",
+						href: "https://in.com/kim",
+						alt: "LinkedIn",
+					},
+				],
+			},
+			{
+				img: {
+					src: "/about/team/danielle-watkins.png",
 				},
+				name: "Danielle Watkins",
+				post: "Pastor, Church",
+				social: [
+					{
+						src: "/about/team/social/fb.svg",
+						href: "https://fb.com/dan",
+						alt: "Facebook",
+					},
+					{
+						src: "/about/team/social/x.svg",
+						href: "https://x.com/dan",
+						alt: "X",
+					},
+					{
+						src: "/about/team/social/in.svg",
+						href: "https://in.com/dan",
+						alt: "LinkedIn",
+					},
+				],
+			},
+			{
+				img: {
+					src: "/about/team/naomi-craig.png",
+				},
+				name: "Naomi Craig",
+				post: "Pastor, Church",
+				social: [
+					{
+						src: "/about/team/social/fb.svg",
+						href: "https://fb.com/naomi",
+						alt: "Facebook",
+					},
+					{
+						src: "/about/team/social/x.svg",
+						href: "https://x.com/naomi",
+						alt: "X",
+					},
+					{
+						src: "/about/team/social/in.svg",
+						href: "https://in.com/naomi",
+						alt: "LinkedIn",
+					},
+				],
+			},
+			{
+				img: {
+					src: "/about/team/santos-payne.png",
+				},
+				name: "Santos Payne",
+				post: "Pastor, Church",
+				social: [
+					{
+						src: "/about/team/social/fb.svg",
+						href: "https://fb.com/santos",
+						alt: "Facebook",
+					},
+					{
+						src: "/about/team/social/x.svg",
+						href: "https://x.com/santos",
+						alt: "X",
+					},
+					{
+						src: "/about/team/social/in.svg",
+						href: "https://in.com/santos",
+						alt: "LinkedIn",
+					},
+				],
 			},
 		],
 	},

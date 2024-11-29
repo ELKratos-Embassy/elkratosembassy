@@ -4,7 +4,7 @@ const Post = ({
 	post: { caption, text, author, date, message },
 }: PostProps) => {
 	return (
-		<section className="bg-light-orange px-8 py-12 w-full max-w-sm sm:w-80 rounded-lg border-[#FFD0A0] hover:border-b-[16px] transition-all">
+		<section className="bg-light-orange px-8 py-12 w-full max-w-sm sm:w-80 rounded-lg border-[#FFD0A0] hover:border-b-[16px] transition-all mx-auto">
 			<div className="max-w-64">
 				<Heading caption={caption} text={text} />
 			</div>
