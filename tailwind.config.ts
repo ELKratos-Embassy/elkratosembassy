@@ -37,6 +37,7 @@ export default {
 			},
 			backgroundImage: {
 				cta: "url('/cta/bg.svg')",
+				"hero-about": "url('/about/hero.png')",
 			},
 		},
 	},

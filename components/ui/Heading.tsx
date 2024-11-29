@@ -1,12 +1,20 @@
 import { section } from "@/constants";
+import clsx from "clsx";
 
 export default function Heading({
 	caption,
 	text,
 	section: state,
+	about,
 }: HeadingProps) {
 	return (
-		<div className="flex flex-col gap-4 justify-center text-center mx-auto max-w-[750px]">
+		<div
+			className={clsx(
+				"flex flex-col gap-4 justify-center mx-auto max-w-[750px]",
+
+				about ? "text-left" : "text-center"
+			)}
+		>
 			{state === section.main ? (
 				<>
 					<p>{caption.toUpperCase()}</p>

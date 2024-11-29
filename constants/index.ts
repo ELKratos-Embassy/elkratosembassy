@@ -325,3 +325,175 @@ export const home = {
 		},
 	},
 };
+
+export const aboutUs = {
+	heading: {
+		caption: "About us",
+		text: "Serving the world around us",
+		bg: 'bg-hero-about',
+	},
+	welcome: [
+		{
+			heading: {
+				caption: "Our Mission & Vision",
+				text: "Striving for a better tomorrow",
+			},
+			message:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
+		},
+		{
+			heading: {
+				caption: "What we do",
+				text: "Bringing peace and joy to the world",
+			},
+			message:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
+		},
+	],
+	benefits: [
+		{
+			text: "Find fulfillment and joy",
+			message:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.",
+			img: {
+				src: "/about/fulfillment.png",
+				width: 500,
+				height: 320,
+			},
+		},
+		{
+			text: "Shared values",
+			message:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.",
+			img: {
+				src: "/about/shared-values.png",
+				width: 500,
+				height: 320,
+			},
+		},
+		{
+			text: "Charity events",
+			message:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.",
+			img: {
+				src: "/about/charity-events.png",
+				width: 500,
+				height: 320,
+			},
+		},
+		{
+			text: "All are welcome",
+			message:
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.",
+			img: {
+				src: "/about/all-are-welcome.png",
+				width: 500,
+				height: 320,
+			},
+		},
+	],
+	team: {
+		heading: {
+			text: "Meet our Inspirational Team",
+			caption: "Church Members",
+		},
+		cards: [
+			{
+				img: {
+					src: "/about/team/kim-bowen.png",
+				},
+				name: "Kim Bowen",
+				post: "Pastor, Church",
+				social: [
+					{
+						src: "/about/team/social/fb.svg",
+						href: "https://fb.com/kim",
+						alt: "Facebook",
+					},
+					{
+						src: "/about/team/social/x.svg",
+						href: "https://x.com/kim",
+						alt: "X",
+					},
+					{
+						src: "/about/team/social/in.svg",
+						href: "https://in.com/kim",
+						alt: "LinkedIn",
+					},
+				],
+			},
+			{
+				img: {
+					src: "/about/team/danielle-watkins.png",
+				},
+				name: "Danielle Watkins",
+				post: "Pastor, Church",
+				social: [
+					{
+						src: "/about/team/social/fb.svg",
+						href: "https://fb.com/dan",
+						alt: "Facebook",
+					},
+					{
+						src: "/about/team/social/x.svg",
+						href: "https://x.com/dan",
+						alt: "X",
+					},
+					{
+						src: "/about/team/social/in.svg",
+						href: "https://in.com/dan",
+						alt: "LinkedIn",
+					},
+				],
+			},
+			{
+				img: {
+					src: "/about/team/naomi-craig.png",
+				},
+				name: "Naomi Craig",
+				post: "Pastor, Church",
+				social: [
+					{
+						src: "/about/team/social/fb.svg",
+						href: "https://fb.com/naomi",
+						alt: "Facebook",
+					},
+					{
+						src: "/about/team/social/x.svg",
+						href: "https://x.com/naomi",
+						alt: "X",
+					},
+					{
+						src: "/about/team/social/in.svg",
+						href: "https://in.com/naomi",
+						alt: "LinkedIn",
+					},
+				],
+			},
+			{
+				img: {
+					src: "/about/team/santos-payne.png",
+				},
+				name: "Santos Payne",
+				post: "Pastor, Church",
+				social: [
+					{
+						src: "/about/team/social/fb.svg",
+						href: "https://fb.com/santos",
+						alt: "Facebook",
+					},
+					{
+						src: "/about/team/social/x.svg",
+						href: "https://x.com/santos",
+						alt: "X",
+					},
+					{
+						src: "/about/team/social/in.svg",
+						href: "https://in.com/santos",
+						alt: "LinkedIn",
+					},
+				],
+			},
+		],
+	},
+};
