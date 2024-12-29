@@ -330,7 +330,6 @@ export const aboutUs = {
   heading: {
     caption: 'About us',
     text: 'Serving the world around us',
-    bg: 'bg-hero-about',
   },
   welcome: [
     {
