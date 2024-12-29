@@ -16,7 +16,7 @@ export default function Button({ text, variant, icon }: ButtonProps) {
   return (
     <button
       className={clsx(
-        'w-32 h-10 md:w-64 md:h-16 btn px-4 py-2 my-2 md:px-6 md:py-3 rounded-lg text-sm md:text-base font-medium transition-all duration-300 ease-in-out',
+        'btn px-4 py-2 my-2 md:px-6 md:py-3 rounded-lg text-sm md:text-base font-medium transition-all duration-300 ease-in-out',
         variant === 'primary'
           ? 'bg-primary text-secondary-black hover:bg-primary-hover'
           : variant === 'secondary'

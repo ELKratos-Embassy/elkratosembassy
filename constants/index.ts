@@ -604,3 +604,32 @@ export const blogs = {
     ],
   },
 };
+
+export const contact = {
+  hero: {
+    caption: 'Contact',
+    text: 'Get in touch with our church',
+  },
+  address: {
+    location: 'NH 234 Public Square San Francisco 65368',
+    phone: '(480) 555-0103',
+    email: 'Finsweet@example.com',
+  },
+  social: [
+    {
+      src: '/contact/fb.png',
+      alt: 'Facebook',
+      href: 'https://fb.com/elkratosembassy',
+    },
+    {
+      src: '/contact/x.png',
+      alt: 'X',
+      href: 'https://x.com/elkratosembassy',
+    },
+    {
+      src: '/contact/in.png',
+      alt: 'LinkedIn',
+      href: 'https://linkedin.com/elkratosembassy',
+    },
+  ],
+};
