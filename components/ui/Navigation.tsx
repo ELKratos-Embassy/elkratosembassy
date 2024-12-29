@@ -44,11 +44,11 @@ const Navigation = () => {
               href={href}
               key={text}
               className={clsx(
-                'bg-transparent text-white transition-colors duration-300 hover:text-primary',
-                href === pathname && 'text-primary font-semibold'
+                'bg-transparent text-white transition-colors duration-300 hover:text-primary uppercase',
+                href === pathname && 'text-primary font-semibold',
               )}
             >
-              {text.toUpperCase()}
+              {text}
             </Link>
           ))}
         </nav>
@@ -70,7 +70,7 @@ const Navigation = () => {
               key={text}
               className={clsx(
                 'w-full text-center py-2 text-white transition-all duration-300 rounded-md hover:bg-primary hover:text-secondary-black',
-                href === pathname && 'text-red-500 font-semibold'
+                href === pathname && 'text-red-500 font-semibold',
               )}
               onClick={() => setMenuOpen(false)}
             >

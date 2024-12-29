@@ -503,3 +503,104 @@ export const sermon = {
     text: 'Take part in our sermon',
   },
 };
+
+export const blogs = {
+  header: {
+    caption: 'Our Blog',
+    text: 'MOst Recent Post',
+  },
+  hero: {
+    image: '/blogs/hero.png',
+    date: 'Tuesday 13 May, 2022',
+    author: 'John Hunau Deo',
+    text: 'Church was doing what he often did when dropped an Oracle',
+    message:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.',
+    btn: 'Read more',
+  },
+  posts: {
+    title: 'All blog posts',
+    data: [
+      {
+        id: '1',
+        tag: 'Relationship',
+        title: 'The best way to inspire people',
+        message:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.',
+
+        author: 'Mathew Johnson',
+        date: 'Tuesday 13 May, 2018',
+      },
+      {
+        id: '2',
+        tag: 'Relationship',
+        title: 'How to show compassion',
+        message:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.',
+
+        author: 'Mathew Johnson',
+        date: 'Tuesday 13 May, 2018',
+      },
+      {
+        id: '3',
+        tag: 'Relationship',
+        title: 'The biblical purpose of money',
+        message:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.',
+
+        author: 'Mathew Johnson',
+        date: 'Tuesday 13 May, 2018',
+      },
+      {
+        id: '4',
+        tag: 'Relationship',
+        title: 'The best way to inspire people',
+        message:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.',
+
+        author: 'Mathew Johnson',
+        date: 'Tuesday 13 May, 2018',
+      },
+      {
+        id: '5',
+        tag: 'Relationship',
+        title: 'What it means to be a discipline',
+        message:
+          'We both celebrate and challenge the culture around us as we orient our lives around Jesus. We want...',
+
+        author: 'Mathew Johnson',
+        date: 'Tuesday 13 May, 2018',
+      },
+      {
+        id: '6',
+        tag: 'Relationship',
+        title: 'What it means to be a discipline',
+        message:
+          'We both celebrate and challenge the culture around us as we orient our lives around Jesus. We want...',
+
+        author: 'Mathew Johnson',
+        date: 'Tuesday 13 May, 2018',
+      },
+      {
+        id: '7',
+        tag: 'Relationship',
+        title: 'What it means to be a believe',
+        message:
+          'We both celebrate and challenge the culture around us as we orient our lives around Jesus. We want...',
+
+        author: 'Mathew Johnson',
+        date: 'Tuesday 13 May, 2018',
+      },
+      {
+        id: '8',
+        tag: 'Relationship',
+        title: 'The modern church in 2022',
+        message:
+          'We both celebrate and challenge the culture around us as we orient our lives around Jesus. We want...',
+
+        author: 'Mathew Johnson',
+        date: 'Tuesday 13 May, 2018',
+      },
+    ],
+  },
+};
