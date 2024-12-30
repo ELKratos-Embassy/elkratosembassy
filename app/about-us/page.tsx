@@ -12,20 +12,21 @@ const {
 
 const AboutUs = () => {
   return (
-    <main>
-      <Header text={text} caption={caption} />
+    <>
+      <main>
+        <Header text={text} caption={caption} />
 
-      <Container>
-        <Welcome about />
-        <Benefits about />
+        <Container>
+          <Welcome about />
+          <Benefits about />
 
-        <Team />
-      </Container>
-
+          <Team />
+        </Container>
+      </main>
       <Container containerClass="bg-[#161722] text-white">
         <Footer />
       </Container>
-    </main>
+    </>
   );
 };
 
