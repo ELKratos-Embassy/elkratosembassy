@@ -12,7 +12,7 @@ const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-secondary text-white px-4 md:px-24 py-3">
+    <header className="bg-[#161722] text-white px-4 md:px-24 py-3 ">
       <div className="flex items-center justify-between max-w-screen-xl mx-auto">
         {/* Logo Section */}
         <Link href="/" className="flex items-center gap-2">
@@ -60,25 +60,27 @@ const Navigation = () => {
           </Link>
         </div>
       </div>
-
       {/* Mobile Navigation */}
-      {menuOpen && (
-        <nav className="flex flex-col items-center mt-4 md:hidden gap-3 bg-secondary py-4 rounded-md shadow-lg">
-          {links.map(({ text, href }) => (
-            <Link
-              href={href}
-              key={text}
-              className={clsx(
-                'w-full text-center py-2 text-white transition-all duration-300 rounded-md hover:bg-primary hover:text-secondary-black',
-                href === pathname && 'text-red-500 font-semibold',
-              )}
-              onClick={() => setMenuOpen(false)}
-            >
-              <span className="text-sm">{text}</span>
-            </Link>
-          ))}
-        </nav>
-      )}
+      <nav
+        className={clsx(
+          'flex flex-col items-center md:hidden gap-3 bg-[#161722] rounded-md shadow-lg transition-transform duration-300 origin-top',
+          menuOpen ? 'scale-y-100 py-4' : 'scale-y-0 h-0',
+        )}
+      >
+        {links.map(({ text, href }) => (
+          <Link
+            href={href}
+            key={text}
+            className={clsx(
+              'w-full text-center py-2 text-white transition-all duration-300 rounded-md hover:bg-primary hover:text-secondary-black',
+              href === pathname && 'text-red-500 font-semibold',
+            )}
+            onClick={() => setMenuOpen(false)}
+          >
+            <span className="text-sm">{text}</span>
+          </Link>
+        ))}
+      </nav>
     </header>
   );
 };
