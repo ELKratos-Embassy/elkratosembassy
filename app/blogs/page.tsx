@@ -48,7 +48,7 @@ const Blogs = () => {
                 <section
                   className="w-full md:w-[302px] bg-white px-8
                 py-12 hover:border-b-[16px]
-							  border-primary-hover transition-all duration-500"
+							  border-primary-hover rounded-lg transition-all duration-500"
                 >
                   <h6 className="text-xs uppercase font-bold text-transparent bg-clip-text bg-gradient-to-r from-gradient-100 to-gradient-200">
                     {tag}

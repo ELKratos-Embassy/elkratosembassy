@@ -4,16 +4,15 @@ import { home, section } from '@/constants';
 import Button from '../ui/Button';
 import clsx from 'clsx';
 
+const {
+  sermons: {
+    heading: { text, caption },
+    card: { date, info },
+    bg: { src, alt, width, height },
+    btn,
+  },
+} = home;
 export default function UpcomingSermons() {
-  const {
-    sermons: {
-      heading: { text, caption },
-      card: { date, info },
-      bg: { src, alt, width, height },
-      btn,
-    },
-  } = home;
-
   return (
     <div>
       <div className="mb-16">
