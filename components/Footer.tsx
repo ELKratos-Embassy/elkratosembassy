@@ -14,16 +14,12 @@ const Footer = () => {
   } = home;
 
   return (
-    <div className="flex flex-col gap-12 lg:gap-0 lg:flex-row md:justify-between">
+    <div className="flex flex-col flex-wrap gap-12  lg:flex-row md:justify-between">
       <div className="flex flex-col gap-12 sm:flex-row md:gap-[270px] lg:gap-[350px] justify-between">
         <section>
-          <Image
-            src={left.logo}
-            alt="Footer logo"
-            width={96}
-            height={96}
-            className="w-60"
-          />
+          <h4 className="text-primary tracking-widest text-2xl lg:text-4xl font-mono">
+            EL Kratos
+          </h4>
 
           <h6 className="text-[12px] mt-7 mb-8 opacity-75 uppercase">
             {left.caption}
