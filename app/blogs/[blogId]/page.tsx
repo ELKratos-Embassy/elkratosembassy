@@ -16,7 +16,7 @@ const Blog = async ({ params }: { params: Promise<{ blogId: string }> }) => {
 
   return (
     <div>
-      <main className="bg-[#FFD0A040] py-32 px-24">
+      <main className="bg-[#FFD0A040] py-32 px-6 sm:px-8 md:px-24">
         <header className="text-center">
           <h6 className="text-xs uppercase font-bold text-transparent bg-clip-text bg-gradient-to-r from-gradient-100 to-gradient-200">
             {post.tag}
