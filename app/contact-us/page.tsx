@@ -18,7 +18,7 @@ const ContactUs = () => {
         <Header caption={caption} text={text} />
       </div>
 
-      <main className="py-32 px-28 bg-light-orange">
+      <main className="py-32 px-6 sm:px-8 md:px-28 bg-light-orange">
         <section>
           <h5 className="text-h5 uppercase mb-8 font-bold">Contact Form:</h5>
 
