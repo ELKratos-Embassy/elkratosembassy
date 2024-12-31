@@ -45,4 +45,17 @@ declare interface PostProps {
     author: string;
     date: string;
   };
+  single?: boolean;
+}
+declare interface EventProps {
+  event: {
+    id: string;
+    caption: string;
+    text: string;
+    message: string;
+    author: string;
+    date: string;
+    // info:
+  };
+  single?: boolean;
 }
