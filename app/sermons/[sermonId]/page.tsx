@@ -23,7 +23,7 @@ const Sermon = async ({
   }
   return (
     <>
-      <main className="bg-[#FFD0A040] py-32 px-24">
+      <main className="bg-light-orange py-32 px-24">
         {/* Sermon Detail */}
         <div className="flex flex-col md:flex-row gap-12 md:gap-24 mb-32">
           <div className="w-full md:w-1/2 lg:w-2/3">
