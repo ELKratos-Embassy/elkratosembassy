@@ -14,7 +14,7 @@ const {
 const Blogs = () => {
   return (
     <div>
-      <main className="bg-[#FFD0A040] py-32 px-24">
+      <main className="bg-[#FFD0A040] py-32 px-6 sm:px-8 md:px-24">
         <BlogHeader />
         {/* Latest Post */}
         <div className="p-14 bg-white flex flex-col lg:flex-row justify-between items-center gap-12 mt-16 mb-32">
