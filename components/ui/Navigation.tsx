@@ -12,7 +12,7 @@ const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-[#161722] text-white px-4 md:px-24 py-3 ">
+    <header className="bg-[#161722] text-white px-4 md:px-18 lg:px-24 py-3 ">
       <div className="flex items-center justify-between max-w-screen-xl mx-auto">
         {/* Logo Section */}
         <Link href="/" className="flex items-center gap-2">
@@ -44,7 +44,7 @@ const Navigation = () => {
               href={href}
               key={text}
               className={clsx(
-                'bg-transparent text-white transition-colors duration-300 hover:text-primary uppercase',
+                'bg-transparent  transition-colors duration-300 hover:text-primary uppercase',
                 href === pathname && 'text-primary font-semibold',
               )}
             >
@@ -56,7 +56,14 @@ const Navigation = () => {
         {/* Call to Action Button */}
         <div className="hidden md:block">
           <Link href={links[links.length - 1].href}>
-            <Button text={links[links.length - 1].text} variant="primary" />
+            <Button
+              text={links[links.length - 1].text}
+              variant={
+                pathname === links[links.length - 1].href
+                  ? 'secondary'
+                  : 'primary'
+              }
+            />
           </Link>
         </div>
       </div>
