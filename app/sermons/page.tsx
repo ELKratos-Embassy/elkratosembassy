@@ -14,7 +14,7 @@ const Sermons = () => {
   return (
     <div>
       <Header text={text} caption={caption} />
-      <main className="pb-32 px-24">
+      <main className="pb-32 md:px-24">
         <Container>
           <UpcomingSermons />
         </Container>
