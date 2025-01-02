@@ -20,10 +20,10 @@ export default function Benefits({ about }: { about?: boolean }) {
       {about ? (
         <AboutBenefit />
       ) : (
-        <div className="flex flex-col md:flex-row justify-center gap-6 flex-wrap">
+        <div className="flex flex-col sm:flex-row justify-center gap-6 flex-wrap">
           {cards.map(({ id, caption, text, bg }) => (
             <div
-              className="relative w-full max-w-sm sm:w-80 h-80 group overflow-hidden rounded-lg  mx-auto"
+              className="relative w-full max-sm:mx-auto max-w-sm sm:w-64 h-60  lg:w-72 lg:h-80 group overflow-hidden rounded-lg"
               key={id}
             >
               {/* Background Image */}

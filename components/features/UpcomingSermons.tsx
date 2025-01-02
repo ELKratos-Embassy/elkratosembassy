@@ -18,9 +18,11 @@ export default function UpcomingSermons() {
       <div className="mb-16">
         <Heading section={section.main} caption={caption} text={text} />
       </div>
-      <div className="flex flex-col flex-wrap lg:flex-row max-lg:gap-4 items-start mb-12 w-full max-w-[700px]">
-        <div className="flex flex-row bg-light-orange p-8 gap-6 w-full">
-          <div className="mt-7 ml-14">
+      <div className="flex flex-col md:flex-row  mb-12 w-full items-start">
+        <div
+          className={`flex flex-row bg-light-orange p-8 md:p-4 gap-3 lg:gap-6 md:h-[500px] xl:h-[450px] overflow-y-auto`}
+        >
+          <div className="mt-7 ml-6">
             <Heading
               section={section.sermon}
               caption={info.desc.caption}
@@ -82,7 +84,7 @@ export default function UpcomingSermons() {
           alt={alt}
           width={width}
           height={height}
-          className="w-full lg:w-2/3 xl:h-[458px] object-cover xl:aspect-square"
+          className="md:w-1/2 h-[500px] xl:h-[450px] object-cover"
         />
       </div>
       <div className="flex justify-end">
