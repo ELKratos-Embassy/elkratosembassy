@@ -11,7 +11,7 @@ const EventPosts = ({ title, single }: { title: string; single?: boolean }) => {
   return (
     <div
       className={clsx(
-        'space-y-32 px-6 py-8',
+        'space-y-32 sm:px-6 py-8',
         single ? 'bg-transparent' : 'bg-white',
       )}
     >
@@ -23,11 +23,11 @@ const EventPosts = ({ title, single }: { title: string; single?: boolean }) => {
             <Link key={id} href={`/sermons/${id}`} className="w-full md:w-96">
               <div
                 className={clsx(
-                  'flex flex-row  p-8 gap-6 hover:border-b-[16px] border-primary-hover transition-all duration-500 rounded-lg',
+                  'flex flex-row  p-8 md:gap-6 hover:border-b-[16px] border-primary-hover transition-all duration-500 rounded-lg',
                   single ? 'bg-white' : 'bg-light-orange',
                 )}
               >
-                <div className="mt-7 ml-14">
+                <div className="mt-7 ml-6 sm:ml-14">
                   <Heading
                     section={section.sermon}
                     caption={info.desc.caption}
