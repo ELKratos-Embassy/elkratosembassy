@@ -14,7 +14,7 @@ const Sermons = () => {
   return (
     <div>
       <Header text={text} caption={caption} />
-      <main className="pb-32 md:px-24">
+      <main>
         <Container>
           <UpcomingSermons />
         </Container>
@@ -23,9 +23,7 @@ const Sermons = () => {
         <EventPosts title="View All Events" />
       </main>
       {/* Footer */}
-      <Container containerClass="bg-[#161722] text-white">
-        <Footer />
-      </Container>
+      <Footer />
     </div>
   );
 };

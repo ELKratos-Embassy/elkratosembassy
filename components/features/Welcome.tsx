@@ -3,6 +3,7 @@ import Button from '../ui/Button';
 import Heading from '../ui/Heading';
 import { home, section, aboutUs } from '@/constants';
 import clsx from 'clsx';
+import Link from 'next/link';
 
 export default function Welcome({ about }: { about?: boolean }) {
   const {
@@ -77,7 +78,12 @@ export default function Welcome({ about }: { about?: boolean }) {
             text={footer.text}
           />
           <p className="text-center">{footer.message}</p>
-          <Button text={footer.btn.text} icon={footer.btn.icon} />
+          <Link
+            href="/about-us"
+            className="w-fit mx-auto hover:ring-1 ring-primary p-2 transition-all rounded-full hover:scale-105"
+          >
+            <Button text={footer.btn.text} icon={footer.btn.icon} />
+          </Link>
         </div>
       )}
     </div>

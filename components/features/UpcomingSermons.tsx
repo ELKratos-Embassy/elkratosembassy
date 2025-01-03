@@ -3,6 +3,7 @@ import Heading from '../ui/Heading';
 import { home, section } from '@/constants';
 import Button from '../ui/Button';
 import clsx from 'clsx';
+import Link from 'next/link';
 
 const {
   sermons: {
@@ -68,7 +69,9 @@ export default function UpcomingSermons() {
                 </p>
               </div>
             </div>
-            <Button text={info.btn} variant="secondary" />
+            <Link href={`/sermons/${info.desc.id}`}>
+              <Button text={info.btn} variant="secondary" />
+            </Link>
           </div>
 
           <div className="text-right">
@@ -84,11 +87,16 @@ export default function UpcomingSermons() {
           alt={alt}
           width={width}
           height={height}
-          className="md:w-1/2 h-[500px] xl:h-[450px] object-cover"
+          className="md:w-1/2 md:h-[500px] xl:h-[450px] object-fill sm:object-cover"
         />
       </div>
       <div className="flex justify-end">
-        <Button text={btn.text} icon={btn.icon} />
+        <Link
+          href="/sermons"
+          className="hover:ring-1 ring-primary p-2 transition-all rounded-full hover:scale-105"
+        >
+          <Button text={btn.text} icon={btn.icon} />
+        </Link>
       </div>
     </div>
   );

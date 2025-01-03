@@ -31,9 +31,7 @@ export default function Home() {
         <BlogPosts />
       </Container>
 
-      <Container containerClass="bg-[#161722] text-white">
-        <Footer />
-      </Container>
+      <Footer />
     </main>
   );
 }

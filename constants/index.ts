@@ -160,6 +160,7 @@ export const home = {
       },
       info: {
         desc: {
+          id: '2',
           caption: 'Upcoming event',
           text: 'Watch and listen to our sermons',
           message:

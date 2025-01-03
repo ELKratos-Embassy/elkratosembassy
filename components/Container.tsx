@@ -11,7 +11,7 @@ export default function Container({
   return (
     <section
       className={clsx(
-        'space-y-20 md:space-y-32 px-6 py-8 sm:px-12 sm:py-16 md:px-20 md:py-24 lg:px-28 lg:py-32',
+        'space-y-20 md:space-y-32 px-6 py-8 sm:px-12 sm:py-16 md:px-20 md:py-24 lg:px-28',
         containerClass ? containerClass : 'bg-white',
       )}
     >

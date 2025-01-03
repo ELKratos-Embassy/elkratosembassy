@@ -11,23 +11,27 @@ const EventPosts = ({ title, single }: { title: string; single?: boolean }) => {
   return (
     <div
       className={clsx(
-        'space-y-32 sm:px-6 py-8',
+        'py-12 md:py-20 px-6 sm:px-8 md:px-16',
         single ? 'bg-transparent' : 'bg-white',
       )}
     >
       {/* Blog Posts */}
       <section>
-        <h2 className="text-h2 text-center mb-16">{title}</h2>
-        <article className="flex flex-wrap flex-col md:flex-row gap-3 lg:gap-6">
+        <h2 className="text-h2 text-center mb-6 md:mb-12">{title}</h2>
+        <article className="flex flex-wrap flex-col sm:flex-row gap-6 justify-center">
           {data.map(({ id, date, info }) => (
-            <Link key={id} href={`/sermons/${id}`} className="w-full md:w-96">
+            <Link
+              key={id}
+              href={`/sermons/${id}`}
+              className="w-full sm:max-w-[275px] text-sm"
+            >
               <div
                 className={clsx(
-                  'flex flex-row  p-8 md:gap-6 hover:border-b-[16px] border-primary-hover transition-all duration-500 rounded-lg',
+                  'flex flex-row p-8 py-4 hover:border-b-[16px] border-primary-hover transition-all duration-500 rounded-lg',
                   single ? 'bg-white' : 'bg-light-orange',
                 )}
               >
-                <div className="mt-7 ml-6 sm:ml-14">
+                <div className="mt-3 md:mt-6">
                   <Heading
                     section={section.sermon}
                     caption={info.desc.caption}

@@ -13,7 +13,13 @@ const Cta = () => {
   return (
     <div className={`py-32 bg-cta bg-cover bg-center `}>
       <div className="flex flex-col w-fit mx-auto">
-        <div className="px-16 py-12 flex flex-col md:justify-between md:flex-row justify-center  gap-28 bg-white hover:border-b-[16px] border-primary transition-all">
+        <div
+          className="px-8 md:px-16 p-8
+          md:py-12 flex flex-col md:justify-between md:flex-row justify-center 
+        gap-12
+          md:gap-24
+           bg-white hover:border-b-[16px] border-primary transition-all"
+        >
           <section className="max-w-[500px]">
             <h2 className="text-h2 text-center md:text-left">{text}</h2>
             <p className="py-4">{message}</p>
@@ -24,7 +30,7 @@ const Cta = () => {
             alt={alt}
             width={width}
             height={height}
-            className="mx-auto md:mx-auto"
+            className="mx-auto md:mx-auto w-28 md:w-32"
           />
         </div>
       </div>
