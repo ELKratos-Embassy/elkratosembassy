@@ -1,4 +1,3 @@
-import Container from '@/components/Container';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
@@ -23,9 +22,9 @@ const Sermon = async ({
   }
   return (
     <>
-      <main className="bg-light-orange py-32 px-6 sm:px-8 md:px-24">
+      <main className="bg-light-orange py-12 md:py-20 px-6 sm:px-8 md:px-16">
         {/* Sermon Detail */}
-        <div className="flex flex-col md:flex-row gap-12 md:gap-24 mb-32">
+        <div className="flex flex-col md:flex-row gap-12 md:gap-24 mb-6 md:mb-12">
           <div className="w-full md:w-1/2 lg:w-2/3">
             <Image
               src="/sermons/sermon.png"
@@ -120,9 +119,7 @@ const Sermon = async ({
         {/* View all events */}
         <EventPosts title="Upcoming Sermons" single />
       </main>
-      <Container containerClass="bg-[#161722] text-white">
-        <Footer />
-      </Container>
+      <Footer />
     </>
   );
 };

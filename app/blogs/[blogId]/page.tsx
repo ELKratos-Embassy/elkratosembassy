@@ -1,4 +1,3 @@
-import Container from '@/components/Container';
 import Footer from '@/components/Footer';
 import { blogs } from '@/constants';
 import Image from 'next/image';
@@ -16,7 +15,7 @@ const Blog = async ({ params }: { params: Promise<{ blogId: string }> }) => {
 
   return (
     <div>
-      <main className="bg-[#FFD0A040] py-32 px-6 sm:px-8 md:px-24">
+      <main className="bg-[#FFD0A040] py-12 md:py-20 px-6 sm:px-8 md:px-16">
         <header className="text-center">
           <h6 className="text-xs uppercase font-bold text-transparent bg-clip-text bg-gradient-to-r from-gradient-100 to-gradient-200">
             {post.tag}
@@ -33,11 +32,11 @@ const Blog = async ({ params }: { params: Promise<{ blogId: string }> }) => {
           alt="Reading the bible"
           width={1280}
           height={406}
-          className="w-full my-16"
+          className="w-full my-8 md:my-12"
         />
 
         {/* Blog Detail */}
-        <article className="w-full md:w-2/3 mx-auto">
+        <article className="w-full md:w-10/12 mx-auto">
           <h2 className="text-h2 mt-6">{post.detail.post[0].title}</h2>
           <p className="opacity-80 mt-6">{post.detail.post[0].content[0]}</p>
           <p className="opacity-80 mt-6">{post.detail.post[0].content[1]}</p>
@@ -47,7 +46,7 @@ const Blog = async ({ params }: { params: Promise<{ blogId: string }> }) => {
             alt={post.title}
             width={768}
             height={437}
-            className="w-full mt-12 mb-12"
+            className="w-full my-8 md:my-12"
           />
 
           <section>
@@ -73,9 +72,7 @@ const Blog = async ({ params }: { params: Promise<{ blogId: string }> }) => {
           </section>
         </article>
       </main>
-      <Container containerClass="bg-[#161722] text-white">
-        <Footer />
-      </Container>
+      <Footer />
     </div>
   );
 };

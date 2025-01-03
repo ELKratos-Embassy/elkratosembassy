@@ -5,13 +5,13 @@ import Image from 'next/image';
 const AboutBenefit = () => {
   const { benefits } = aboutUs;
   return (
-    <div className="space-y-24 w-full md:w-10/12 mx-auto">
+    <div className="space-y-12 md:space-y-20 xl:space-y-24 w-full  mx-auto">
       {benefits.map(({ text, message, img: { src, width, height } }, index) => (
         <div
           key={text}
           className={clsx(
-            'flex flex-col-reverse gap-6 justify-center items-center',
-            index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse',
+            'flex flex-col-reverse gap-6 md:gap-4 justify-center items-center',
+            index % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse',
           )}
         >
           <section className="flex flex-col justify-center gap-4">
@@ -23,7 +23,7 @@ const AboutBenefit = () => {
             alt={text}
             width={width}
             height={height}
-            className="w-full md:w-64 h-full lg:w-[500px]"
+            className="w-full sm:w-64 lg:w-96 h-full"
           />
         </div>
       ))}

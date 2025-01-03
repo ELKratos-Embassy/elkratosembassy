@@ -1,4 +1,3 @@
-import Container from '@/components/Container';
 import Header from '@/components/features/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/ui/Button';
@@ -18,11 +17,11 @@ const ContactUs = () => {
         <Header caption={caption} text={text} />
       </div>
 
-      <main className="py-32 px-6 sm:px-8 md:px-28 bg-light-orange">
+      <main className="py-12 md:py-20 px-6 sm:px-8 md:px-28 bg-light-orange">
         <section>
           <h5 className="text-h5 uppercase mb-8 font-bold">Contact Form:</h5>
 
-          <div className="flex flex-col md:flex-row gap-24 md:gap-32">
+          <div className="flex flex-col md:flex-row gap-12 md:gap-32">
             <form className="flex flex-col gap-3 w-full md:w-1/2">
               <input
                 type="text"
@@ -83,9 +82,7 @@ const ContactUs = () => {
           </div>
         </section>
       </main>
-      <Container containerClass="bg-[#161722] text-white placeholder:text-black">
-        <Footer />
-      </Container>
+      <Footer />
     </div>
   );
 };

@@ -13,7 +13,7 @@ const {
 const AboutUs = () => {
   return (
     <>
-      <main>
+      <main className="pb-8 sm:pb-16 md:pb-18">
         <Header text={text} caption={caption} />
 
         <Container>
@@ -23,9 +23,7 @@ const AboutUs = () => {
           <Team />
         </Container>
       </main>
-      <Container containerClass="bg-[#161722] text-white">
-        <Footer />
-      </Container>
+      <Footer />
     </>
   );
 };

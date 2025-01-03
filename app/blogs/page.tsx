@@ -1,4 +1,3 @@
-import Container from '@/components/Container';
 import BlogHeader from '@/components/features/BlogHeader';
 import Footer from '@/components/Footer';
 import Button from '@/components/ui/Button';
@@ -14,21 +13,25 @@ const {
 const Blogs = () => {
   return (
     <div>
-      <main className="bg-[#FFD0A040] py-32 px-6 sm:px-8 md:px-24">
+      <main className="bg-[#FFD0A040] py-12 md:py-20 px-6 sm:px-8 md:px-16">
         <BlogHeader />
         {/* Latest Post */}
-        <div className="p-14 bg-white flex flex-col lg:flex-row justify-between items-center gap-12 mt-16 mb-32">
+        <div className="sm:p-8 bg-white flex flex-col sm:flex-row justify-between items-center gap-8 sm:gap-6 mt-8 md:mt-16 mb-16 md:mb-24">
           <Image
             src={image}
             alt="Reading the bible"
             width={572}
             height={384}
-            className="w-full lg:w-1/2"
+            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/2 sm:h-[384px] object-cover"
           />
-          <section className="w-full lg:w-2/3">
-            <h6 className="text-base flex justify-between">
-              <span className="uppercase">{date}</span>
-              <span className="uppercase">BY {author}</span>
+          <section className="w-full lg:w-2/3 max-sm:px-8 pb-8">
+            <h6 className="text-base flex justify-between md:mb-4">
+              <span className="uppercase">
+                <small>{date}</small>
+              </span>
+              <span className="uppercase">
+                <small>BY {author}</small>
+              </span>
             </h6>
             <h4 className="text-h4 mt-3 mb-4 font-bold">{text}</h4>
             <p className="text-base opacity-80">{message}</p>
@@ -40,13 +43,13 @@ const Blogs = () => {
 
         {/* Blog Posts */}
         <section>
-          <h2 className="text-h2 text-center mb-16">{title}</h2>
+          <h2 className="text-h2 text-center mb-8 md:mb-16">{title}</h2>
 
-          <article className="flex flex-wrap flex-col md:flex-row gap-3 lg:gap-6">
+          <article className="flex flex-wrap justify-center flex-col sm:flex-row gap-3 lg:gap-6">
             {data.map(({ id, tag, title, message, author, date }) => (
               <Link key={id} href={`/blogs/${id}`}>
                 <section
-                  className="w-full md:w-[302px] bg-white px-8
+                  className="w-full sm:max-w-[273px] bg-white px-8
                 py-12 hover:border-b-[16px]
 							  border-primary-hover rounded-lg transition-all duration-500"
                 >
@@ -66,9 +69,7 @@ const Blogs = () => {
           </article>
         </section>
       </main>
-      <Container containerClass="bg-[#161722] text-white">
-        <Footer />
-      </Container>
+      <Footer />
     </div>
   );
 };
