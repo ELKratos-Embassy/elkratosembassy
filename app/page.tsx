@@ -7,31 +7,32 @@ import UpcomingSermons from '@/components/features/UpcomingSermons';
 import Cta from '@/components/features/Cta';
 import BlogPosts from '@/components/features/BlogPosts';
 import Footer from '@/components/Footer';
+import type { Metadata } from 'next';
+
+// Add metadata for better SEO
+export const metadata: Metadata = {
+  title: 'Home | El Kratos Embassy',
+  description:
+    'Welcome to El Kratos Embassy - Where Spiritual Resilience Meets Life. Discover our transformative faith community and grow in both spiritual and personal life.',
+};
 
 export default function Home() {
   return (
-    <main>
-      <Hero />
-
-      <Container>
-        <WhatWeDo />
-        <Welcome />
-      </Container>
-
-      <Container containerClass="bg-grey">
-        <Benefits />
-      </Container>
-
-      <Container>
-        <UpcomingSermons />
-      </Container>
-
-      <Cta />
-      <Container>
-        <BlogPosts />
-      </Container>
-
+    <>
+      <main>
+        <Hero />
+        <Container>
+          <WhatWeDo />
+          <Welcome />
+          <Benefits />
+          <UpcomingSermons />
+        </Container>
+        <Cta />
+        <Container>
+          <BlogPosts />
+        </Container>
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }

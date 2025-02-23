@@ -7,7 +7,9 @@ const montserrat = Montserrat({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-montserrat',
+  weight: ['400', '500', '600', '700'],
 });
+
 export const metadata: Metadata = {
   title: 'El Kratos Embassy - Where Spiritual Resilience Meets Life',
   description:
@@ -30,6 +32,8 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
+  viewport: 'width=device-width, initial-scale=1',
+  themeColor: '#FFD2A4',
 };
 
 export default function RootLayout({
@@ -38,10 +42,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${montserrat.className} antialiased`}>
+    <html lang="en" className={montserrat.variable}>
+      <body
+        className={`${montserrat.className} antialiased min-h-screen flex flex-col`}
+      >
         <Navigation />
-        {children}
+
+        <main className="flex-grow">{children}</main>
       </body>
     </html>
   );

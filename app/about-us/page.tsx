@@ -5,24 +5,41 @@ import Footer from '@/components/Footer';
 import Team from '@/components/features/Team';
 import { aboutUs } from '@/constants';
 import Header from '@/components/features/Header';
+import type { Metadata } from 'next';
 
-const {
-  heading: { text, caption },
-} = aboutUs;
+export const metadata: Metadata = {
+  title: 'About Us | El Kratos Embassy',
+  description:
+    'Learn about El Kratos Embassy - a transformative faith community where spiritual resilience meets everyday life. Discover our vision, mission, and values.',
+};
 
 const AboutUs = () => {
+  const {
+    heading: { text, caption },
+  } = aboutUs;
+
   return (
     <>
-      <main className="pb-8 sm:pb-16 md:pb-18">
+      <div className="text-white">
         <Header text={text} caption={caption} />
+      </div>
 
+      <main className="bg-white">
         <Container>
-          <Welcome about />
-          <Benefits about />
+          <section className="py-12 md:py-20">
+            <Welcome about />
+          </section>
 
-          <Team />
+          <section className="py-12 md:py-20 bg-grey rounded-lg">
+            <Benefits about />
+          </section>
+
+          <section className="py-12 md:py-20">
+            <Team />
+          </section>
         </Container>
       </main>
+
       <Footer />
     </>
   );

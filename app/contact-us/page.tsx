@@ -1,89 +1,88 @@
 import Header from '@/components/features/Header';
 import Footer from '@/components/Footer';
-import Button from '@/components/ui/Button';
 import { contact } from '@/constants';
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+import ContactForm from '@/components/ContactForm';
+import Container from '@/components/Container';
 
-const {
-  hero: { caption, text },
-  address: { location, phone, email },
-  social,
-} = contact;
+export const metadata: Metadata = {
+  title: 'Contact Us | El Kratos Embassy',
+  description:
+    "Get in touch with El Kratos Embassy. We're here to answer your questions and welcome you into our community.",
+};
+
 const ContactUs = () => {
+  const {
+    hero: { caption, text },
+    address: { location, phone, email },
+    social,
+  } = contact;
+
   return (
-    <div>
+    <>
       <div className="text-white">
         <Header caption={caption} text={text} />
       </div>
 
-      <main className="py-12 md:py-20 px-6 sm:px-8 md:px-28 bg-light-orange">
-        <section>
-          <h5 className="text-h5 uppercase mb-8 font-bold">Contact Form:</h5>
+      <main className="py-12 md:py-20 bg-light-orange">
+        <Container containerClass="bg-transparent">
+          <section>
+            <h1 className="text-h5 uppercase mb-8 font-medium text-secondary-black">
+              Contact Form:
+            </h1>
+            <div className="flex flex-col md:flex-row gap-12 md:gap-32">
+              <ContactForm />
+              {/* Contact Information */}
+              <div className="space-y-12">
+                <address className="space-y-8 not-italic">
+                  <div className="space-y-2">
+                    <h2 className="text-black/75 font-medium">Address</h2>
+                    <p className="font-semibold leading-relaxed">{location}</p>
+                  </div>
 
-          <div className="flex flex-col md:flex-row gap-12 md:gap-32">
-            <form className="flex flex-col gap-3 w-full md:w-1/2">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your full Name"
-                className="rounded-md p-5 placeholder:text-black"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                className="rounded-md p-5 placeholder:text-black"
-              />
-              <input
-                type="text"
-                name="query"
-                placeholder="Query Related"
-                className="rounded-md p-5 placeholder:text-black"
-              />
-              <textarea
-                name="message"
-                placeholder="Message"
-                className="rounded-md p-5 placeholder:text-black"
-              ></textarea>
+                  <div className="space-y-2">
+                    <h2 className="text-black/75 font-medium">
+                      Contact Details
+                    </h2>
+                    <div className="font-semibold space-y-1">
+                      <p>{phone}</p>
+                      <p>{email}</p>
+                    </div>
+                  </div>
+                </address>
 
-              <Button text="Send message" variant="primary" />
-            </form>
-
-            <div className="space-y-8">
-              <address className="space-y-8">
-                <div>
-                  <h5 className="opacity-75 mb-2">Address</h5>
-                  <p className="font-semibold">{location}</p>
-                </div>
-
-                <div>
-                  <h5 className="opacity-75 mb-2">Contact Details</h5>
-                  <p className="font-semibold">
-                    {phone} {email}
-                  </p>
-                </div>
-              </address>
-
-              <div>
-                <h6 className="mb-2">Find us here</h6>
-                {/* Connect */}
-                <div>
+                <div className="space-y-4">
+                  <h2 className="text-black/75 font-medium">Find us here</h2>
                   <div className="flex items-center gap-8">
                     {social.map(({ src, alt, href }) => (
-                      <Link key={alt} href={href}>
-                        <Image src={src} alt={alt} width={16} height={16} />
+                      <Link
+                        key={alt}
+                        href={href}
+                        className="hover:opacity-80 transition-opacity"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Image
+                          src={src}
+                          alt={alt}
+                          width={20}
+                          height={20}
+                          className="w-5 h-5"
+                        />
                       </Link>
                     ))}
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </Container>
       </main>
+
       <Footer />
-    </div>
+    </>
   );
 };
 

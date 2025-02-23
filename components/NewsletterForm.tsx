@@ -29,7 +29,12 @@ const NewsletterForm = () => {
         className="p-5 bg-transparent border opacity-35 placeholder:opacity-80  focus:opacity-100 border-opacity-75 -mr-1.5 rounded-lg transition-all -z-5 focus:outline-none"
       />
 
-      <Button text={text} variant="primary" />
+      <Button
+        text={text}
+        variant="primary"
+        type="submit"
+        className="whitespace-nowrap"
+      />
     </form>
   );
 };

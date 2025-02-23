@@ -23,7 +23,11 @@ const Cta = () => {
           <section className="max-w-[500px]">
             <h2 className="text-h2 text-center md:text-left">{text}</h2>
             <p className="py-4">{message}</p>
-            <Button text={btn} variant="primary" />
+            <Button
+              text={btn}
+              variant="primary"
+              className="hover:shadow-lg transition-shadow"
+            />
           </section>
           <Image
             src={src}

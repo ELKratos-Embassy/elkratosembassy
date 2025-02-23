@@ -24,7 +24,11 @@ export default function Welcome({ about }: { about?: boolean }) {
         <Heading section={section.main} caption={caption} text={text} />
         <p className="mt-8 mb-14 text-center">{message}</p>
         <div className="flex justify-center">
-          <Button text={btn} variant="primary" />
+          <Button
+            text={btn}
+            variant="primary"
+            className="hover:shadow-lg transition-shadow"
+          />
         </div>
       </div>
 
@@ -82,7 +86,12 @@ export default function Welcome({ about }: { about?: boolean }) {
             href="/about-us"
             className="w-fit mx-auto hover:ring-1 ring-primary p-2 transition-all rounded-full hover:scale-105"
           >
-            <Button text={footer.btn.text} icon={footer.btn.icon} />
+            <Button
+              text={footer.btn.text}
+              icon={footer.btn.icon}
+              variant="nav"
+              className="hover:scale-105 transition-transform"
+            />
           </Link>
         </div>
       )}
