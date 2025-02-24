@@ -13,8 +13,22 @@ const Header = ({ caption, text }: { caption: string; text: string }) => {
           : 'bg-hero-contact',
       )}
     >
-      <p className="uppercase">{caption}</p>
-      <h2 className="text-h2 font-bold">{text}</h2>
+      <p
+        className={clsx(
+          'uppercase',
+          caption === 'Sermon' ? 'text-white' : 'text-primary',
+        )}
+      >
+        {caption}
+      </p>
+      <h2
+        className={clsx(
+          'text-h2 font-bold',
+          caption === 'Sermon' ? 'text-white' : 'text-primary',
+        )}
+      >
+        {text}
+      </h2>
     </header>
   );
 };

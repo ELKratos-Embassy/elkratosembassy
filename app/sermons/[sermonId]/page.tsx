@@ -84,7 +84,7 @@ const Sermon = async ({
             </div>
 
             {/* Right Column - Registration Form */}
-            <section className="bg-white w-full md:w-1/2 p-8 md:p-10 rounded-lg shadow-sm h-fit">
+            <section className="bg-white w-full md:w-1/2 lg:w-1/3 p-8 md:p-10 rounded-lg shadow-sm h-fit">
               <h2 className="text-h4 font-semibold">Register Now</h2>
 
               <address className="flex flex-col lg:flex-row gap-6 my-8 not-italic">
@@ -119,11 +119,10 @@ const Sermon = async ({
               <SermonForm />
             </section>
           </div>
-
-          {/* Related Events */}
-          <section className="mt-16">
-            <EventPosts title="Upcoming Sermons" single />
-          </section>
+        </div>
+        {/* Related Events  */}
+        <div className="mt-16">
+          <EventPosts title="Upcoming Sermons" single />
         </div>
       </article>
 
