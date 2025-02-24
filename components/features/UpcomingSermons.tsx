@@ -93,7 +93,7 @@ export default function UpcomingSermons() {
       <div className="flex justify-end">
         <Link
           href="/sermons"
-          className="hover:ring-1 ring-primary p-2 transition-all rounded-full hover:scale-105"
+          className="p-2 transition-all rounded-full hover:scale-105"
         >
           <Button text={btn.text} icon={btn.icon} />
         </Link>

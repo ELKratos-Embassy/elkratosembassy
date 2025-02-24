@@ -36,7 +36,7 @@ export default {
         '4xl': '80px',
       },
       backgroundImage: {
-        cta: "url('/cta/bg.svg')",
+        cta: "url('/cta/empowering-lives.png')",
         'hero-about': "url('/about/hero.png')",
         'hero-sermon': "url('/sermons/hero.png')",
         'hero-contact': "url('/contact/hero.png')",

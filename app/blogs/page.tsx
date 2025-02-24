@@ -2,6 +2,7 @@ import BlogHeader from '@/components/features/BlogHeader';
 import Footer from '@/components/Footer';
 import Button from '@/components/ui/Button';
 import { blogs } from '@/constants';
+import { blogs as blogPosts } from '@/constants/blogs';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -14,9 +15,10 @@ export const metadata: Metadata = {
 
 const Blogs = () => {
   const {
-    hero: { image, date, author, text, message, btn },
     posts: { title, data },
   } = blogs;
+
+  const latestPost = blogPosts[blogPosts.length - 1];
 
   return (
     <>
@@ -28,7 +30,7 @@ const Blogs = () => {
           <section className="sm:p-8 bg-white flex flex-col sm:flex-row justify-between items-center gap-8 sm:gap-6 mt-8 md:mt-16 mb-16 md:mb-24 rounded-lg shadow-sm">
             <div className="relative w-full sm:w-1/2 md:w-1/3 lg:w-1/2 aspect-video">
               <Image
-                src={image}
+                src={latestPost.detail.image[0]}
                 alt="Featured blog post"
                 fill
                 className="object-cover rounded-t-lg sm:rounded-lg"
@@ -38,15 +40,25 @@ const Blogs = () => {
 
             <div className="w-full lg:w-2/3 p-6 sm:p-0 sm:pr-8">
               <header className="text-base flex justify-between md:mb-4">
-                <time className="uppercase text-sm">{date}</time>
-                <span className="uppercase text-sm">BY {author}</span>
+                <time className="uppercase text-sm">{latestPost.date}</time>
+                <span className="uppercase text-sm">
+                  BY {latestPost.author}
+                </span>
               </header>
 
-              <h1 className="text-h4 mt-3 mb-4 font-bold">{text}</h1>
-              <p className="text-base opacity-80 line-clamp-3">{message}</p>
+              <h1 className="text-h4 mt-3 mb-4 font-bold">
+                {latestPost.title}
+              </h1>
+              <p className="text-base opacity-80 line-clamp-3">
+                {latestPost.message}
+              </p>
 
               <div className="mt-8">
-                <Button text={btn} variant="primary" />
+                <Button
+                  text="Read more"
+                  variant="primary"
+                  href={`/blogs/${latestPost.id}`}
+                />
               </div>
             </div>
           </section>

@@ -14,7 +14,7 @@ const AboutBenefit = () => {
             index % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse',
           )}
         >
-          <section className="flex flex-col justify-center gap-4">
+          <section className="flex flex-col justify-center gap-4 px-4">
             <h4 className="text-h4 uppercase">{text}</h4>
             <p className="max-w-[500px]">{message}</p>
           </section>

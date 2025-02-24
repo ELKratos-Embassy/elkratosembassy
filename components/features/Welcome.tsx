@@ -12,6 +12,7 @@ export default function Welcome({ about }: { about?: boolean }) {
       message,
       btn,
       gallery,
+      galleryMobile,
       footer,
     },
   } = home;
@@ -38,6 +39,16 @@ export default function Welcome({ about }: { about?: boolean }) {
           about ? 'items-center mt-12' : 'md:items-start md:-mt-4 ',
         )}
       >
+        <Image
+          key={galleryMobile.alt}
+          src={galleryMobile.src}
+          width={galleryMobile.width}
+          height={galleryMobile.height}
+          alt={galleryMobile.alt}
+          className={clsx(
+            'w-full h-auto transition-transform duration-300 ease-in-out hover:scale-100  hover:shadow-lg max-md:scale-90 rounded-3xl md:hidden',
+          )}
+        />
         {gallery.map(({ src, alt, width, height }, index) => (
           <Image
             key={alt}
@@ -46,13 +57,9 @@ export default function Welcome({ about }: { about?: boolean }) {
             height={height}
             alt={alt}
             className={clsx(
-              'w-full md:w-1/3 h-auto transition-transform duration-300 ease-in-out hover:scale-100 md:hover:scale-105 hover:shadow-lg max-md:scale-90',
-              index > 0 && 'hidden md:block', // Hide subsequent images on small screens
-              index === 1 && !about ? 'md:mt-12' : 'mt-0',
+              'hidden md:block md:w-1/3 h-auto transition-transform duration-300 ease-in-out hover:scale-100 md:hover:scale-105 hover:shadow-lg max-md:scale-90 rounded-3xl',
 
-              // about && index === 1
-              //   ? 'w-[390px] h-[512px]'
-              //   : 'w-[290px] h-[384px]',
+              index === 1 && !about ? 'md:mt-12' : 'mt-0',
             )}
           />
         ))}

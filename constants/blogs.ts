@@ -1,10 +1,10 @@
-const blogs = [
+export const blogs = [
   {
     id: '1',
     tag: 'Spiritual Growth',
     title: 'Building Spiritual Resilience in Daily Life',
     message:
-      "Discover practical approaches to developing spiritual strength and resilience in facing life's everyday challenges.",
+      "Discover practical approaches to developing spiritual strength and resilience in facing life's everyday challenges. Learn how to build a strong spiritual foundation through daily practices, mindful reflection, and community support. Our proven methods help you navigate difficulties while maintaining faith and growing stronger in your spiritual journey.",
     author: 'El Kratos Embassy',
     date: 'Tuesday 13 May, 2024',
     detail: {
@@ -50,7 +50,7 @@ const blogs = [
     tag: 'Faith Development',
     title: 'The Growth Cadar System: Measuring Spiritual Progress',
     message:
-      'Learn about our unique approach to tracking and fostering spiritual growth through measured, intentional development.',
+      'Learn about our unique approach to tracking and fostering spiritual growth through measured, intentional development. Our Growth Cadar system provides tools and frameworks for believers to assess their spiritual journey, set meaningful goals, and celebrate progress while maintaining accountability in a supportive community.',
     author: 'El Kratos Embassy',
     date: 'Tuesday 13 May, 2024',
     detail: {
@@ -93,7 +93,7 @@ const blogs = [
     tag: 'Faith Application',
     title: 'Integrating Faith Principles in Daily Life',
     message:
-      'Discover practical ways to apply spiritual wisdom in your personal and professional life while maintaining strong faith values.',
+      'Discover practical ways to apply spiritual wisdom in your personal and professional life while maintaining strong faith values. Learn how to integrate biblical principles into daily decision-making, navigate workplace challenges with integrity, and build meaningful relationships guided by faith. Our approach helps you develop a balanced lifestyle where spiritual growth and practical success complement each other.',
     author: 'El Kratos Embassy',
     date: 'Tuesday 13 May, 2024',
     detail: {
@@ -136,7 +136,7 @@ const blogs = [
     tag: 'Community',
     title: 'Growing Together in Faith and Purpose',
     message:
-      'Experience the power of community support while maintaining personal privacy in your spiritual journey.',
+      'Experience the power of community support while maintaining personal privacy in your spiritual journey. Join us in creating meaningful connections and fostering spiritual growth in a respectful environment that values both collective wisdom and individual boundaries.',
     author: 'El Kratos Embassy',
     date: 'Tuesday 13 May, 2024',
     detail: {
@@ -179,7 +179,7 @@ const blogs = [
     tag: 'Biblical Wisdom',
     title: 'Understanding Biblical Stewardship and Giving',
     message:
-      'Explore the biblical principles of stewardship and how they apply to our modern lives as faithful believers.',
+      'Explore the biblical principles of stewardship and how they apply to our modern lives as faithful believers. Learn how to manage resources wisely, practice generous giving, and create lasting impact through faithful financial stewardship while growing deeper in your relationship with God.',
     author: 'El Kratos Embassy',
     date: 'Tuesday 13 May, 2024',
     detail: {
@@ -222,7 +222,7 @@ const blogs = [
     tag: 'Leadership',
     title: 'Inspiring Others Through Spiritual Leadership',
     message:
-      'Learn how to lead and inspire others while maintaining spiritual integrity and professional excellence.',
+      'Learn how to lead and inspire others while maintaining spiritual integrity and professional excellence. Discover key principles of effective leadership that balance faith values with practical management skills, and explore strategies for developing others while staying true to your spiritual foundation.',
     author: 'El Kratos Embassy',
     date: 'Tuesday 13 May, 2024',
     detail: {
@@ -265,7 +265,7 @@ const blogs = [
     tag: 'Discipleship',
     title: 'The Path of True Discipleship',
     message:
-      "Explore what it means to be a disciple in today's world while maintaining strong faith values and practical wisdom.",
+      "Discover the transformative journey of modern discipleship as we explore how to authentically live out faith values in today's complex world. Learn practical approaches to spiritual growth, wisdom application, and maintaining a strong faith foundation while navigating contemporary challenges and opportunities.",
     author: 'El Kratos Embassy',
     date: 'Tuesday 13 May, 2024',
     detail: {
@@ -308,7 +308,7 @@ const blogs = [
     tag: 'Church Innovation',
     title: 'The Modern Church: Faith Meets Technology',
     message:
-      'Discover how El Kratos Embassy integrates technology and tradition to create a dynamic, engaging faith community.',
+      'Discover how El Kratos Embassy integrates technology and tradition to create a dynamic, engaging faith community that embraces modern innovation while preserving timeless spiritual values. Learn about our unique approach to digital ministry and community building.',
     author: 'El Kratos Embassy',
     date: 'Tuesday 13 May, 2024',
     detail: {

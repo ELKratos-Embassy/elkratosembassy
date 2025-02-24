@@ -67,22 +67,28 @@ export const home = {
     message:
       'We are dedicated to cultivating a thriving community where members experience holistic growth in both their spiritual and personal lives, supported by a dynamic and technology-driven church environment. Through our unique Growth Cadar system, we foster disciplined spiritual development while recognizing individual achievements.',
     btn: 'Read more',
+    galleryMobile: {
+      src: '/welcome/gallery/gallery-mobile.png',
+      alt: 'Praying in the church',
+      width: 390,
+      height: 512,
+    },
     gallery: [
       {
-        src: '/welcome/gallery/gallery-1.svg',
-        alt: 'A man praying',
+        src: '/welcome/gallery/gallery-1.png',
+        alt: 'Praying in the church',
         width: 293,
         height: 384,
       },
       {
-        src: '/welcome/gallery/gallery-2.svg',
+        src: '/welcome/gallery/gallery-2.png',
         alt: 'Scripture reading',
         width: 390,
         height: 512,
       },
       {
-        src: '/welcome/gallery/gallery-3.svg',
-        alt: 'Laying of hands',
+        src: '/welcome/gallery/gallery-3.png',
+        alt: 'Praying at the early hours of the morning',
         width: 293,
         height: 384,
       },
@@ -109,7 +115,7 @@ export const home = {
         caption: 'Spiritual Resilience',
         text: "Equip yourself with spiritual strength to navigate life's challenges through deep, personal faith and practical wisdom.",
         bg: {
-          src: '/benefits/benefit-1.svg',
+          src: '/sermons/spiritual-resilience.png',
           alt: 'Spiritual Growth',
           width: 302,
           height: 384,
@@ -142,7 +148,7 @@ export const home = {
         caption: 'Community Support',
         text: 'Join a loving community that upholds privacy, maintains professionalism, and supports your journey through faith in action.',
         bg: {
-          src: '/benefits/benefit-4.svg',
+          src: '/about/charity-events.png',
           alt: 'Community Support',
           width: 302,
           height: 384,
@@ -190,8 +196,8 @@ export const home = {
       },
     },
     bg: {
-      src: '/sermons/bg.svg',
-      alt: 'A woman and a man in black and white',
+      src: '/sermons/spiritual-resilience.png',
+      alt: 'Spiritual Resilience',
       width: 845,
       height: 512,
     },
@@ -214,7 +220,7 @@ export const home = {
       height: 140,
     },
     bg: {
-      src: '/cta/bg.svg',
+      src: '/cta/empowering-lives.png',
       alt: 'Church',
       width: 1500,
       height: 736,
@@ -227,7 +233,7 @@ export const home = {
     },
     posts: [
       {
-        id: 'item-1',
+        id: '1',
         caption: 'Spiritual Growth',
         text: 'Building Resilience Through Faith',
         message:
@@ -236,7 +242,7 @@ export const home = {
         date: 'Tuesday 13 May, 2024',
       },
       {
-        id: 'item-2',
+        id: '2',
         caption: 'Community',
         text: 'Growing Together in Faith',
         message:
@@ -245,7 +251,7 @@ export const home = {
         date: 'Tuesday 13 May, 2024',
       },
       {
-        id: 'item-3',
+        id: '3',
         caption: 'Faith in Action',
         text: 'Practical Applications of Faith',
         message:
@@ -254,7 +260,7 @@ export const home = {
         date: 'Tuesday 13 May, 2024',
       },
       {
-        id: 'item-4',
+        id: '4',
         caption: 'Technology & Faith',
         text: 'Modern Church in Digital Age',
         message:
@@ -357,7 +363,7 @@ export const aboutUs = {
       message:
         "We equip individuals with the spiritual strength needed to navigate life's challenges by nurturing a deep, personal faith and providing practical wisdom for daily living.",
       img: {
-        src: '/about/fulfillment.png',
+        src: '/sermons/spiritual-resilience.png',
         width: 500,
         height: 320,
       },
@@ -387,7 +393,7 @@ export const aboutUs = {
       message:
         'We encourage members to apply spiritual wisdom in practical ways, empowering them to make a positive impact in their communities while embracing an online-centric approach to outreach and engagement.',
       img: {
-        src: '/about/all-are-welcome.png',
+        src: '/about/faith-in-action.png',
         width: 500,
         height: 320,
       },
@@ -587,15 +593,7 @@ export const blogs = {
     caption: 'Our Blog',
     text: 'Faith Meets Life',
   },
-  hero: {
-    image: '/blogs/hero.png',
-    date: 'Tuesday 13 May, 2024',
-    author: 'El Kratos Embassy',
-    text: 'Transforming Lives Through Spiritual Resilience and Practical Wisdom',
-    message:
-      "Discover how our unique approach to faith combines spiritual wisdom with practical solutions, helping believers navigate life's challenges while fostering measured and disciplined growth.",
-    btn: 'Read more',
-  },
+
   posts: {
     title: 'All blog posts',
     data: posts,
