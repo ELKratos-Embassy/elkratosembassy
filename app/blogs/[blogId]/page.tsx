@@ -25,7 +25,7 @@ export async function generateMetadata({
   };
 }
 
-const Blog = async ({ params }: { params: { blogId: string } }) => {
+const Blog = async ({ params }: { params: Promise<{ blogId: string }> }) => {
   const blogId = (await params).blogId;
   const post = blogs.posts.data.find((each) => each.id === blogId);
 

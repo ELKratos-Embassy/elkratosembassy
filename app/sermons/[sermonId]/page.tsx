@@ -10,7 +10,7 @@ import SermonForm from '@/components/SermonForm';
 export async function generateMetadata({
   params,
 }: {
-  params: { sermonId: string };
+  params: Promise<{ sermonId: string }>;
 }): Promise<Metadata> {
   const sermonId = (await params).sermonId;
 
