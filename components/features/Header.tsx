@@ -5,30 +5,19 @@ const Header = ({ caption, text }: { caption: string; text: string }) => {
   return (
     <header
       className={clsx(
-        `space-y-4 h-[409px] flex flex-col justify-center max-sm:text-center px-4 sm:px-12 md:pl-28 bg-no-repeat bg-cover bg-bottom`,
+        `h-[409px] flex flex-col justify-center max-sm:text-center px-4 sm:px-12 md:pl-28 bg-no-repeat bg-cover bg-bottom relative`,
         caption === 'About us'
           ? 'bg-hero-about bg-center'
-          : caption === 'Sermon'
+          : caption.includes('Sermon')
           ? 'bg-hero-sermon'
           : 'bg-hero-contact',
       )}
     >
-      <p
-        className={clsx(
-          'uppercase',
-          caption === 'Sermon' ? 'text-white' : 'text-primary',
-        )}
-      >
-        {caption}
-      </p>
-      <h2
-        className={clsx(
-          'text-h2 font-bold',
-          caption === 'Sermon' ? 'text-white' : 'text-primary',
-        )}
-      >
-        {text}
-      </h2>
+      <div className="absolute inset-0 bg-black/40" />
+      <div className="relative z-10 space-y-4 ">
+        <p className="uppercase text-primary">{caption}</p>
+        <h2 className="text-h2 font-bold text-primary">{text}</h2>
+      </div>
     </header>
   );
 };

@@ -69,11 +69,13 @@ const Navigation = () => {
                   </Link>
                 ))}
               </div>
+
               <Button
                 text="Contact us"
                 variant="primary"
                 href="/contact-us"
-                className="whitespace-nowrap"
+                className={clsx('whitespace-nowrap')}
+                isActive={pathname === '/contact-us'}
               />
             </div>
 
@@ -134,7 +136,8 @@ const Navigation = () => {
                   text="Contact us"
                   variant="primary"
                   href="/contact-us"
-                  className="whitespace-nowrap"
+                  className={clsx('whitespace-nowrap')}
+                  isActive={pathname === '/contact-us'}
                 />
               </div>
             </div>

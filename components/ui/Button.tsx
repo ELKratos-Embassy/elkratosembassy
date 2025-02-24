@@ -11,6 +11,7 @@ interface ButtonProps {
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
+  isActive?: boolean;
 }
 
 export default function Button({
@@ -22,7 +23,9 @@ export default function Button({
   onClick,
   type = 'button',
   disabled = false,
+  isActive = false,
 }: ButtonProps) {
+  console.log(isActive);
   const buttonClasses = clsx(
     'inline-flex items-center justify-center',
     'px-5 py-3 md:px-6 md:py-4',
@@ -31,9 +34,10 @@ export default function Button({
     'transition-all duration-300 ease-in-out',
     'focus:outline-none focus:ring-2 focus:ring-offset-2',
     variant === 'primary' && [
-      'bg-primary text-secondary-black',
-      'hover:bg-primary-hover',
-      'focus:ring-primary',
+      'bg-primary text-secondary-black focus:ring-primary',
+      isActive
+        ? 'focus:ring-offset-0 ring-2 ring-primary bg-secondary-black text-white'
+        : 'bg-primary hover:bg-primary-hover focus:ring-primary',
       'disabled:opacity-60 disabled:cursor-not-allowed',
     ],
     variant === 'secondary' && [
