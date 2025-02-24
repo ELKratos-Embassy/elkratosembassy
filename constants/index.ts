@@ -401,96 +401,168 @@ export const aboutUs = {
     cards: [
       {
         img: {
-          src: '/about/team/kim-bowen.png',
+          src: '/about/team/yunus_habeeb.png',
         },
-        name: 'Kim Bowen',
-        post: 'Pastor, Church',
+        name: 'Yunus Habeeb',
+        post: 'Pastor',
         social: [
           {
             src: '/about/team/social/fb.svg',
-            href: 'https://fb.com/kim',
+            href: '#',
             alt: 'Facebook',
           },
           {
             src: '/about/team/social/x.svg',
-            href: 'https://x.com/kim',
+            href: '#',
             alt: 'X',
           },
           {
             src: '/about/team/social/in.svg',
-            href: 'https://in.com/kim',
+            href: '#',
             alt: 'LinkedIn',
           },
         ],
       },
       {
         img: {
-          src: '/about/team/danielle-watkins.png',
+          src: '/about/team/elizabeth_kuranga.png',
         },
-        name: 'Danielle Watkins',
-        post: 'Pastor, Church',
+        name: 'Elizabeth Kuranga',
+        post: 'Assistant Pastor',
         social: [
           {
             src: '/about/team/social/fb.svg',
-            href: 'https://fb.com/dan',
+            href: '#',
             alt: 'Facebook',
           },
           {
             src: '/about/team/social/x.svg',
-            href: 'https://x.com/dan',
+            href: '#',
             alt: 'X',
           },
           {
             src: '/about/team/social/in.svg',
-            href: 'https://in.com/dan',
+            href: '#',
             alt: 'LinkedIn',
           },
         ],
       },
       {
         img: {
-          src: '/about/team/naomi-craig.png',
+          src: '/about/team/esther_kuranga.png',
         },
-        name: 'Naomi Craig',
-        post: 'Pastor, Church',
+        name: 'Esther Kuranga',
+        post: 'Chief Welfare Officer',
         social: [
           {
             src: '/about/team/social/fb.svg',
-            href: 'https://fb.com/naomi',
+            href: '#',
             alt: 'Facebook',
           },
           {
             src: '/about/team/social/x.svg',
-            href: 'https://x.com/naomi',
+            href: '#',
             alt: 'X',
           },
           {
             src: '/about/team/social/in.svg',
-            href: 'https://in.com/naomi',
+            href: '#',
             alt: 'LinkedIn',
           },
         ],
       },
       {
         img: {
-          src: '/about/team/santos-payne.png',
+          src: '/about/team/ezekiel_atanda.png',
         },
-        name: 'Santos Payne',
-        post: 'Pastor, Church',
+        name: 'Ezekiel Atanda',
+        post: 'Chief Technology and Infrastructure Officer',
         social: [
           {
             src: '/about/team/social/fb.svg',
-            href: 'https://fb.com/santos',
+            href: '#',
             alt: 'Facebook',
           },
           {
             src: '/about/team/social/x.svg',
-            href: 'https://x.com/santos',
+            href: '#',
             alt: 'X',
           },
           {
             src: '/about/team/social/in.svg',
-            href: 'https://in.com/santos',
+            href: '#',
+            alt: 'LinkedIn',
+          },
+        ],
+      },
+      {
+        img: {
+          src: '/about/team/emmanuel_folorunsho.png',
+        },
+        name: 'Emmanuel Folorunsho',
+        post: 'Chief Media Officer',
+        social: [
+          {
+            src: '/about/team/social/fb.svg',
+            href: '#',
+            alt: 'Facebook',
+          },
+          {
+            src: '/about/team/social/x.svg',
+            href: '#',
+            alt: 'X',
+          },
+          {
+            src: '/about/team/social/in.svg',
+            href: '#',
+            alt: 'LinkedIn',
+          },
+        ],
+      },
+      {
+        img: {
+          src: '/about/team/alice_bamidele.png',
+        },
+        name: 'Alice Bamidele',
+        post: 'Chief Finance Officer',
+        social: [
+          {
+            src: '/about/team/social/fb.svg',
+            href: '#',
+            alt: 'Facebook',
+          },
+          {
+            src: '/about/team/social/x.svg',
+            href: '#',
+            alt: 'X',
+          },
+          {
+            src: '/about/team/social/in.svg',
+            href: '#',
+            alt: 'LinkedIn',
+          },
+        ],
+      },
+      {
+        img: {
+          src: '/about/team/solomon_emiola.png',
+        },
+        name: 'Solomon Emiola',
+        post: 'Chief Public Relations Officer',
+        social: [
+          {
+            src: '/about/team/social/fb.svg',
+            href: '#',
+            alt: 'Facebook',
+          },
+          {
+            src: '/about/team/social/x.svg',
+            href: '#',
+            alt: 'X',
+          },
+          {
+            src: '/about/team/social/in.svg',
+            href: '#',
             alt: 'LinkedIn',
           },
         ],

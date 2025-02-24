@@ -21,7 +21,7 @@ export default function UpcomingSermons() {
       </div>
       <div className="flex flex-col md:flex-row  mb-12 w-full items-start">
         <div
-          className={`flex flex-row bg-light-orange p-8 md:p-4 gap-3 lg:gap-6 md:h-[500px] xl:h-[450px] overflow-y-auto`}
+          className={`flex flex-row bg-light-orange p-8 md:p-4 gap-3 lg:gap-6 md:h-[500px] xl:h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/40 scrollbar-track-transparent hover:scrollbar-thumb-primary/60`}
         >
           <div className="mt-7 ml-6">
             <Heading

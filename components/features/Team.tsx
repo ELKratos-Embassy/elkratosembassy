@@ -20,7 +20,15 @@ const Team = () => {
             className="py-12 bg-grey w-full sm:w-60 md:w-64 flex flex-col items-center justify-center gap-6"
             key={name}
           >
-            <Image src={img.src} alt={name} width={152} height={152} />
+            <figure className="p-2 rounded-full bg-white">
+              <Image
+                src={img.src}
+                alt={name}
+                width={152}
+                height={152}
+                className="rounded-full w-28 h-28"
+              />
+            </figure>
             <div className="flex flex-col justify-center text-center gap-2">
               <h5 className="text-h5">{name}</h5>
               <p className="opacity-75">{post}</p>
