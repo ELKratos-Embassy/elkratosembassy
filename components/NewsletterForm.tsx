@@ -20,7 +20,7 @@ const NewsletterForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex justify-between md:justify-start md:gap-6 flex-wrap"
+      className="flex justify-between md:justify-start gap-4 md:gap-6 flex-wrap"
     >
       <input
         aria-label={label}
