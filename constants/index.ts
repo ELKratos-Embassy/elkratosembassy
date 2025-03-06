@@ -276,7 +276,7 @@ export const home = {
       caption: '© Copyright El Kratos Embassy 2024',
       phoneNumber: '+2349060260210',
       address: '48, Ore-ofe community, Onireke, Agbabiaka, Ilorin, Nigeria',
-      email: 'kratosembassyhq@gmail.com',
+      email: 'info@elkratosembassy.org',
     },
     quicklinks: {
       text: 'Quicklinks',
@@ -608,7 +608,7 @@ export const contact = {
   address: {
     location: '48, Ore-ofe community, Onireke, Agbabiaka, Ilorin, Nigeria',
     phone: '+2349060260210',
-    email: 'kratosembassyhq@gmail.com',
+    email: 'info@elkratosembassy.org',
   },
   social: [
     {
