@@ -35,7 +35,7 @@ const Team = () => {
               <div className="flex flex-row gap-5 justify-center">
                 {social.map(({ href, src, alt }) => (
                   <Link key={alt} href={href}>
-                    <Image src={src} alt={alt} width={16} height={16} />
+                    <Image src={src} alt={alt} width={20} height={20} />
                   </Link>
                 ))}
               </div>
