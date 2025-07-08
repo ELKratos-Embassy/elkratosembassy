@@ -20,10 +20,10 @@ export default function Welcome({ about }: { about?: boolean }) {
   const { welcome } = aboutUs;
 
   return (
-    <div className={clsx('md:w-10/12 mx-auto', about ? 'mt-0' : 'mt-32')}>
-      <div className="w-full md:w-2/3 mx-auto">
+    <div className={clsx('md:w-full mx-auto', about ? 'mt-0' : 'mt-32')}>
+      <div className="w-full md:w-full mx-auto">
         <Heading section={section.main} caption={caption} text={text} />
-        <p className="mt-8 mb-14 text-center">{message}</p>
+        <p className="mt-8 mb-10 text-center">{message}</p>
         <div className="flex justify-center">
           <Button
             text={btn}
@@ -35,7 +35,7 @@ export default function Welcome({ about }: { about?: boolean }) {
 
       <div
         className={clsx(
-          'flex flex-col md:flex-row justify-center items-center gap-6 mt-5 flex-wrap md:flex-nowrap',
+          'flex flex-col md:flex-row justify-center items-center gap-8 mt-5 flex-wrap md:flex-nowrap',
           about ? 'items-center mt-12' : 'md:items-start md:-mt-4 ',
         )}
       >
@@ -82,7 +82,7 @@ export default function Welcome({ about }: { about?: boolean }) {
           ))}
         </div>
       ) : (
-        <div className="md:w-3/6 mx-auto flex flex-col gap-4 justify-center mt-10 md:mt-16">
+        <div className="md:w-full mx-auto flex flex-col gap-4 justify-center mt-10 md:mt-16">
           <Heading
             section={section.gallery}
             caption={footer.caption}
