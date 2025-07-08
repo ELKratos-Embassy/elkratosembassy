@@ -38,7 +38,7 @@ export const home = {
   },
   focus: {
     heading: {
-      caption: 'SubHeading',
+      caption: 'About Us',
       text: 'A church thats relevant',
     },
     cards: [
@@ -531,30 +531,6 @@ export const aboutUs = {
         },
         name: 'Alice Bamidele',
         post: 'Chief Finance Officer',
-        social: [
-          // {
-          //   src: '/about/team/social/fb.svg',
-          //   href: '#',
-          //   alt: 'Facebook',
-          // },
-          // {
-          //   src: '/about/team/social/x.svg',
-          //   href: '#',
-          //   alt: 'X',
-          // },
-          {
-            src: '/about/team/social/in.svg',
-            href: '#',
-            alt: 'LinkedIn',
-          },
-        ],
-      },
-      {
-        img: {
-          src: '/about/team/solomon_emiola.png',
-        },
-        name: 'Solomon Emiola',
-        post: 'Chief Public Relations Officer',
         social: [
           // {
           //   src: '/about/team/social/fb.svg',
