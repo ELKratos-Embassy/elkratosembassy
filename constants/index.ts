@@ -181,7 +181,7 @@ export const home = {
             width: 20,
             height: 20,
           },
-          text: ['Friday 23:39 IST', 'Saturday 11:20 ISD'],
+          text: ['Friday 10:30 AM', 'Saturday 11:20 AM'],
         },
         location: {
           icon: {
@@ -190,7 +190,7 @@ export const home = {
             width: 20,
             height: 25,
           },
-          text: ['No 233 Main St. New York,', 'United States'],
+          text: ['48, Ore-ofe community, Onireke, Agbabiaka, Ilorin, Nigeria'],
         },
         btn: 'Register',
       },
@@ -412,16 +412,16 @@ export const aboutUs = {
         name: 'Yunus Habeeb',
         post: 'Pastor',
         social: [
-          {
-            src: '/about/team/social/fb.svg',
-            href: '#',
-            alt: 'Facebook',
-          },
-          {
-            src: '/about/team/social/x.svg',
-            href: '#',
-            alt: 'X',
-          },
+          // {
+          //   src: '/about/team/social/fb.svg',
+          //   href: '#',
+          //   alt: 'Facebook',
+          // },
+          // {
+          //   src: '/about/team/social/x.svg',
+          //   href: '#',
+          //   alt: 'X',
+          // },
           {
             src: '/about/team/social/in.svg',
             href: '#',
@@ -436,16 +436,16 @@ export const aboutUs = {
         name: 'Elizabeth Kuranga',
         post: 'Assistant Pastor',
         social: [
-          {
-            src: '/about/team/social/fb.svg',
-            href: '#',
-            alt: 'Facebook',
-          },
-          {
-            src: '/about/team/social/x.svg',
-            href: '#',
-            alt: 'X',
-          },
+          // {
+          //   src: '/about/team/social/fb.svg',
+          //   href: '#',
+          //   alt: 'Facebook',
+          // },
+          // {
+          //   src: '/about/team/social/x.svg',
+          //   href: '#',
+          //   alt: 'X',
+          // },
           {
             src: '/about/team/social/in.svg',
             href: '#',
@@ -460,16 +460,16 @@ export const aboutUs = {
         name: 'Esther Kuranga',
         post: 'Chief Welfare Officer',
         social: [
-          {
-            src: '/about/team/social/fb.svg',
-            href: '#',
-            alt: 'Facebook',
-          },
-          {
-            src: '/about/team/social/x.svg',
-            href: '#',
-            alt: 'X',
-          },
+          // {
+          //   src: '/about/team/social/fb.svg',
+          //   href: '#',
+          //   alt: 'Facebook',
+          // },
+          // {
+          //   src: '/about/team/social/x.svg',
+          //   href: '#',
+          //   alt: 'X',
+          // },
           {
             src: '/about/team/social/in.svg',
             href: '#',
@@ -482,18 +482,18 @@ export const aboutUs = {
           src: '/about/team/ezekiel_atanda.png',
         },
         name: 'Ezekiel Atanda',
-        post: 'Chief Technology and Infrastructure Officer',
+        post: 'Chief Technical and Infrastructure Officer',
         social: [
-          {
-            src: '/about/team/social/fb.svg',
-            href: '#',
-            alt: 'Facebook',
-          },
-          {
-            src: '/about/team/social/x.svg',
-            href: '#',
-            alt: 'X',
-          },
+          // {
+          //   src: '/about/team/social/fb.svg',
+          //   href: '#',
+          //   alt: 'Facebook',
+          // },
+          // {
+          //   src: '/about/team/social/x.svg',
+          //   href: '#',
+          //   alt: 'X',
+          // },
           {
             src: '/about/team/social/in.svg',
             href: '#',
@@ -508,16 +508,16 @@ export const aboutUs = {
         name: 'Emmanuel Folorunsho',
         post: 'Chief Media Officer',
         social: [
-          {
-            src: '/about/team/social/fb.svg',
-            href: '#',
-            alt: 'Facebook',
-          },
-          {
-            src: '/about/team/social/x.svg',
-            href: '#',
-            alt: 'X',
-          },
+          // {
+          //   src: '/about/team/social/fb.svg',
+          //   href: '#',
+          //   alt: 'Facebook',
+          // },
+          // {
+          //   src: '/about/team/social/x.svg',
+          //   href: '#',
+          //   alt: 'X',
+          // },
           {
             src: '/about/team/social/in.svg',
             href: '#',
@@ -532,16 +532,16 @@ export const aboutUs = {
         name: 'Alice Bamidele',
         post: 'Chief Finance Officer',
         social: [
-          {
-            src: '/about/team/social/fb.svg',
-            href: '#',
-            alt: 'Facebook',
-          },
-          {
-            src: '/about/team/social/x.svg',
-            href: '#',
-            alt: 'X',
-          },
+          // {
+          //   src: '/about/team/social/fb.svg',
+          //   href: '#',
+          //   alt: 'Facebook',
+          // },
+          // {
+          //   src: '/about/team/social/x.svg',
+          //   href: '#',
+          //   alt: 'X',
+          // },
           {
             src: '/about/team/social/in.svg',
             href: '#',
@@ -556,16 +556,16 @@ export const aboutUs = {
         name: 'Solomon Emiola',
         post: 'Chief Public Relations Officer',
         social: [
-          {
-            src: '/about/team/social/fb.svg',
-            href: '#',
-            alt: 'Facebook',
-          },
-          {
-            src: '/about/team/social/x.svg',
-            href: '#',
-            alt: 'X',
-          },
+          // {
+          //   src: '/about/team/social/fb.svg',
+          //   href: '#',
+          //   alt: 'Facebook',
+          // },
+          // {
+          //   src: '/about/team/social/x.svg',
+          //   href: '#',
+          //   alt: 'X',
+          // },
           {
             src: '/about/team/social/in.svg',
             href: '#',
@@ -573,6 +573,30 @@ export const aboutUs = {
           },
         ],
       },
+      {
+        img: {
+          src: '/about/team/rafiu_ayomide.png',
+        },
+        name: 'Rafiu Zoe',
+        post: 'Chief Technology Officer',
+        social: [
+          // {
+          //   src: '/about/team/social/fb.svg',
+          //   href: '#',
+          //   alt: 'Facebook',
+          // },
+          // {
+          //   src: '/about/team/social/x.svg',
+          //   href: '#',
+          //   alt: 'X',
+          // },
+          {
+            src: '/about/team/social/in.svg',
+            href: '#',
+            alt: 'LinkedIn',
+          },
+        ],
+      }
     ],
   },
 };
