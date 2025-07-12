@@ -9,9 +9,9 @@ const BlogPosts = () => {
     },
   } = home;
   return (
-    <div>
+    <div className='mt-12'>
       <Heading caption={caption} text={text} section={section.main} />
-      <div className="flex flex-col flex-wrap md:flex-row justify-center gap-6 my-16">
+      <div className="flex flex-col flex-wrap sm:flex-row justify-center gap-6 my-16">
         {posts.map((post) => (
           <Post key={post.id} post={post} />
         ))}

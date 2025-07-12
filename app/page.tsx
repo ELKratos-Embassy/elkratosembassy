@@ -21,16 +21,18 @@ export default function Home() {
     <>
       <main>
         <Hero />
+        <WhatWeDo />
         <Container>
-          <WhatWeDo />
           <Welcome />
-          <Benefits />
+        </Container>
+        <Benefits />
+        <Container>
           <UpcomingSermons />
         </Container>
         <Cta />
-        <Container>
-          <BlogPosts />
-        </Container>
+        {/* <Container> */}
+        <BlogPosts />
+        {/* </Container> */}
       </main>
       <Footer />
     </>
