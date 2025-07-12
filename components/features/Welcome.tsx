@@ -20,7 +20,7 @@ export default function Welcome({ about }: { about?: boolean }) {
   const { welcome } = aboutUs;
 
   return (
-    <div className={clsx('md:w-full mx-auto', about ? 'mt-0' : 'mt-32')}>
+    <div className={clsx('md:w-full mx-auto mt-0')}>
       <div className="w-full md:w-full mx-auto">
         <Heading section={section.main} caption={caption} text={text} />
         <p className="mt-8 mb-10 text-center">{message}</p>
@@ -66,7 +66,7 @@ export default function Welcome({ about }: { about?: boolean }) {
       </div>
 
       {about ? (
-        <div className="flex flex-col md:flex-row gap-12 justify-center mt-16 w-full lg:w-10/12 mx-auto">
+        <div className="flex flex-col md:flex-row gap-12 justify-center mt-16 w-full mx-auto">
           {/* About Us Welcome */}
           {welcome.map((each) => (
             <section key={each.heading.text} className="space-y-4">
