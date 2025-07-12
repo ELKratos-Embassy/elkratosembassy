@@ -12,7 +12,7 @@ export default function Benefits({ about }: { about?: boolean }) {
   } = home;
 
   return (
-    <div className="">
+    <div>
       <div className="mb-16">
         <Heading section={section.main} caption={caption} text={text} />
       </div>

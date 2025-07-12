@@ -66,7 +66,7 @@ export default function Welcome({ about }: { about?: boolean }) {
       </div>
 
       {about ? (
-        <div className="flex flex-col md:flex-row gap-12 justify-center mt-16 w-full lg:w-10/12 mx-auto">
+        <div className="flex flex-col md:flex-row gap-12 justify-center mt-16 w-full mx-auto">
           {/* About Us Welcome */}
           {welcome.map((each) => (
             <section key={each.heading.text} className="space-y-4">

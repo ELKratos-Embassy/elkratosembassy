@@ -26,18 +26,16 @@ const AboutUs = () => {
 
       <main className="bg-white">
         <Container>
-          <section className="py-12 md:py-20">
-            <Welcome about />
-          </section>
-
-          <section className="py-12 md:py-20 bg-grey rounded-lg">
-            <Benefits about />
-          </section>
-
-          <section className="py-12 md:py-20">
-            <Team />
-          </section>
+          <Welcome about />
         </Container>
+
+        <section className="py-12 md:py-20 bg-grey rounded-lg">
+          <Benefits about />
+        </section>
+
+        <section className="py-12">
+          <Team />
+        </section>
       </main>
 
       <Footer />

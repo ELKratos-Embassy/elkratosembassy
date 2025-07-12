@@ -22,8 +22,8 @@ export default function Home() {
       <main>
         <Hero />
         <Container>
-          <WhatWeDo />
           <Welcome />
+          <WhatWeDo />
           <Benefits />
           <UpcomingSermons />
         </Container>
