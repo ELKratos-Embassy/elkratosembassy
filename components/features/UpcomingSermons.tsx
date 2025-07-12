@@ -69,7 +69,7 @@ export default function UpcomingSermons() {
                 </p>
               </div>
             </div>
-            <Link href={`/sermons/${info.desc.id}`}>
+            <Link href={`/sermons/${info.desc.id}`} className='pb-8'>
               <Button text={info.btn} variant="secondary" />
             </Link>
           </div>

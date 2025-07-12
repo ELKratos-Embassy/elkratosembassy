@@ -10,7 +10,8 @@ export default function WhatWeDo() {
     },
   } = home;
   return (
-    <div className="flex flex-col gap-16">
+    <div className="flex flex-col gap-16 pt-8 sm:pt-16 md:pt-24',
+">
       <Heading section={section.main} caption={caption} text={text} />
       <Cards cards={cards} />
     </div>

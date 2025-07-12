@@ -20,7 +20,7 @@ export default function Welcome({ about }: { about?: boolean }) {
   const { welcome } = aboutUs;
 
   return (
-    <div className={clsx('md:w-full mx-auto', about ? 'mt-0' : 'mt-32')}>
+    <div className={clsx('md:w-full mx-auto mt-0')}>
       <div className="w-full md:w-full mx-auto">
         <Heading section={section.main} caption={caption} text={text} />
         <p className="mt-8 mb-10 text-center">{message}</p>
