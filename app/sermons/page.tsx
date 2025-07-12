@@ -28,7 +28,7 @@ const Sermons = () => {
         </Container>
 
         {/* All Events Section */}
-        <section className="mt-16">
+        <section className='-mt-8 sm:-mt-16 md:-mt-24'>
           <EventPosts title="View All Events" />
         </section>
       </article>

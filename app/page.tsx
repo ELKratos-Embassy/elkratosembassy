@@ -30,9 +30,7 @@ export default function Home() {
           <UpcomingSermons />
         </Container>
         <Cta />
-        {/* <Container> */}
         <BlogPosts />
-        {/* </Container> */}
       </main>
       <Footer />
     </>
