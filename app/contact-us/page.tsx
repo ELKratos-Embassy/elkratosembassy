@@ -26,7 +26,7 @@ const ContactUs = () => {
         <Header caption={caption} text={text} />
       </div>
 
-      <main className="py-12 md:py-20 bg-light-orange">
+      <main className="bg-light-orange">
         <Container containerClass="bg-transparent">
           <section>
             <h1 className="text-h5 uppercase mb-8 font-medium text-secondary-black">
