@@ -273,7 +273,7 @@ export const home = {
   footer: {
     left: {
       logo: '/footer/logo.svg',
-      caption: '© Copyright El Kratos Embassy 2024',
+      caption: '© Copyright El Kratos Embassy 2025',
       phoneNumber: '+2349060260210',
       address: '48, Ore-ofe community, Onireke, Agbabiaka, Ilorin, Nigeria',
       email: 'info@elkratosembassy.org',
@@ -455,7 +455,7 @@ export const aboutUs = {
       },
       {
         img: {
-          src: '/about/team/esther_kuranga.png',
+          src: '/about/team/esther_kuranga.jpg',
         },
         name: 'Esther Kuranga',
         post: 'Chief Welfare Officer',
@@ -553,7 +553,7 @@ export const aboutUs = {
         img: {
           src: '/about/team/rafiu_ayomide.png',
         },
-        name: 'Rafiu Zoe',
+        name: 'Zoe Rafiu',
         post: 'Chief Technology Officer',
         social: [
           // {
@@ -624,7 +624,7 @@ export const contact = {
     {
       src: '/contact/in.png',
       alt: 'LinkedIn',
-      href: 'https://linkedin.com/elkratosembassy',
+      href: 'https://linkedin.com/company/elkratosembassy',
     },
   ],
 };
