@@ -305,7 +305,7 @@ export const home = {
         {
           src: '/footer/facebook.svg',
           alt: 'Facebook',
-          href: 'https://fb.com/elkratosembassy',
+          href: 'https://facebook.com/people/elkratosembassy/61573810487088',
         },
         {
           src: '/footer/twitter.svg',
@@ -315,7 +315,7 @@ export const home = {
         {
           src: '/footer/linkedIn.svg',
           alt: 'LinkedIn',
-          href: 'https://linkedin.com/elkratosembassy',
+          href: 'https://linkedin.com/company/elkratosembassy',
         },
       ],
     },
@@ -614,7 +614,7 @@ export const contact = {
     {
       src: '/contact/fb.png',
       alt: 'Facebook',
-      href: 'https://fb.com/elkratosembassy',
+      href: 'https://facebook.com/people/elkratosembassy/61573810487088',
     },
     {
       src: '/contact/x.png',
