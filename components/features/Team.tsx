@@ -26,7 +26,7 @@ const Team = () => {
                 alt={name}
                 width={152}
                 height={152}
-                className="rounded-full w-28 h-28"
+                className="rounded-full w-28 h-28 object-cover"
               />
             </figure>
             <div className="flex flex-col justify-center text-center gap-2">

@@ -9,6 +9,9 @@ import { getSermon, formatDate, getDateParts } from '@/sanity/lib/sanityUtil';
 import { urlFor } from '@/sanity/lib/image';
 import { SanitySermon } from '@/types/sanity';
 
+export const revalidate = 60; // Revalidate the page every 60 seconds to reflect changes from Sanity Studio
+
+
 // Generate metadata dynamically
 export async function generateMetadata({
   params,

@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     'Join our transformative sermons where spiritual wisdom meets practical life application. Experience growth through measured, intentional spiritual development.',
 };
 
+export const revalidate = 60; // Revalidate the page every 60 seconds to reflect changes from Sanity Studio
+
+
 const Sermons = () => {
   const {
     heading: { text, caption },
