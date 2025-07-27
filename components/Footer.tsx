@@ -54,7 +54,9 @@ const Footer = () => {
               <h6 className="mb-5">{connect.text}</h6>
               <div className="flex gap-5">
                 {connect.icons.map((icon) => (
-                  <Link key={icon.alt} href={icon.href}>
+                  <Link key={icon.alt} href={icon.href}
+                    target='_blank'
+                  >
                     <Image
                       src={icon.src}
                       alt={icon.alt}
