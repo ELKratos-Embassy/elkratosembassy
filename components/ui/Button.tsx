@@ -25,7 +25,6 @@ export default function Button({
   disabled = false,
   isActive = false,
 }: ButtonProps) {
-  console.log(isActive);
   const buttonClasses = clsx(
     'inline-flex items-center justify-center',
     'px-5 py-3 md:px-6 md:py-4',
