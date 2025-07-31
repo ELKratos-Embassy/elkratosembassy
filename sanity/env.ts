@@ -20,10 +20,3 @@ export const projectId = assertValue(
 
 export const token = process.env.SANITY_API_TOKEN
 
-// Debug logging (remove in production)
-console.log('Sanity Config:', {
-  projectId,
-  dataset,
-  apiVersion,
-  hasToken: !!token
-})

@@ -12,7 +12,6 @@ import { SanityBlog, SanitySermon } from '@/types/sanity'
 export async function getBlogs(): Promise<SanityBlog[]> {
   try {
     const result = await client.fetch(blogsQuery)
-    console.log('Blogs fetch result:', result)
     return result || []
   } catch (error) {
     console.error('Error fetching blogs:', error)
@@ -32,14 +31,7 @@ export async function getBlog(slug: string): Promise<SanityBlog | null> {
 
 export async function getSermons(): Promise<SanitySermon[]> {
   try {
-    console.log('Fetching sermons with client config:', {
-      projectId: client.config().projectId,
-      dataset: client.config().dataset,
-      apiVersion: client.config().apiVersion
-    })
-
     const result = await client.fetch(sermonsQuery)
-    console.log('Sermons fetch result:', result)
     return result || []
   } catch (error) {
     console.error('Error fetching sermons:', error)
