@@ -424,7 +424,7 @@ export const aboutUs = {
           // },
           {
             src: '/about/team/social/in.svg',
-            href: 'https://www.linkedin.com/in/yunushabeeb',
+            href: 'https://linkedin.com/in/yunushabeeb',
             alt: 'LinkedIn',
           },
         ],
@@ -448,7 +448,7 @@ export const aboutUs = {
           // },
           {
             src: '/about/team/social/in.svg',
-            href: 'https://www.linkedin.com/in/elizabethkuranga',
+            href: 'https://linkedin.com/in/elizabethkuranga',
             alt: 'LinkedIn',
           },
         ],
@@ -472,7 +472,7 @@ export const aboutUs = {
           // },
           {
             src: '/about/team/social/in.svg',
-            href: 'https://www.linkedin.com/in/estherkuranga',
+            href: 'https://linkedin.com/in/estherkuranga',
             alt: 'LinkedIn',
           },
         ],
@@ -496,7 +496,7 @@ export const aboutUs = {
           // },
           {
             src: '/about/team/social/in.svg',
-            href: 'https://www.linkedin.com/in/oluwasegun-atanda-64597a23a',
+            href: 'https://linkedin.com/in/oluwasegun-atanda-64597a23a',
             alt: 'LinkedIn',
           },
         ],
@@ -520,7 +520,7 @@ export const aboutUs = {
           // },
           {
             src: '/about/team/social/in.svg',
-            href: 'https://www.linkedin.com/in/oluwasegun-atanda-64597a23a',
+            href: 'https://linkedin.com/in/emmanuel-folorunsho-888ba6236',
             alt: 'LinkedIn',
           },
         ],
@@ -544,7 +544,7 @@ export const aboutUs = {
           // },
           {
             src: '/about/team/social/in.svg',
-            href: 'http://www.linkedin.com/in/ifedolapobamidele',
+            href: 'https://linkedin.com/in/ifedolapobamidele',
             alt: 'LinkedIn',
           },
         ],
@@ -568,7 +568,7 @@ export const aboutUs = {
           // },
           {
             src: '/about/team/social/in.svg',
-            href: 'https://www.linkedin.com/in/estherkuranga',
+            href: 'https://linkedin.com/in/rafiuayomide',
             alt: 'LinkedIn',
           },
         ],
