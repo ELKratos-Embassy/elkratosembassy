@@ -34,7 +34,7 @@ const Team = () => {
               <p className="opacity-75">{post}</p>
               <div className="flex flex-row gap-5 justify-center">
                 {social.map(({ href, src, alt }) => (
-                  <Link key={alt} href={href}>
+                  <Link key={alt} href={href} target="_blank" rel="noopener noreferrer">
                     <Image src={src} alt={alt} width={20} height={20} />
                   </Link>
                 ))}
