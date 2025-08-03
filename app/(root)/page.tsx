@@ -7,6 +7,7 @@ import UpcomingSermons from '@/components/features/UpcomingSermons';
 import Cta from '@/components/features/Cta';
 import BlogPosts from '@/components/features/BlogPosts';
 import Footer from '@/components/Footer';
+import NewsletterModal from '@/components/NewsletterModal';
 import type { Metadata } from 'next';
 
 // Add metadata for better SEO
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+      <NewsletterModal />
       <main>
         <Hero />
         <WhatWeDo />
