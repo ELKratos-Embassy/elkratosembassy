@@ -4,10 +4,14 @@ import Modal from "./ui/Modal";
 import NewsletterForm from "./NewsletterForm";
 
 const NewsletterModal = () => {
-  const [open, setOpen] = useState(true); // Show on mount
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setOpen(true);
+    const timer = setTimeout(() => {
+      setOpen(true);
+    }, 3000); 
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
