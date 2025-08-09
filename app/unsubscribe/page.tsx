@@ -8,20 +8,18 @@ export default function UnsubscribePage() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'resubscribed'>('idle');
   const [message, setMessage] = useState('');
-  const searchParams = typeof window !== 'undefined' ? useSearchParams() : null;
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    // Only run on client
-    if (typeof window === 'undefined') return;
-    const emailParam = new URLSearchParams(window.location.search).get('email');
+    const emailParam = searchParams.get('email');
     if (emailParam) {
       setEmail(emailParam);
-      // Only unsubscribe if not already done
       if (status === 'idle') {
         handleUnsubscribe(emailParam);
       }
     }
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   const handleUnsubscribe = async (targetEmail?: string) => {
     setStatus('loading');
@@ -62,6 +60,8 @@ export default function UnsubscribePage() {
     handleUnsubscribe();
   };
 
+  const emailParam = searchParams.get('email');
+
   return (
     <div className="max-w-md mx-auto mt-20 p-8 bg-white rounded-lg shadow">
       <h2 className="text-2xl font-bold mb-4">Unsubscribe from Newsletter</h2>
@@ -73,14 +73,14 @@ export default function UnsubscribePage() {
           value={email}
           onChange={e => setEmail(e.target.value)}
           required
-          disabled={status === 'loading' || (typeof window !== 'undefined' && !!new URLSearchParams(window.location.search).get('email'))}
+          disabled={status === 'loading' || !!emailParam}
         />
         <Button
           text={status === 'loading' ? 'Unsubscribing...' : 'Unsubscribe'}
           type="submit"
           variant="primary"
           className="w-full"
-          disabled={status === 'loading' || (typeof window !== 'undefined' && !!new URLSearchParams(window.location.search).get('email'))}
+          disabled={status === 'loading' || !!emailParam}
         />
       </form>
       {status === 'success' && (
