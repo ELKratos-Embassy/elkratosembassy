@@ -8,13 +8,18 @@ export default function UnsubscribePage() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'resubscribed'>('idle');
   const [message, setMessage] = useState('');
-  const searchParams = useSearchParams();
+  const searchParams = typeof window !== 'undefined' ? useSearchParams() : null;
 
   useEffect(() => {
-    const emailParam = searchParams.get('email');
+    // Only run on client
+    if (typeof window === 'undefined') return;
+    const emailParam = new URLSearchParams(window.location.search).get('email');
     if (emailParam) {
       setEmail(emailParam);
-      handleUnsubscribe(emailParam);
+      // Only unsubscribe if not already done
+      if (status === 'idle') {
+        handleUnsubscribe(emailParam);
+      }
     }
   }, []);
 
@@ -68,14 +73,14 @@ export default function UnsubscribePage() {
           value={email}
           onChange={e => setEmail(e.target.value)}
           required
-          disabled={status === 'loading' || !!searchParams.get('email')}
+          disabled={status === 'loading' || (typeof window !== 'undefined' && !!new URLSearchParams(window.location.search).get('email'))}
         />
         <Button
           text={status === 'loading' ? 'Unsubscribing...' : 'Unsubscribe'}
           type="submit"
           variant="primary"
           className="w-full"
-          disabled={status === 'loading' || !!searchParams.get('email')}
+          disabled={status === 'loading' || (typeof window !== 'undefined' && !!new URLSearchParams(window.location.search).get('email'))}
         />
       </form>
       {status === 'success' && (
