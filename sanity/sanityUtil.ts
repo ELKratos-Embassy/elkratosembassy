@@ -1,4 +1,4 @@
-import { client } from './client'
+import { client } from '../lib/client'
 import {
   blogsQuery,
   blogQuery,
