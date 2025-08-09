@@ -38,7 +38,7 @@ const ContactForm = () => {
       } else {
         alert('Failed to send message. Please try again later.');
       }
-    } catch (error) {
+    } catch {
       alert('Failed to send message. Please try again later.');
     } finally {
       setIsSubmitting(false);

@@ -24,7 +24,7 @@ const EventPosts = async ({ title, single }: EventPostsProps) => {
   }
 
   // Use Sanity data if available, otherwise fallback to constants
-  const sermonsToDisplay = sanitySermons.length > 0 ? sanitySermons : data;
+  // const sermonsToDisplay = sanitySermons.length > 0 ? sanitySermons : data;
 
   return (
     <div

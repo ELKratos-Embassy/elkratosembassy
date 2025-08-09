@@ -68,7 +68,7 @@ const Sermon = async ({
   // If Sanity sermon exists, use it
   if (sanitySermon) {
     const { day, month, year } = getDateParts(sanitySermon.eventDate);
-    const formattedDate = formatDate(sanitySermon.eventDate);
+    // const formattedDate = formatDate(sanitySermon.eventDate);
 
     return (
       <>
