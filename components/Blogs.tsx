@@ -1,4 +1,4 @@
-import { getBlogs } from '@/sanity/lib/sanityUtil'
+import { getBlogs } from "@/sanity/sanityUtil"
 
 export default async function TestSanity() {
   const blogs = await getBlogs()

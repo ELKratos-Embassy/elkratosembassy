@@ -6,9 +6,9 @@ import { blogs as blogPosts } from '@/constants/blogs';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { getBlogs, getFeaturedBlog } from '@/sanity/lib/sanityUtil';
-import { urlFor } from '@/sanity/lib/image';
 import { SanityBlog } from '@/types/sanity';
+import { getBlogs, getFeaturedBlog } from '@/sanity/sanityUtil';
+import { urlFor } from '@/sanity/image';
 
 export const revalidate = 60; // Revalidate the page every 60 seconds to reflect changes from Sanity Studio
 
