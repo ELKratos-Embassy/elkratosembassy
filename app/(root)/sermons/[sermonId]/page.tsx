@@ -5,9 +5,9 @@ import { sermon } from '@/constants';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import SermonForm from '@/components/SermonForm';
-import { getSermon, formatDate, getDateParts } from '@/sanity/lib/sanityUtil';
-import { urlFor } from '@/sanity/lib/image';
 import { SanitySermon } from '@/types/sanity';
+import { formatDate, getDateParts, getSermon } from '@/sanity/sanityUtil';
+import { urlFor } from '@/sanity/image';
 
 export const revalidate = 60; // Revalidate the page every 60 seconds to reflect changes from Sanity Studio
 

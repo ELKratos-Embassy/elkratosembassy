@@ -3,9 +3,8 @@ import Heading from '../ui/Heading';
 import Link from 'next/link';
 import Image from 'next/image';
 import clsx from 'clsx';
-import { getSermons, getDateParts } from '@/sanity/lib/sanityUtil';
-import { urlFor } from '@/sanity/lib/image';
 import { SanitySermon } from '@/types/sanity';
+import { getDateParts, getSermons } from '@/sanity/sanityUtil';
 
 interface EventPostsProps {
   title: string;
