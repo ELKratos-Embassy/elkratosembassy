@@ -11,10 +11,8 @@ export async function GET() {
   const subscribers = await db.collection('subscribers').find({ subscribed: true }).toArray()
 
   const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
-  // const blogs = (await getBlogs()).filter(b => new Date(b.publishedAt) > oneWeekAgo)
-  // const sermons = (await getSermons()).filter(s => new Date(s.eventDate) > oneWeekAgo)
-  const blogs = (await getBlogs())
-  const sermons = (await getSermons())
+  const blogs = (await getBlogs()).filter(b => new Date(b.publishedAt) > oneWeekAgo)
+  const sermons = (await getSermons()).filter(s => new Date(s.eventDate) > oneWeekAgo)
 
   if (blogs.length === 0 && sermons.length === 0) {
     return NextResponse.json({ message: 'No new content this week.' })
