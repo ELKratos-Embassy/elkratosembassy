@@ -19,10 +19,12 @@ const NewsletterForm = ({ onSuccess, onClick }: { onSuccess?: () => void, onClic
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
+  const [alreadySubscribed, setAlreadySubscribed] = useState(false);
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setStatus("loading");
+    setAlreadySubscribed(false);
 
     const res = await fetch("/api/subscribe", {
       method: "POST",
@@ -30,11 +32,17 @@ const NewsletterForm = ({ onSuccess, onClick }: { onSuccess?: () => void, onClic
       body: JSON.stringify({ email }),
     });
 
+    if (res.status === 409) {
+      setAlreadySubscribed(true);
+      setStatus("");
+      return;
+    }
+
     if (res.ok) {
       setStatus("success");
       setEmail("");
       setShowSuccess(true);
-      if (onSuccess) setTimeout(onSuccess, 1500); // Close modal after 1.5s
+      if (onSuccess) setTimeout(onSuccess, 1500);
     } else {
       setStatus("error");
     }
@@ -62,7 +70,8 @@ const NewsletterForm = ({ onSuccess, onClick }: { onSuccess?: () => void, onClic
           disabled={status === 'loading'}
           className="whitespace-nowrap"
         />
-        {status === "error" && <p>Something went wrong.</p>}
+        {status === "error" && <p className="text-red-600">Something went wrong.</p>}
+        {alreadySubscribed && <p className="text-yellow-600">You are already subscribed to our newsletter!</p>}
       </form>
       {showSuccess && (
         <SuccessModal
