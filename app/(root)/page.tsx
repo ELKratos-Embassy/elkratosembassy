@@ -17,7 +17,8 @@ export const metadata: Metadata = {
     'Welcome to El Kratos Embassy - Where Spiritual Resilience Meets Life. Discover our transformative faith community and grow in both spiritual and personal life.',
 };
 
-export default function Home() {
+export default async function Home() {
+
   return (
     <>
       <NewsletterModal />

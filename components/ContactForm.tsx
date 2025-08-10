@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import Button from './ui/Button';
+import SuccessModal from './SuccessModal';
 
 const ContactForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -37,7 +38,7 @@ const ContactForm = () => {
       } else {
         alert('Failed to send message. Please try again later.');
       }
-    } catch (error) {
+    } catch {
       alert('Failed to send message. Please try again later.');
     } finally {
       setIsSubmitting(false);
@@ -127,21 +128,7 @@ const ContactForm = () => {
 
       {/* Success Modal */}
       {showSuccess && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="bg-white rounded-lg shadow-lg p-8 max-w-sm w-full text-center">
-            <h2 className="text-2xl font-bold mb-4 text-primary">Thank you!</h2>
-            <p className="mb-6 text-gray-700">
-              Your message has been sent successfully.<br />
-              We appreciate your feedback and will get back to you soon.
-            </p>
-            <Button
-              text="Close"
-              variant="primary"
-              className="w-full"
-              onClick={() => setShowSuccess(false)}
-            />
-          </div>
-        </div>
+        <SuccessModal setShowSuccess={setShowSuccess} message='We appreciate your feedback and will get back to you soon.' />
       )}
     </>
   );

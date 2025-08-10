@@ -17,7 +17,7 @@ const NewsletterModal = () => {
   return (
     <Modal open={open} onClose={() => setOpen(false)}>
       <h2 className="text-h4 mb-6 text-center">Subscribe to our Newsletter</h2>
-      <NewsletterForm />
+      <NewsletterForm onClick={() => setOpen(false)} />
     </Modal>
   );
 };
