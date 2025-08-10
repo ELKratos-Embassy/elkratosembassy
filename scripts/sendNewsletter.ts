@@ -11,10 +11,8 @@ export default async function sendWeeklyNewsletter() {
 
   // Get blogs and sermons from the past week
   const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
-  const blogs = (await getBlogs())
-  const sermons = (await getSermons())
-  // const blogs = (await getBlogs()).filter(b => new Date(b.publishedAt) > oneWeekAgo)
-  // const sermons = (await getSermons()).filter(s => new Date(s.eventDate) > oneWeekAgo)
+  const blogs = (await getBlogs()).filter(b => new Date(b.publishedAt) > oneWeekAgo)
+  const sermons = (await getSermons()).filter(s => new Date(s.eventDate) > oneWeekAgo)
 
   if (blogs.length === 0 && sermons.length === 0) return
 
@@ -96,4 +94,5 @@ export default async function sendWeeklyNewsletter() {
 
 sendWeeklyNewsletter().then(() => {
   console.log('Newsletter sent!')
+  process.exit();
 })

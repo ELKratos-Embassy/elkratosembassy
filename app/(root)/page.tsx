@@ -9,7 +9,6 @@ import BlogPosts from '@/components/features/BlogPosts';
 import Footer from '@/components/Footer';
 import NewsletterModal from '@/components/NewsletterModal';
 import type { Metadata } from 'next';
-import sendWeeklyNewsletter from '@/scripts/sendNewsletter';
 
 // Add metadata for better SEO
 export const metadata: Metadata = {
@@ -19,13 +18,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  try {
-    const response = await sendWeeklyNewsletter();
-    console.log("Response", response)
-
-  } catch (error) {
-    console.log("Error", error)
-  }
 
   return (
     <>
