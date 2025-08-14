@@ -18,7 +18,7 @@ const Cta = () => {
           md:py-12 flex flex-col md:justify-between md:flex-row justify-center 
         gap-12
           md:gap-24
-           bg-white hover:border-b-[16px] border-primary transition-all"
+           bg-white hover:border-b-16 border-primary transition-all"
         >
           <section className="max-w-[500px]">
             <h2 className="text-h2 text-center md:text-left">{text}</h2>

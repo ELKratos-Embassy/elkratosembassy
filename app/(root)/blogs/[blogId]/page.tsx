@@ -74,7 +74,7 @@ const Blog = async ({ params }: { params: Promise<{ blogId: string }> }) => {
           <div className="container mx-auto py-12 md:py-20 px-6 sm:px-8 md:px-16">
             {/* Blog Header */}
             <header className="text-center max-w-4xl mx-auto">
-              <h1 className="text-xs uppercase font-bold text-transparent bg-clip-text bg-gradient-to-r from-gradient-100 to-gradient-200">
+              <h1 className="text-xs uppercase font-bold text-transparent bg-clip-text bg-linear-to-r from-gradient-100 to-gradient-200">
                 {sanityBlog.tag}
               </h1>
               <h2 className="text-h2 my-4 font-semibold">{sanityBlog.title}</h2>
@@ -89,12 +89,12 @@ const Blog = async ({ params }: { params: Promise<{ blogId: string }> }) => {
 
             {/* Featured Image */}
             {sanityBlog.featuredImage && (
-              <figure className="my-8 md:my-12 relative aspect-[16/9] w-full max-w-6xl mx-auto">
+              <figure className="my-8 md:my-12 relative aspect-video w-full max-w-6xl mx-auto">
                 <Image
                   src={urlFor(sanityBlog.featuredImage).url()}
                   alt={sanityBlog.title}
                   fill
-                  className="object-cover rounded-lg shadow-sm"
+                  className="object-cover rounded-lg shadow-xs"
                   priority
                 />
               </figure>
@@ -140,12 +140,12 @@ const Blog = async ({ params }: { params: Promise<{ blogId: string }> }) => {
 
                   {/* Show additional image after first section if available */}
                   {index === 0 && sanityBlog.additionalImage && (
-                    <figure className="my-8 md:my-12 relative aspect-[16/9] w-full">
+                    <figure className="my-8 md:my-12 relative aspect-video w-full">
                       <Image
                         src={urlFor(sanityBlog.additionalImage).url()}
                         alt={`${sanityBlog.title} - Additional Image`}
                         fill
-                        className="object-cover rounded-lg shadow-sm"
+                        className="object-cover rounded-lg shadow-xs"
                       />
                     </figure>
                   )}
@@ -173,7 +173,7 @@ const Blog = async ({ params }: { params: Promise<{ blogId: string }> }) => {
         <div className="container mx-auto py-12 md:py-20 px-6 sm:px-8 md:px-16">
           {/* Blog Header */}
           <header className="text-center max-w-4xl mx-auto">
-            <h1 className="text-xs uppercase font-bold text-transparent bg-clip-text bg-gradient-to-r from-gradient-100 to-gradient-200">
+            <h1 className="text-xs uppercase font-bold text-transparent bg-clip-text bg-linear-to-r from-gradient-100 to-gradient-200">
               {post.tag}
             </h1>
             <h2 className="text-h2 my-4 font-semibold">{post.title}</h2>
@@ -187,12 +187,12 @@ const Blog = async ({ params }: { params: Promise<{ blogId: string }> }) => {
           </header>
 
           {/* Featured Image */}
-          <figure className="my-8 md:my-12 relative aspect-[16/9] w-full max-w-6xl mx-auto">
+          <figure className="my-8 md:my-12 relative aspect-video w-full max-w-6xl mx-auto">
             <Image
               src={post.detail.image[0]}
               alt={post.title}
               fill
-              className="object-cover rounded-lg shadow-sm"
+              className="object-cover rounded-lg shadow-xs"
               priority
             />
           </figure>
@@ -214,12 +214,12 @@ const Blog = async ({ params }: { params: Promise<{ blogId: string }> }) => {
             </section>
 
             {/* Second Image */}
-            <figure className="my-8 md:my-12 relative aspect-[16/9] w-full">
+            <figure className="my-8 md:my-12 relative aspect-video w-full">
               <Image
                 src={post.detail.image[1]}
                 alt={`${post.title} - Additional Image`}
                 fill
-                className="object-cover rounded-lg shadow-sm"
+                className="object-cover rounded-lg shadow-xs"
               />
             </figure>
 

@@ -6,7 +6,7 @@ export default function Cards({ cards }: CardsProps) {
       {cards.map(({ icon, heading, text }) => (
         <div
           key={icon}
-          className="relative flex flex-col justify-between bg-light-orange  duration-300 hover:scale-105 hover:shadow-xl rounded-lg shadow-md w-full max-w-sm sm:w-64 lg:w-72 text-center overflow-hidden hover:border-b-[16px] border-primary transition-all"
+          className="relative flex flex-col justify-between bg-light-orange  duration-300 hover:scale-105 hover:shadow-xl rounded-lg shadow-md w-full max-w-sm sm:w-64 lg:w-72 text-center overflow-hidden hover:border-b-16 border-primary transition-all"
         >
           {/* Hover Overlay */}
           {/* <div className="absolute inset-0 bg-red-500 bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 z-0"></div> */}

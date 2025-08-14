@@ -15,7 +15,7 @@ const SermonForm = () => {
           name="name"
           id="name"
           placeholder="Enter your full name"
-          className="w-full border-b border-secondary/20 py-2 px-0 focus:px-2 focus:border-primary focus:outline-none focus:ring-0 transition-all"
+          className="w-full border-b border-secondary/20 py-2 px-0 focus:px-2 focus:border-primary focus:outline-hidden focus:ring-0 transition-all"
         />
       </div>
 
@@ -31,7 +31,7 @@ const SermonForm = () => {
           name="email"
           id="email"
           placeholder="Enter your email"
-          className="w-full border-b border-secondary/20 py-2 px-0 focus:px-2 focus:border-primary focus:outline-none focus:ring-0 transition-all"
+          className="w-full border-b border-secondary/20 py-2 px-0 focus:px-2 focus:border-primary focus:outline-hidden focus:ring-0 transition-all"
         />
       </div>
 

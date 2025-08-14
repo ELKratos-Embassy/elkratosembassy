@@ -46,17 +46,17 @@ const EventPosts = async ({ title, single }: EventPostsProps) => {
                 <Link
                   key={sermonItem._id}
                   href={`/sermons/${sermonItem.slug.current}`}
-                  className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                  className="group focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 >
                   <article
                     className={clsx(
                       'p-8 py-4 rounded-lg transition-all duration-300',
-                      'hover:border-b-[16px] border-primary-hover',
+                      'hover:border-b-16 border-primary-hover',
                       single ? 'bg-white' : 'bg-light-orange',
                     )}
                   >
                     <div className="flex justify-between items-start">
-                      <div className="flex-grow mt-3 md:mt-6">
+                      <div className="grow mt-3 md:mt-6">
                         <Heading
                           section={section.sermon}
                           caption="Upcoming Event"
@@ -75,7 +75,7 @@ const EventPosts = async ({ title, single }: EventPostsProps) => {
                               alt="Clock"
                               width={20}
                               height={20}
-                              className="flex-shrink-0"
+                              className="shrink-0"
                             />
                             <p className="flex flex-col">
                               <span>{sermonItem.times.join(', ')}</span>
@@ -88,7 +88,7 @@ const EventPosts = async ({ title, single }: EventPostsProps) => {
                               alt="Location"
                               width={20}
                               height={20}
-                              className="flex-shrink-0"
+                              className="shrink-0"
                             />
                             <p className="flex flex-col">
                               <span>{sermonItem.location.join(', ')}</span>
@@ -97,7 +97,7 @@ const EventPosts = async ({ title, single }: EventPostsProps) => {
                         </div>
                       </div>
 
-                      <div className="text-right flex-shrink-0">
+                      <div className="text-right shrink-0">
                         <h5 className="text-h5 font-bold leading-none">
                           {day}
                         </h5>
@@ -114,17 +114,17 @@ const EventPosts = async ({ title, single }: EventPostsProps) => {
               <Link
                 key={id}
                 href={`/sermons/${id}`}
-                className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                className="group focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2"
               >
                 <article
                   className={clsx(
                     'p-8 py-4 rounded-lg transition-all duration-300',
-                    'hover:border-b-[16px] border-primary-hover',
+                    'hover:border-b-16 border-primary-hover',
                     single ? 'bg-white' : 'bg-light-orange',
                   )}
                 >
                   <div className="flex justify-between items-start">
-                    <div className="flex-grow mt-3 md:mt-6">
+                    <div className="grow mt-3 md:mt-6">
                       <Heading
                         section={section.sermon}
                         caption={info.desc.caption}
@@ -141,7 +141,7 @@ const EventPosts = async ({ title, single }: EventPostsProps) => {
                             alt={info.time.icon.alt}
                             width={20}
                             height={20}
-                            className="flex-shrink-0"
+                            className="shrink-0"
                           />
                           <p className="flex flex-col">
                             <span>{info.time.text.join(' ')}</span>
@@ -154,7 +154,7 @@ const EventPosts = async ({ title, single }: EventPostsProps) => {
                             alt={info.location.icon.alt}
                             width={20}
                             height={20}
-                            className="flex-shrink-0"
+                            className="shrink-0"
                           />
                           <p className="flex flex-col">
                             <span>{info.location.text.join(' ')}</span>
@@ -163,7 +163,7 @@ const EventPosts = async ({ title, single }: EventPostsProps) => {
                       </div>
                     </div>
 
-                    <div className="text-right flex-shrink-0">
+                    <div className="text-right shrink-0">
                       <h5 className="text-h5 font-bold leading-none">
                         {date.caption}
                       </h5>

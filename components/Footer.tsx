@@ -14,7 +14,7 @@ const Footer = () => {
   } = home;
 
   return (
-    <div className="space-y-20 md:space-y-32 px-6 py-8 sm:px-12 sm:py-16 md:px-20 md:py-24 lg:px-28 bg-[#161722] text-white">
+    <div className="space-y-20 md:space-y-32 px-6 py-8 sm:px-12 sm:py-16 md:px-20 md:py-24 lg:px-28 bg-secondary-black text-white">
       <div className="flex flex-col flex-wrap gap-12 md:gap-8 md:flex-row md:justify-between">
         <div className="flex flex-col gap-12 sm:flex-row md:gap-[270px] justify-between">
           <section>

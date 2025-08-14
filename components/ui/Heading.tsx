@@ -27,7 +27,7 @@ export default function Heading({
         </>
       ) : (
         <div className="space-y-4 text-left">
-          <p className="text-[12px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-gradient-100 to-gradient-200 uppercase">
+          <p className="text-[12px] font-bold text-transparent bg-clip-text bg-linear-to-r from-gradient-100 to-gradient-200 uppercase">
             {caption}
           </p>
           <h5 className="text-h5 text-left text-black font-bold">{text}</h5>

@@ -25,11 +25,11 @@ const Modal = ({ open: _open, onClose, children }: ModalProps) => {
   if (!show) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60">
-      <div className="bg-[#161722] text-white rounded-lg shadow-lg p-4 sm:p-8 w-full max-w-xs sm:max-w-md relative animate-fadeIn mx-2 sm:mx-0">
+    <div className="fixed inset-0 z-9999 flex items-center justify-center bg-black/60">
+      <div className="bg-secondary-black text-white rounded-lg shadow-lg p-4 sm:p-8 w-full max-w-xs sm:max-w-md relative animate-fadeIn mx-2 sm:mx-0">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-white text-2xl hover:text-primary focus:outline-none"
+          className="absolute top-4 right-4 text-white text-2xl hover:text-primary focus:outline-hidden"
           aria-label="Close modal"
         >
           &times;

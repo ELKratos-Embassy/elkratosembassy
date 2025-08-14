@@ -61,7 +61,7 @@ const ContactForm = () => {
             id="name"
             name="name"
             placeholder="Your Full Name"
-            className="w-full rounded-lg p-4 placeholder:text-black/60 border border-transparent focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-all"
+            className="w-full rounded-lg p-4 placeholder:text-black/60 border border-transparent focus:border-primary focus:outline-hidden focus:ring-1 focus:ring-primary transition-all"
             required
             disabled={isSubmitting}
           />
@@ -76,7 +76,7 @@ const ContactForm = () => {
             id="email"
             name="email"
             placeholder="Your Email"
-            className="w-full rounded-lg p-4 placeholder:text-black/60 border border-transparent focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-all"
+            className="w-full rounded-lg p-4 placeholder:text-black/60 border border-transparent focus:border-primary focus:outline-hidden focus:ring-1 focus:ring-primary transition-all"
             required
             disabled={isSubmitting}
           />
@@ -91,7 +91,7 @@ const ContactForm = () => {
             id="query"
             name="query"
             placeholder="Query Related"
-            className="w-full rounded-lg p-4 placeholder:text-black/60 border border-transparent focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-all"
+            className="w-full rounded-lg p-4 placeholder:text-black/60 border border-transparent focus:border-primary focus:outline-hidden focus:ring-1 focus:ring-primary transition-all"
             required
             disabled={isSubmitting}
           />
@@ -106,7 +106,7 @@ const ContactForm = () => {
             name="message"
             placeholder="Message"
             rows={4}
-            className="w-full rounded-lg p-4 placeholder:text-black/60 border border-transparent focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-all resize-y"
+            className="w-full rounded-lg p-4 placeholder:text-black/60 border border-transparent focus:border-primary focus:outline-hidden focus:ring-1 focus:ring-primary transition-all resize-y"
             required
             disabled={isSubmitting}
           />
