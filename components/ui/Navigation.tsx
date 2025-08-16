@@ -33,7 +33,7 @@ const Navigation = () => {
         className={clsx(
           'w-full transition-all duration-300',
           isScrolled
-            ? 'bg-secondary-black/95 backdrop-blur-sm py-4'
+            ? 'bg-secondary-black/95 backdrop-blur-xs py-4'
             : 'bg-secondary-black py-6',
         )}
       >
@@ -111,7 +111,7 @@ const Navigation = () => {
             {/* Mobile Navigation */}
             <div
               className={clsx(
-                'absolute inset-x-0 top-full bg-secondary-black/95 backdrop-blur-sm transition-all duration-300 md:hidden',
+                'absolute inset-x-0 top-full bg-secondary-black/95 backdrop-blur-xs transition-all duration-300 md:hidden',
                 isOpen
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 -translate-y-4 pointer-events-none',

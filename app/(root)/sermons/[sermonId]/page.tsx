@@ -93,7 +93,7 @@ const Sermon = async ({
                 </div>
 
                 <section className="mt-8 space-y-6">
-                  <h6 className="text-xs uppercase font-bold text-transparent bg-clip-text bg-gradient-to-r from-gradient-100 to-gradient-200">
+                  <h6 className="text-xs uppercase font-bold text-transparent bg-clip-text bg-linear-to-r from-gradient-100 to-gradient-200">
                     {sanitySermon.status === 'upcoming' ? 'Upcoming Event' : 'Past Event'}
                   </h6>
                   <h1 className="text-h2 font-semibold">
@@ -109,7 +109,7 @@ const Sermon = async ({
                       )}
 
                       {index === 1 && (
-                        <blockquote className="leading-relaxed tracking-tight opacity-80 px-6 py-4 border-l-4 border-primary bg-white/50 rounded">
+                        <blockquote className="leading-relaxed tracking-tight opacity-80 px-6 py-4 border-l-4 border-primary bg-white/50 rounded-sm">
                           {paragraph}
                         </blockquote>
                       )}
@@ -125,7 +125,7 @@ const Sermon = async ({
               </div>
 
               {/* Right Column - Registration Form */}
-              <section className="bg-white w-full md:w-1/2 lg:w-1/3 p-8 md:p-10 rounded-lg shadow-sm h-fit">
+              <section className="bg-white w-full md:w-1/2 lg:w-1/3 p-8 md:p-10 rounded-lg shadow-xs h-fit">
                 <h2 className="text-h4 font-semibold">
                   {sanitySermon.status === 'upcoming' ? 'Register Now' : 'Event Details'}
                 </h2>
@@ -216,7 +216,7 @@ const Sermon = async ({
               </div>
 
               <section className="mt-8 space-y-6">
-                <h6 className="text-xs uppercase font-bold text-transparent bg-clip-text bg-gradient-to-r from-gradient-100 to-gradient-200">
+                <h6 className="text-xs uppercase font-bold text-transparent bg-clip-text bg-linear-to-r from-gradient-100 to-gradient-200">
                   Upcoming Event
                 </h6>
                 <h1 className="text-h2 font-semibold">
@@ -226,7 +226,7 @@ const Sermon = async ({
                   {event.info.desc.message[0]} {event.info.desc.message[1]}
                 </p>
 
-                <blockquote className="leading-relaxed tracking-tight opacity-80 px-6 py-4 border-l-4 border-primary bg-white/50 rounded">
+                <blockquote className="leading-relaxed tracking-tight opacity-80 px-6 py-4 border-l-4 border-primary bg-white/50 rounded-sm">
                   {event.info.desc.message[1]}
                 </blockquote>
 
@@ -237,7 +237,7 @@ const Sermon = async ({
             </div>
 
             {/* Right Column - Registration Form */}
-            <section className="bg-white w-full md:w-1/2 lg:w-1/3 p-8 md:p-10 rounded-lg shadow-sm h-fit">
+            <section className="bg-white w-full md:w-1/2 lg:w-1/3 p-8 md:p-10 rounded-lg shadow-xs h-fit">
               <h2 className="text-h4 font-semibold">Register Now</h2>
 
               <address className="flex flex-col lg:flex-row gap-6 my-8 not-italic">

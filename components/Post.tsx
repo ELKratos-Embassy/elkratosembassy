@@ -10,7 +10,7 @@ const Post = ({
     <Link href={`/blogs/${id}`}>
       <section
         className={clsx(
-          'bg-light-orange px-8 py-12 lg:py-8 w-full max-w-sm sm:w-72 rounded-lg border-[#FFD0A0] hover:border-b-[16px] transition-all max-md:mx-auto',
+          'bg-light-orange px-8 py-12 lg:py-8 w-full max-w-sm sm:w-72 rounded-lg border-[#FFD0A0] hover:border-b-16 transition-all max-md:mx-auto',
           single ? 'bg-white' : 'bg-light-orange',
         )}
       >

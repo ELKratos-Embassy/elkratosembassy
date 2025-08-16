@@ -19,7 +19,7 @@ export default function RootLayout({
       <body
         className={`${montserrat.className} antialiased min-h-screen flex flex-col`}
       >
-        <main className="flex-grow">{children}</main>
+        <main className="grow">{children}</main>
       </body>
     </html>
   );

@@ -36,7 +36,7 @@ export default function Benefits({ about }: { about?: boolean }) {
               />
 
               {/* Overlay */}
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-700"></div>
+              <div className="absolute inset-0 bg-black-50 group-hover:bg-black-50 transition-all duration-700"></div>
 
               {/* Content */}
               <div className="absolute bottom-0 translate-y-1/2 p-8 flex flex-col group-hover:translate-y-0 text-white z-20 transition-all duration-700">

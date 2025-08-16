@@ -58,7 +58,7 @@ const NewsletterForm = ({ onSuccess, onClick }: { onSuccess?: () => void, onClic
           aria-label={label}
           type="text"
           placeholder={placeholder}
-          className="p-5 bg-transparent border opacity-35 placeholder:opacity-80  focus:opacity-100 border-opacity-75 -mr-1.5 rounded-lg transition-all -z-5 focus:outline-none"
+          className="p-5 bg-transparent border opacity-35 placeholder:opacity-80  focus:opacity-100 border-opacity-75 -mr-1.5 rounded-lg transition-all focus:outline-hidden"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />

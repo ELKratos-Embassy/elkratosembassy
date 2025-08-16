@@ -31,7 +31,7 @@ export default function Button({
     'rounded-lg',
     'text-sm md:text-base font-medium',
     'transition-all duration-300 ease-in-out',
-    'focus:outline-none focus:ring-2 focus:ring-offset-2',
+    'focus:outline-hidden focus:ring-2 focus:ring-offset-2',
     variant === 'primary' && [
       'bg-primary text-secondary-black focus:ring-primary',
       isActive

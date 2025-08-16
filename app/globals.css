@@ -1,6 +1,63 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@plugin 'tailwindcss-animate';
+@plugin 'tailwind-scrollbar';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-primary: #ffd2a4;
+  --color-primary-hover: #f2c79b;
+  --color-secondary: #0d0d0d;
+  --color-secondary-black: #161722;
+  --color-secondary-orange: #fff5eb;
+  --color-grey: #f5f2f099;
+  --color-light-orange: #fff5eb;
+  --color-gradient-100: #a54e2b;
+  --color-gradient-200: #dc9853;
+
+  --background-color-gradient: linear-gradient(#a54e2b, DC9853);
+
+  --text-h1: clamp(2.5rem, 4vw, 4rem);
+  --text-h1--line-height: 1.2;
+  --text-h2: clamp(2rem, 3.5vw, 3rem);
+  --text-h2--line-height: 1.2;
+  --text-h3: clamp(1.75rem, 3vw, 2.5rem);
+  --text-h3--line-height: 1.2;
+  --text-h4: clamp(1.5rem, 2.5vw, 2rem);
+  --text-h4--line-height: 1.2;
+  --text-h5: clamp(1.25rem, 2vw, 1.5rem);
+  --text-h5--line-height: 1.2;
+  --text-h6: clamp(1rem, 1.5vw, 1rem);
+  --text-h6--line-height: 1.2;
+  --text-btn: 1rem;
+  --text-btn--line-height: 1.2;
+
+  --backdrop-blur-4xl: 80px;
+
+  --background-image-cta: url('/cta/empowering-lives.png');
+  --background-image-hero-about: url('/about/hero.png');
+  --background-image-hero-sermon: url('/sermons/hero.png');
+  --background-image-hero-contact: url('/contact/hero.png');
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 h1,
 h2,

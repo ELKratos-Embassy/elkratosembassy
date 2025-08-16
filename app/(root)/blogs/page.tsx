@@ -49,7 +49,7 @@ const Blogs = async () => {
           <BlogHeader />
 
           {/* Featured Post */}
-          <section className="sm:p-8 bg-white flex flex-col sm:flex-row justify-between items-center gap-8 sm:gap-6 mt-8 md:mt-16 mb-16 md:mb-24 rounded-lg shadow-sm">
+          <section className="sm:p-8 bg-white flex flex-col sm:flex-row justify-between items-center gap-8 sm:gap-6 mt-8 md:mt-16 mb-16 md:mb-24 rounded-lg shadow-xs">
             <div className="relative w-full sm:w-1/2 md:w-1/3 lg:w-1/2 aspect-video">
               <Image
                 src={
@@ -123,15 +123,15 @@ const Blogs = async () => {
                       <Link
                         key={blog._id}
                         href={`/blogs/${blog.slug.current}`}
-                        className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                        className="group focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2"
                       >
                         <article
                           className="h-full bg-white px-8 py-12 rounded-lg
-                          group-hover:border-b-[16px] group-hover:border-primary-hover
-                          transition-all duration-300 shadow-sm hover:shadow-md"
+                          group-hover:border-b-16 group-hover:border-primary-hover
+                          transition-all duration-300 shadow-xs hover:shadow-md"
                         >
                           <header>
-                            <h3 className="text-xs uppercase font-bold text-transparent bg-clip-text bg-gradient-to-r from-gradient-100 to-gradient-200">
+                            <h3 className="text-xs uppercase font-bold text-transparent bg-clip-text bg-linear-to-r from-gradient-100 to-gradient-200">
                               {blog.tag}
                             </h3>
                             <h4 className="my-4 text-h5 font-bold line-clamp-2">
@@ -155,15 +155,15 @@ const Blogs = async () => {
                   <Link
                     key={id}
                     href={`/blogs/${id}`}
-                    className="group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                    className="group focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2"
                   >
                     <article
                       className="h-full bg-white px-8 py-12 rounded-lg
-                      group-hover:border-b-[16px] group-hover:border-primary-hover
-                      transition-all duration-300 shadow-sm hover:shadow-md"
+                      group-hover:border-b-16 group-hover:border-primary-hover
+                      transition-all duration-300 shadow-xs hover:shadow-md"
                     >
                       <header>
-                        <h3 className="text-xs uppercase font-bold text-transparent bg-clip-text bg-gradient-to-r from-gradient-100 to-gradient-200">
+                        <h3 className="text-xs uppercase font-bold text-transparent bg-clip-text bg-linear-to-r from-gradient-100 to-gradient-200">
                           {tag}
                         </h3>
                         <h4 className="my-4 text-h5 font-bold line-clamp-2">
