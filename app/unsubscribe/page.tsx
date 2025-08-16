@@ -4,9 +4,9 @@ import { Suspense } from "react";
 function SubscribeFormFallback() {
   return (
     <div className="animate-pulse">
-      <div className="h-6 bg-gray-200 rounded-sm mb-4"></div>
-      <div className="h-6 bg-gray-200 rounded-sm mb-4"></div>
-      <div className="h-6 bg-gray-200 rounded-sm mb-4"></div>
+      <div className="h-6 bg-gray-200 rounded-xs mb-4"></div>
+      <div className="h-6 bg-gray-200 rounded-xs mb-4"></div>
+      <div className="h-6 bg-gray-200 rounded-xs mb-4"></div>
     </div>
   )
 }

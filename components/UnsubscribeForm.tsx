@@ -76,7 +76,7 @@ export default function UnsubscribeForm() {
   const emailParam = searchParams.get('email');
 
   return (
-    <div className="max-w-md mx-auto mt-20 p-8 bg-white rounded-lg shadow-sm">
+    <div className="max-w-md mx-auto mt-20 p-8 bg-white rounded-lg shadow-xs">
       <h2 className="text-2xl font-bold mb-4">Unsubscribe from Newsletter</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
