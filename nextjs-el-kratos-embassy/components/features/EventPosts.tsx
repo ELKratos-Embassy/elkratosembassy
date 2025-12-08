@@ -4,8 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { SanitySermon } from '@/types/sanity';
-import { getDateParts, getSermons } from '@/sanity/sanityUtil';
-
+import { getDateParts, getSermons } from '@/src/sanity/sanityUtil';
 interface EventPostsProps {
   title: string;
   single?: boolean;

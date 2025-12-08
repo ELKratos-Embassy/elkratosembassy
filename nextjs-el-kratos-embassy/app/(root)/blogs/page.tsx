@@ -7,8 +7,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { SanityBlog } from '@/types/sanity';
-import { getBlogs, getFeaturedBlog } from '@/sanity/sanityUtil';
-import { urlFor } from '@/sanity/image';
+import { getBlogs, getFeaturedBlog } from '@/src/sanity/sanityUtil';
+import { urlFor } from '@/src/sanity/client';
 
 export const revalidate = 60; // Revalidate the page every 60 seconds to reflect changes from Sanity Studio
 

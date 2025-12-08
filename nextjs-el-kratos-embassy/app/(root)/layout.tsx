@@ -24,8 +24,6 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
-  viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#FFD2A4',
 };
 
 export default function RootLayout({

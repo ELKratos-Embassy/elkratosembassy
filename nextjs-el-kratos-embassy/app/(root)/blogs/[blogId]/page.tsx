@@ -4,11 +4,10 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { SanityBlog } from '@/types/sanity';
-import { getBlog } from '@/sanity/sanityUtil';
-import { urlFor } from '@/sanity/image';
+import { getBlog } from '@/src/sanity/sanityUtil';
+import { urlFor } from '@/src/sanity/client';
 
 export const revalidate = 60; // Revalidate the page every 60 seconds to reflect changes from Sanity Studio
-
 
 // Generate metadata dynamically
 export async function generateMetadata({

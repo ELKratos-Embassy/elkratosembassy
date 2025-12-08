@@ -6,8 +6,8 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import SermonForm from '@/components/SermonForm';
 import { SanitySermon } from '@/types/sanity';
-import { formatDate, getDateParts, getSermon } from '@/sanity/sanityUtil';
-import { urlFor } from '@/sanity/image';
+import { getDateParts, getSermon } from '@/src/sanity/sanityUtil';
+import { urlFor } from '@/src/sanity/client';
 
 export const revalidate = 60; // Revalidate the page every 60 seconds to reflect changes from Sanity Studio
 

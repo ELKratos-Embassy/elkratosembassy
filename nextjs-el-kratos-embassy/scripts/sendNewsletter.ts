@@ -1,6 +1,6 @@
 import { Resend } from 'resend'
 import clientPromise from '@/lib/mongodb'
-import { getBlogs, getSermons } from '@/sanity/sanityUtil'
+import { getBlogs, getSermons } from '@/src/sanity/sanityUtil'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 

@@ -1,13 +1,13 @@
-import { client } from '../lib/client'
+import { client } from './client'
 import {
   blogsQuery,
   blogQuery,
   sermonsQuery,
   sermonQuery,
   featuredBlogQuery,
-  featuredSermonQuery
+  featuredSermonQuery,
 } from './sanity-queries'
-import { SanityBlog, SanitySermon } from '@/types/sanity'
+import {SanityBlog, SanitySermon} from '@/types/sanity'
 
 export async function getBlogs(): Promise<SanityBlog[]> {
   try {
@@ -21,7 +21,7 @@ export async function getBlogs(): Promise<SanityBlog[]> {
 
 export async function getBlog(slug: string): Promise<SanityBlog | null> {
   try {
-    const result = await client.fetch(blogQuery, { slug })
+    const result = await client.fetch(blogQuery, {slug})
     return result || null
   } catch (error) {
     console.error('Error fetching blog:', error)
@@ -41,7 +41,7 @@ export async function getSermons(): Promise<SanitySermon[]> {
 
 export async function getSermon(slug: string): Promise<SanitySermon | null> {
   try {
-    const result = await client.fetch(sermonQuery, { slug })
+    const result = await client.fetch(sermonQuery, {slug})
     return result || null
   } catch (error) {
     console.error('Error fetching sermon:', error)
@@ -76,7 +76,7 @@ export function formatDate(dateString: string): string {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
-    year: 'numeric'
+    year: 'numeric',
   })
 }
 
@@ -85,7 +85,7 @@ export function getDateParts(dateString: string) {
   const date = new Date(dateString)
   return {
     day: date.getDate().toString(),
-    month: date.toLocaleDateString('en-US', { month: 'long' }),
-    year: date.getFullYear().toString()
+    month: date.toLocaleDateString('en-US', {month: 'long'}),
+    year: date.getFullYear().toString(),
   }
 }
