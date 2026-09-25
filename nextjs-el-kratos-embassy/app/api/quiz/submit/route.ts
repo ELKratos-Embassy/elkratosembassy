@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { validateMember, CURRENT_BATCH } from "@/lib/quiz-config";
-import { scoreAnswers, type ScoreQuestion } from "@/lib/quiz-questions";
-import { finalizeSitting, getQuizSetting, windowStatus } from "@/lib/quiz-session";
+import { deadlineMs, describeAttempt, finalizeSitting, getQuizSetting } from "@/lib/quiz-session";
 
 async function questionsForBatch() {
   return prisma.question.findMany({
@@ -13,19 +12,14 @@ async function questionsForBatch() {
 }
 
 function resultPayload(
-  attempt: { id: number; score: number; percentage: number; passed: boolean; answers: unknown },
-  questions: ScoreQuestion[],
+  attempt: { id: number; score: number; percentage: number; passed: boolean; answers: unknown; questionSnapshot: unknown },
+  questions: Array<{ id: number; order: number; weekLabel: string; text: string; options: unknown; answerIndex: number }>,
   extra: { duplicate?: boolean } = {}
 ) {
-  const scored = scoreAnswers(questions, (attempt.answers ?? {}) as Record<string, number>);
   return {
     success: true,
     id: attempt.id,
-    score: attempt.score,
-    total: scored.total,
-    percentage: attempt.percentage,
-    passed: attempt.passed,
-    wrongIds: scored.wrongIds,
+    ...describeAttempt(attempt, questions),
     ...extra,
   };
 }
@@ -58,18 +52,24 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(resultPayload(existing, questions, { duplicate: true }));
     }
 
-    const setting = await getQuizSetting(CURRENT_BATCH);
     const progress = await prisma.quizProgress.findUnique({
       where: { membershipId_batch: { membershipId: member.membershipId, batch: CURRENT_BATCH } },
     });
-    if (!progress && windowStatus(setting) !== "open") {
-      return NextResponse.json({ error: "This assessment is not open." }, { status: 403 });
+    if (!progress) {
+      return NextResponse.json({ error: "Start the assessment before submitting." }, { status: 403 });
     }
 
-    const result = await finalizeSitting(member.membershipId, member.name, CURRENT_BATCH, answers);
+    const setting = await getQuizSetting(CURRENT_BATCH);
+    const expired = Date.now() >= deadlineMs(progress.startedAt, setting.durationMinutes);
+    const result = await finalizeSitting(
+      member.membershipId,
+      member.name,
+      CURRENT_BATCH,
+      expired ? progress.answers : answers
+    );
 
     return NextResponse.json(
-      { success: true, ...result },
+      { success: true, timedOut: expired, ...result },
       { status: result.duplicate ? 200 : 201 }
     );
   } catch (error) {

@@ -118,7 +118,20 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    return NextResponse.json({ message: "Newsletter sent!", sent, failed, total: subscribers.length });
+    const completeFailure = failed > 0 && sent === 0;
+    return NextResponse.json(
+      {
+        message: completeFailure
+          ? "Newsletter delivery failed."
+          : failed > 0
+            ? "Newsletter sent with some failures."
+            : "Newsletter sent!",
+        sent,
+        failed,
+        total: subscribers.length,
+      },
+      { status: completeFailure ? 500 : 200 }
+    );
   } catch (error) {
     console.error("[newsletter-cron]", error);
     return NextResponse.json({ error: "Cron job failed." }, { status: 500 });

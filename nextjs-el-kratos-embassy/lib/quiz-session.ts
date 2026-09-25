@@ -50,20 +50,86 @@ async function questionsFor(batch: string) {
   });
 }
 
-export async function resultForAttempt(membershipId: string, batch: string) {
-  const attempt = await prisma.quizAttempt.findFirst({
-    where: { membershipId, batch },
+type PaperQuestion = {
+  id: number;
+  order: number;
+  weekLabel: string;
+  text: string;
+  options: string[];
+  answerIndex: number;
+};
+
+export type WeekSection = { label: string; total: number; correct: number };
+
+function toPaper(questions: Array<{ id: number; order: number; weekLabel: string; text: string; options: unknown; answerIndex: number }>): PaperQuestion[] {
+  return questions.map((question) => ({
+    id: question.id,
+    order: question.order,
+    weekLabel: question.weekLabel,
+    text: question.text,
+    options: Array.isArray(question.options)
+      ? question.options.filter((option): option is string => typeof option === "string")
+      : [],
+    answerIndex: question.answerIndex,
+  }));
+}
+
+function parsePaper(value: unknown): PaperQuestion[] | null {
+  if (!Array.isArray(value) || value.length === 0) return null;
+  const paper: PaperQuestion[] = [];
+  for (const item of value) {
+    if (!item || typeof item !== "object") return null;
+    const row = item as Record<string, unknown>;
+    if (typeof row.id !== "number" || typeof row.answerIndex !== "number") return null;
+    paper.push({
+      id: row.id,
+      order: typeof row.order === "number" ? row.order : 0,
+      weekLabel: typeof row.weekLabel === "string" ? row.weekLabel : "General",
+      text: typeof row.text === "string" ? row.text : "",
+      options: Array.isArray(row.options)
+        ? row.options.filter((option): option is string => typeof option === "string")
+        : [],
+      answerIndex: row.answerIndex,
+    });
+  }
+  return paper;
+}
+
+export function weekSections(questions: Array<{ id: number; weekLabel: string }>, wrongIds: number[]): WeekSection[] {
+  const labels: string[] = [];
+  for (const question of questions) {
+    if (!labels.includes(question.weekLabel)) labels.push(question.weekLabel);
+  }
+  return labels.map((label) => {
+    const ids = questions.filter((question) => question.weekLabel === label).map((question) => question.id);
+    const correct = ids.filter((id) => !wrongIds.includes(id)).length;
+    return { label, total: ids.length, correct };
   });
-  if (!attempt) return null;
-  const questions = await questionsFor(batch);
-  const scored = scoreAnswers(questions, (attempt.answers ?? {}) as Record<string, number>);
+}
+
+export function describeAttempt(
+  attempt: { score: number; percentage: number; passed: boolean; answers: unknown; questionSnapshot: unknown },
+  liveQuestions: Array<{ id: number; order: number; weekLabel: string; text: string; options: unknown; answerIndex: number }>
+) {
+  const paper = parsePaper(attempt.questionSnapshot) ?? toPaper(liveQuestions);
+  const scored = scoreAnswers(paper, (attempt.answers ?? {}) as Record<string, number>);
   return {
     score: attempt.score,
     total: scored.total,
     percentage: attempt.percentage,
     passed: attempt.passed,
     wrongIds: scored.wrongIds,
+    sections: weekSections(paper, scored.wrongIds),
   };
+}
+
+export async function resultForAttempt(membershipId: string, batch: string) {
+  const attempt = await prisma.quizAttempt.findFirst({
+    where: { membershipId, batch },
+  });
+  if (!attempt) return null;
+  const questions = await questionsFor(batch);
+  return describeAttempt(attempt, questions);
 }
 
 export async function finalizeSitting(
@@ -78,27 +144,18 @@ export async function finalizeSitting(
   });
   if (existing) {
     await prisma.quizProgress.deleteMany({ where: { membershipId, batch } });
-    const scored = scoreAnswers(questions, (existing.answers ?? {}) as Record<string, number>);
-    return {
-      duplicate: true,
-      score: existing.score,
-      total: scored.total,
-      percentage: existing.percentage,
-      passed: existing.passed,
-      wrongIds: scored.wrongIds,
-    };
+    return { duplicate: true, ...describeAttempt(existing, questions) };
   }
 
-  const scored = scoreAnswers(
-    questions,
-    (rawAnswers ?? {}) as Record<string, number>
-  );
+  const paper = toPaper(questions);
+  const scored = scoreAnswers(paper, (rawAnswers ?? {}) as Record<string, number>);
   await prisma.quizAttempt.create({
     data: {
       membershipId,
       name,
       batch,
       answers: scored.answers,
+      questionSnapshot: paper,
       score: scored.score,
       percentage: scored.percentage,
       passed: scored.passed,
@@ -112,5 +169,6 @@ export async function finalizeSitting(
     percentage: scored.percentage,
     passed: scored.passed,
     wrongIds: scored.wrongIds,
+    sections: weekSections(paper, scored.wrongIds),
   };
 }
