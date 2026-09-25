@@ -33,6 +33,16 @@ interface DBQuestion {
   answerIndex: number;
 }
 
+interface ReviewItem {
+  id: number;
+  order: number;
+  weekLabel: string;
+  text: string;
+  options: string[];
+  selected: number | null;
+  correctIndex: number;
+}
+
 interface Attempt {
   id:           number;
   membershipId: string;
@@ -41,6 +51,7 @@ interface Attempt {
   percentage:   number;
   passed:       boolean;
   submittedAt:  string;
+  review:       ReviewItem[];
 }
 
 interface Participant {
@@ -93,6 +104,7 @@ export default function ResultsDashboard() {
   const [pId, setPId] = useState("");
   const [pError, setPError] = useState("");
   const [pSaving, setPSaving] = useState(false);
+  const [openAttemptId, setOpenAttemptId] = useState<number | null>(null);
   const [resultPage, setResultPage] = useState(0);
   const [pendingPage, setPendingPage] = useState(0);
   const [qPage, setQPage] = useState(0);
@@ -426,6 +438,20 @@ export default function ResultsDashboard() {
   const visibleQuestions = qList.slice(qPage * PAGE_SIZE, (qPage + 1) * PAGE_SIZE);
   const participantPages = Math.max(1, Math.ceil(participants.length / PAGE_SIZE));
   const visibleParticipants = participants.slice(participantPage * PAGE_SIZE, (participantPage + 1) * PAGE_SIZE);
+  const ranked = [...(data?.attempts ?? [])].sort((a, b) => b.percentage - a.percentage || a.name.localeCompare(b.name));
+  const strongest = ranked.slice(0, 3);
+  const weakest = [...ranked].reverse().slice(0, 3);
+  const missed = new Map<number, { order: number; text: string; missed: number; sat: number }>();
+  for (const attempt of data?.attempts ?? []) {
+    for (const item of attempt.review ?? []) {
+      const row = missed.get(item.id) ?? { order: item.order, text: item.text, missed: 0, sat: 0 };
+      row.sat += 1;
+      if (item.selected !== item.correctIndex) row.missed += 1;
+      missed.set(item.id, row);
+    }
+  }
+  const hardest = [...missed.values()].filter((row) => row.missed > 0).sort((a, b) => b.missed - a.missed || a.order - b.order).slice(0, 5);
+  const openAttempt = openAttemptId == null ? null : (data?.attempts ?? []).find((attempt) => attempt.id === openAttemptId) ?? null;
 
   return (
     <div className="dash-page" style={{ minHeight: "100vh", background: "#F5F5F5", fontFamily: "Montserrat, Arial, sans-serif" }}>
@@ -440,6 +466,10 @@ export default function ResultsDashboard() {
         .q-card { display: flex; gap: 14px; align-items: flex-start; }
         .modal-card { width: 100%; max-height: 90vh; overflow-y: auto; }
         .schedule-grid { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: end; }
+        .insight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+        .score-btn { display: flex; align-items: center; gap: 10px; width: 100%; background: none; border: none; padding: 4px 0; cursor: pointer; font-family: inherit; text-align: left; }
+        .score-name { width: 148px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #0F1B2D; font-weight: 650; font-size: 13px; }
+        .review-card { width: 100%; max-width: 720px; }
         @media (max-width: 720px) {
           .dash-header { flex-wrap: wrap; align-items: flex-start !important; padding: 14px 12px !important; gap: 12px; }
           .dash-title { font-size: 16px !important; letter-spacing: 0.3px !important; }
@@ -455,6 +485,10 @@ export default function ResultsDashboard() {
           .person-row { flex-wrap: wrap; }
           .time-card { align-items: stretch !important; }
           .schedule-grid { grid-template-columns: 1fr; }
+          .insight-grid { grid-template-columns: 1fr; }
+          .score-name { width: 92px; font-size: 12px; }
+          .modal-sheet { align-items: flex-end !important; padding: 0 !important; }
+          .review-card { max-width: none; border-radius: 16px 16px 0 0 !important; max-height: 92vh; }
           .dash-user { width: 100%; justify-content: space-between; }
           .modal-card { padding: 18px !important; padding-bottom: calc(18px + env(safe-area-inset-bottom)) !important; border-radius: 16px 16px 0 0; }
           .modal-sheet { align-items: flex-end !important; padding: 0 !important; }
@@ -587,6 +621,67 @@ export default function ResultsDashboard() {
               </div>
             )}
 
+            {ranked.length > 0 && (
+              <div style={{ background: C.white, borderRadius: 12, padding: "16px 20px", boxShadow: "0 1px 6px rgba(0,0,0,0.07)", marginBottom: 24 }}>
+                <div style={{ color: C.mirage, fontWeight: 800, fontSize: 16, marginBottom: 4 }}>Scores</div>
+                <div style={{ color: C.mgray, fontSize: 13, marginBottom: 14 }}>Click a person to see every choice. Green is correct. Red is the answer they chose when it was wrong.</div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                  {ranked.map((attempt) => (
+                    <button key={attempt.id} className="score-btn" onClick={() => setOpenAttemptId(attempt.id)}>
+                      <span className="score-name">{attempt.name}</span>
+                      <span style={{ flex: 1, height: 12, background: "#E5E5E5", borderRadius: 99, overflow: "hidden" }}>
+                        <span style={{ display: "block", height: "100%", width: `${attempt.percentage}%`, background: attempt.passed ? C.success : C.crimson, borderRadius: 99 }} />
+                      </span>
+                      <span style={{ width: 46, textAlign: "right", fontWeight: 800, color: attempt.passed ? C.success : C.crimson }}>{attempt.percentage}%</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {ranked.length > 0 && (
+              <div className="insight-grid">
+                <div style={{ background: C.white, borderRadius: 12, padding: "16px 20px", boxShadow: "0 1px 6px rgba(0,0,0,0.07)" }}>
+                  <div style={{ color: C.success, fontWeight: 800, fontSize: 14, marginBottom: 10 }}>Highest scores</div>
+                  {strongest.map((attempt) => (
+                    <button key={attempt.id} className="score-btn" onClick={() => setOpenAttemptId(attempt.id)}>
+                      <span style={{ flex: 1, color: C.mirage, fontWeight: 700, fontSize: 14, overflowWrap: "anywhere", textAlign: "left" }}>{attempt.name}</span>
+                      <span style={{ color: C.success, fontWeight: 800 }}>{attempt.percentage}%</span>
+                    </button>
+                  ))}
+                </div>
+                <div style={{ background: C.white, borderRadius: 12, padding: "16px 20px", boxShadow: "0 1px 6px rgba(0,0,0,0.07)" }}>
+                  <div style={{ color: C.crimson, fontWeight: 800, fontSize: 14, marginBottom: 10 }}>Lowest scores</div>
+                  {weakest.map((attempt) => (
+                    <button key={`low-${attempt.id}`} className="score-btn" onClick={() => setOpenAttemptId(attempt.id)}>
+                      <span style={{ flex: 1, color: C.mirage, fontWeight: 700, fontSize: 14, overflowWrap: "anywhere", textAlign: "left" }}>{attempt.name}</span>
+                      <span style={{ color: attempt.passed ? C.success : C.crimson, fontWeight: 800 }}>{attempt.percentage}%</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {hardest.length > 0 && (
+              <div style={{ background: C.white, borderRadius: 12, padding: "16px 20px", boxShadow: "0 1px 6px rgba(0,0,0,0.07)", marginBottom: 24 }}>
+                <div style={{ color: C.mirage, fontWeight: 800, fontSize: 16, marginBottom: 4 }}>Questions missed most</div>
+                <div style={{ color: C.mgray, fontSize: 13, marginBottom: 14 }}>How many people missed each question.</div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  {hardest.map((row) => (
+                    <div key={row.order}>
+                      <div style={{ display: "flex", justifyContent: "space-between", gap: 12, marginBottom: 4 }}>
+                        <span style={{ color: C.mirage, fontSize: 13, fontWeight: 600, overflowWrap: "anywhere" }}>{row.order}. {row.text}</span>
+                        <span style={{ color: C.crimson, fontWeight: 800, fontSize: 13, flexShrink: 0 }}>{row.missed}/{row.sat}</span>
+                      </div>
+                      <div style={{ height: 8, background: "#E5E5E5", borderRadius: 99 }}>
+                        <div style={{ height: "100%", width: `${Math.round((row.missed / row.sat) * 100)}%`, background: C.crimson, borderRadius: 99 }} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Results table */}
             <div style={{ background: C.white, borderRadius: 12, boxShadow: "0 2px 12px rgba(0,0,0,0.08)", overflow: "hidden", marginBottom: 20 }}>
               <div style={{ padding: "16px 20px", borderBottom: "1px solid #F0F0F0", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
@@ -611,7 +706,7 @@ export default function ResultsDashboard() {
                     </thead>
                     <tbody>
                       {visibleAttempts.map((a, idx) => (
-                        <tr key={a.id} style={{ background: idx % 2 === 0 ? C.bleach : C.white, borderBottom: "1px solid #F0F0F0" }}>
+                        <tr key={a.id} onClick={() => setOpenAttemptId(a.id)} style={{ background: idx % 2 === 0 ? C.bleach : C.white, borderBottom: "1px solid #F0F0F0", cursor: "pointer" }}>
                           <td style={{ padding: "12px 16px", color: C.lgray, fontSize: 13 }}>{resultPage * PAGE_SIZE + idx + 1}</td>
                           <td style={{ padding: "12px 16px", color: C.mirage, fontWeight: 600 }}>{a.name}</td>
                           <td style={{ padding: "12px 16px", color: C.mgray, fontSize: 12, fontFamily: "monospace" }}>{a.membershipId}</td>
@@ -630,7 +725,7 @@ export default function ResultsDashboard() {
                   </div>
                   <div className="results-cards">
                     {visibleAttempts.map((a) => (
-                      <div key={a.id} style={{ padding: "14px 16px", borderBottom: "1px solid #F0F0F0" }}>
+                      <div key={a.id} onClick={() => setOpenAttemptId(a.id)} style={{ padding: "14px 16px", borderBottom: "1px solid #F0F0F0", cursor: "pointer" }}>
                         <div style={{ display: "flex", justifyContent: "space-between", gap: 12, alignItems: "flex-start" }}>
                           <div style={{ minWidth: 0 }}>
                             <div style={{ color: C.mirage, fontWeight: 700, overflowWrap: "anywhere" }}>{a.name}</div>
@@ -811,6 +906,49 @@ export default function ResultsDashboard() {
           </div>
         )}
       </main>
+      {openAttempt && (
+        <div className="modal-sheet" style={{ position: "fixed", inset: 0, background: "rgba(15,27,45,0.55)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000, padding: 16 }} onClick={() => setOpenAttemptId(null)}>
+          <div className="modal-card review-card" onClick={(event) => event.stopPropagation()} style={{ background: C.white, borderRadius: 14, padding: 24, boxShadow: "0 8px 32px rgba(0,0,0,0.2)" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, marginBottom: 16 }}>
+              <div style={{ minWidth: 0 }}>
+                <div style={{ color: C.mirage, fontWeight: 800, fontSize: 18, overflowWrap: "anywhere" }}>{openAttempt.name}</div>
+                <div style={{ color: C.lgray, fontSize: 12, fontFamily: "monospace", marginTop: 2 }}>{openAttempt.membershipId}</div>
+                <div style={{ marginTop: 8, fontWeight: 800, color: openAttempt.passed ? C.success : C.crimson }}>{openAttempt.percentage}% · {openAttempt.passed ? "Passed" : "Not yet passed"}</div>
+              </div>
+              <button onClick={() => setOpenAttemptId(null)} style={{ background: "none", border: "none", fontSize: 22, cursor: "pointer", color: C.lgray, lineHeight: 1 }}>×</button>
+            </div>
+            {openAttempt.review.length === 0 ? (
+              <div style={{ color: C.mgray, fontSize: 14, lineHeight: 1.6 }}>This result has no saved question paper to review.</div>
+            ) : (
+              <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                {openAttempt.review.map((item) => (
+                  <div key={item.id}>
+                    <div style={{ color: C.lgray, fontSize: 12, marginBottom: 4 }}>{item.order}. {item.weekLabel}</div>
+                    <div style={{ color: C.mirage, fontWeight: 700, fontSize: 14, lineHeight: 1.5, marginBottom: 8, overflowWrap: "anywhere" }}>{item.text}</div>
+                    {item.selected === null && <div style={{ color: C.crimson, fontSize: 12, fontWeight: 700, marginBottom: 6 }}>Not answered</div>}
+                    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                      {item.options.map((option, index) => {
+                        const chosen = index === item.selected;
+                        const correct = index === item.correctIndex;
+                        const wrong = chosen && !correct;
+                        const tone = wrong ? C.crimson : correct ? C.success : C.mgray;
+                        const fill = wrong ? C.crimsonL : correct ? C.successL : "#F7F7F7";
+                        const label = wrong ? "Their answer" : chosen && correct ? "Their answer · correct" : correct ? "Correct answer" : "";
+                        return (
+                          <div key={index} style={{ padding: "8px 12px", borderRadius: 8, fontSize: 13, lineHeight: 1.5, overflowWrap: "anywhere", background: fill, border: `1.5px solid ${wrong || correct ? tone : "#E5E5E5"}`, color: tone }}>
+                            {label && <span style={{ fontWeight: 800, marginRight: 6 }}>{label}</span>}
+                            {option}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

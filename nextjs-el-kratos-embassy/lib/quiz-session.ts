@@ -146,6 +146,39 @@ export async function capturePaper(batch: string) {
   return toPaper(await questionsFor(batch));
 }
 
+export type AttemptReviewItem = {
+  id: number;
+  order: number;
+  weekLabel: string;
+  text: string;
+  options: string[];
+  selected: number | null;
+  correctIndex: number;
+};
+
+export function reviewAttempt(
+  snapshot: unknown,
+  rawAnswers: unknown,
+  liveQuestions: Array<{ id: number; order: number; weekLabel: string; text: string; options: unknown; answerIndex: number }>
+): AttemptReviewItem[] {
+  const paper = parsePaper(snapshot) ?? toPaper(liveQuestions);
+  const raw = rawAnswers && typeof rawAnswers === "object" ? rawAnswers as Record<string, unknown> : {};
+  return paper.map((question) => {
+    const value = raw[question.id] ?? raw[String(question.id)];
+    const chosen = typeof value === "number" && Number.isInteger(value) ? value : null;
+    const selected = chosen !== null && chosen >= 0 && chosen < question.options.length ? chosen : null;
+    return {
+      id: question.id,
+      order: question.order,
+      weekLabel: question.weekLabel,
+      text: question.text,
+      options: question.options,
+      selected,
+      correctIndex: question.answerIndex,
+    };
+  });
+}
+
 export async function finalizeSitting(
   membershipId: string,
   name: string,

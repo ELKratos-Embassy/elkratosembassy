@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { validateAccessor, CURRENT_BATCH } from "@/lib/quiz-config";
+import { reviewAttempt } from "@/lib/quiz-session";
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,10 +18,16 @@ export async function POST(req: NextRequest) {
 
     const targetBatch = batch ?? CURRENT_BATCH;
 
-    const attempts = await prisma.quizAttempt.findMany({
-      where: { batch: targetBatch },
-      orderBy: { submittedAt: "asc" },
-    });
+    const [attempts, questions] = await Promise.all([
+      prisma.quizAttempt.findMany({
+        where: { batch: targetBatch },
+        orderBy: { submittedAt: "asc" },
+      }),
+      prisma.question.findMany({
+        where: { batch: targetBatch },
+        orderBy: { order: "asc" },
+      }),
+    ]);
 
     const seen = new Set<string>();
     const unique = attempts.filter((attempt) => {
@@ -49,6 +56,7 @@ export async function POST(req: NextRequest) {
         percentage: attempt.percentage,
         passed: attempt.passed,
         submittedAt: attempt.submittedAt,
+        review: reviewAttempt(attempt.questionSnapshot, attempt.answers, questions),
       })),
     });
   } catch (error) {
