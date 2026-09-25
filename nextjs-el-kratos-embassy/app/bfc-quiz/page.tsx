@@ -237,49 +237,6 @@ export default function BFCQuizPage() {
     setSelected(next[questions[index].id] ?? null);
   }
 
-  useEffect(() => {
-    if (phase !== "intro" || questions.length === 0 || autoTried.current) return;
-    const stored = sessionStorage.getItem("bfc-quiz-member");
-    if (!stored) return;
-    autoTried.current = true;
-    setMembershipId(stored);
-    void handleVerify(stored);
-  }, [phase, questions.length]);
-
-  useEffect(() => {
-    if (phase !== "quiz" || !member) return;
-    const save = () => {
-      const body = JSON.stringify({
-        membershipId: member.membershipId,
-        answers: savedAnswers(),
-        questionIndex: currentRef.current,
-      });
-      if (navigator.sendBeacon) {
-        navigator.sendBeacon("/api/quiz/progress", new Blob([body], { type: "application/json" }));
-      }
-    };
-    window.addEventListener("pagehide", save);
-    return () => window.removeEventListener("pagehide", save);
-  }, [phase, member]);
-
-  useEffect(() => {
-    if (phase !== "quiz" || !member) return;
-    const timer = setTimeout(() => {
-      fetch("/api/quiz/progress", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          membershipId: member.membershipId,
-          answers: savedAnswers(),
-          questionIndex: current,
-        }),
-      }).then((response) => {
-        if (response.status === 409) submitQuiz(savedAnswers(), true);
-      }).catch(() => undefined);
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [phase, member, answers, selected, current]);
-
   async function submitQuiz(finalAnswers: Record<number, number>, expired = false) {
     if (submitting.current) return;
     submitting.current = true;
@@ -316,12 +273,62 @@ export default function BFCQuizPage() {
     }
   }
 
+  const handleVerifyRef = useRef(handleVerify);
+  const savedAnswersRef = useRef(savedAnswers);
+  const submitQuizRef = useRef(submitQuiz);
+  handleVerifyRef.current = handleVerify;
+  savedAnswersRef.current = savedAnswers;
+  submitQuizRef.current = submitQuiz;
+
+  useEffect(() => {
+    if (phase !== "intro" || questions.length === 0 || autoTried.current) return;
+    const stored = sessionStorage.getItem("bfc-quiz-member");
+    if (!stored) return;
+    autoTried.current = true;
+    setMembershipId(stored);
+    void handleVerifyRef.current(stored);
+  }, [phase, questions.length]);
+
+  useEffect(() => {
+    if (phase !== "quiz" || !member) return;
+    const save = () => {
+      const body = JSON.stringify({
+        membershipId: member.membershipId,
+        answers: savedAnswersRef.current(),
+        questionIndex: currentRef.current,
+      });
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon("/api/quiz/progress", new Blob([body], { type: "application/json" }));
+      }
+    };
+    window.addEventListener("pagehide", save);
+    return () => window.removeEventListener("pagehide", save);
+  }, [phase, member]);
+
+  useEffect(() => {
+    if (phase !== "quiz" || !member) return;
+    const timer = setTimeout(() => {
+      fetch("/api/quiz/progress", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          membershipId: member.membershipId,
+          answers: savedAnswersRef.current(),
+          questionIndex: current,
+        }),
+      }).then((response) => {
+        if (response.status === 409) submitQuizRef.current(savedAnswersRef.current(), true);
+      }).catch(() => undefined);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [phase, member, answers, selected, current]);
+
   useEffect(() => {
     if (phase !== "quiz" || !endsAt) return;
     const tick = () => {
       const time = Date.now();
       setNow(time);
-      if (time - serverOffset >= endsAt) submitQuiz(savedAnswers(), true);
+      if (time - serverOffset >= endsAt) submitQuizRef.current(savedAnswersRef.current(), true);
     };
     tick();
     const timer = setInterval(tick, 1000);
@@ -362,7 +369,7 @@ export default function BFCQuizPage() {
           <div style={{ width: 8, height: 36, background: C.sunglow, borderRadius: 4, flexShrink: 0 }} />
           <div style={{ minWidth: 0 }}>
             <div className="quiz-title" style={{ color: C.white, fontWeight: 800, fontSize: 18, letterSpacing: 1 }}>EL KRATOS EMBASSY</div>
-            <div className="quiz-kicker" style={{ color: "rgba(255,255,255,0.75)", fontSize: 12 }}>Believers' Foundation Class · Assessment · {CURRENT_BATCH}</div>
+            <div className="quiz-kicker" style={{ color: "rgba(255,255,255,0.75)", fontSize: 12 }}>Believers&apos; Foundation Class · Assessment · {CURRENT_BATCH}</div>
           </div>
         </div>
         {(phase === "quiz" || phase === "result") && (
@@ -531,7 +538,7 @@ export default function BFCQuizPage() {
             </div>
             <div style={{ background: C.white, borderRadius: 12, padding: 20, boxShadow: "0 2px 12px rgba(0,0,0,0.08)", marginBottom: 16, borderLeft: `4px solid ${result.passed ? C.success : C.sunglow}` }}>
               {result.passed ? (
-                <><div style={{ color: C.success, fontWeight: 700, fontSize: 15, marginBottom: 8 }}>Well done, {member.name.split(" ")[0]}! 🙌</div><div style={{ color: C.mgray, fontSize: 14, lineHeight: 1.7 }}>You have successfully completed the Believers' Foundation Class assessment. Your certificate will be presented next Friday. Keep growing through every Flame Tongue.</div></>
+                <><div style={{ color: C.success, fontWeight: 700, fontSize: 15, marginBottom: 8 }}>Well done, {member.name.split(" ")[0]}! 🙌</div><div style={{ color: C.mgray, fontSize: 14, lineHeight: 1.7 }}>You have successfully completed the Believers&apos; Foundation Class assessment. Your certificate will be presented next Friday. Keep growing through every Flame Tongue.</div></>
               ) : (
                 <><div style={{ color: C.crimson, fontWeight: 700, fontSize: 15, marginBottom: 8 }}>Keep going, {member.name.split(" ")[0]}.</div><div style={{ color: C.mgray, fontSize: 14, lineHeight: 1.7 }}>You scored {result.percentage}% — the pass mark is {PASS_MARK}%. Your facilitator will schedule a review session before the certificate ceremony. Review the sections highlighted in red above.</div></>
               )}
@@ -573,7 +580,7 @@ export default function BFCQuizPage() {
       )}
 
       <footer style={{ textAlign: "center", padding: "24px 16px", color: C.lgray, fontSize: 12 }}>
-        © 2026 EL Kratos Embassy · Believers' Foundation Class · {CURRENT_BATCH}
+        © 2026 EL Kratos Embassy · Believers&apos; Foundation Class · {CURRENT_BATCH}
       </footer>
     </div>
   );
