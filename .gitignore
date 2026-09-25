@@ -19,6 +19,7 @@ nextjs-el-kratos-embassy/.next/
 nextjs-el-kratos-embassy/out/
 nextjs-el-kratos-embassy/build/
 nextjs-el-kratos-embassy/.env*
+nextjs-el-kratos-embassy/subscribers.json
 nextjs-el-kratos-embassy/next-env.d.ts
 nextjs-el-kratos-embassy/*.tsbuildinfo
 nextjs-el-kratos-embassy/.vercel
