@@ -153,14 +153,35 @@ export default function BFCQuizPage() {
     setPhase("result");
   }
 
-  function beginSitting(data: { membershipId: string; name: string; startedAt: string; answers?: unknown; questionIndex?: number; durationMinutes?: number; opensAt?: string | null; closesAt?: string | null; serverNow?: string; status?: string }) {
+  function asQuestions(raw: unknown): DBQuestion[] | null {
+    if (!Array.isArray(raw) || raw.length === 0) return null;
+    const paper: DBQuestion[] = [];
+    for (const item of raw) {
+      if (!item || typeof item !== "object") return null;
+      const row = item as Record<string, unknown>;
+      if (typeof row.id !== "number" || typeof row.text !== "string" || !Array.isArray(row.options)) return null;
+      paper.push({
+        id: row.id,
+        weekLabel: typeof row.weekLabel === "string" ? row.weekLabel : "General",
+        order: typeof row.order === "number" ? row.order : 0,
+        text: row.text,
+        options: row.options.filter((option): option is string => typeof option === "string"),
+      });
+    }
+    return paper;
+  }
+
+  function beginSitting(data: { membershipId: string; name: string; startedAt: string; answers?: unknown; questions?: unknown; questionIndex?: number; durationMinutes?: number; opensAt?: string | null; closesAt?: string | null; serverNow?: string; status?: string }) {
+    const paper = asQuestions(data.questions);
+    const list = paper ?? questions;
+    if (paper) setQuestions(paper);
     const restored = asAnswers(data.answers);
-    const index = Math.min(Math.max(data.questionIndex ?? 0, 0), Math.max(questions.length - 1, 0));
+    const index = Math.min(Math.max(data.questionIndex ?? 0, 0), Math.max(list.length - 1, 0));
     setMember({ membershipId: data.membershipId, name: data.name });
     setStartedAt(new Date(data.startedAt).getTime());
     setAnswers(restored);
     setCurrent(index);
-    setSelected(restored[questions[index]?.id] ?? null);
+    setSelected(restored[list[index]?.id] ?? null);
     if (Number.isInteger(data.durationMinutes)) setQuizMinutes(data.durationMinutes as number);
     if (data.opensAt !== undefined) setOpensAt(data.opensAt);
     if (data.closesAt !== undefined) setClosesAt(data.closesAt);
