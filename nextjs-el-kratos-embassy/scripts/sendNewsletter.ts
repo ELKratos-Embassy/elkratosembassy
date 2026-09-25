@@ -1,40 +1,51 @@
-import { Resend } from 'resend'
-import clientPromise from '@/lib/mongodb'
-import { getBlogs, getSermons } from '@/src/sanity/sanityUtil'
+import { Resend } from "resend";
+import { prisma } from "../lib/prisma";
+import { getBlogs, getSermons } from "../src/sanity/sanityUtil";
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async function sendWeeklyNewsletter() {
-  const client = await clientPromise
-  const db = client.db('church_website')
-  const subscribers = await db.collection('subscribers').find({ subscribed: true }).toArray()
+  const subscribers = await prisma.subscriber.findMany({
+    where: { subscribed: true },
+    select: { email: true },
+  });
 
-  // Get blogs and sermons from the past week
-  const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
-  const blogs = (await getBlogs()).filter(b => new Date(b.publishedAt) > oneWeekAgo)
-  const sermons = (await getSermons()).filter(s => new Date(s.eventDate) > oneWeekAgo)
+  const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+  const blogs = (await getBlogs()).filter((blog) => new Date(blog.publishedAt) > oneWeekAgo);
+  const sermons = (await getSermons()).filter(
+    (sermon) => new Date(sermon.eventDate) > oneWeekAgo
+  );
 
-  if (blogs.length === 0 && sermons.length === 0) return
+  if (blogs.length === 0 && sermons.length === 0) return;
+  if (subscribers.length === 0) return;
 
-  const blogRows = blogs.map(b => `
+  const blogRows = blogs
+    .map(
+      (blog) => `
     <tr>
       <td style="padding: 10px 10px;">
-        <a href="https://elkratosembassy.org/blogs/${b.slug.current}" style="color: #A54E2B; text-decoration: underline;">
-          ${b.title}
+        <a href="https://elkratosembassy.org/blogs/${blog.slug.current}" style="color: #A54E2B; text-decoration: underline;">
+          ${blog.title}
         </a>
       </td>
     </tr>
-  `).join('')
+  `
+    )
+    .join("");
 
-  const sermonRows = sermons.map(s => `
+  const sermonRows = sermons
+    .map(
+      (sermon) => `
     <tr>
       <td style="padding: 10px 10px;">
-        <a href="https://elkratosembassy.org/sermons/${s.slug.current}" style="color: #A54E2B; text-decoration: underline;">
-          ${s.title}
+        <a href="https://elkratosembassy.org/sermons/${sermon.slug.current}" style="color: #A54E2B; text-decoration: underline;">
+          ${sermon.title}
         </a>
       </td>
     </tr>
-  `).join('')
+  `
+    )
+    .join("");
 
   const html = `
     <div style="font-family: Arial, sans-serif; background: #f9f9f9; padding: 10px; margin: 0;">
@@ -46,18 +57,26 @@ export default async function sendWeeklyNewsletter() {
           </p>
         </div>
         <div style="padding: 0 24px 24px 24px;">
-          ${blogs.length > 0 ? `
+          ${
+            blogs.length > 0
+              ? `
             <h3 style="color: #A54E2B; margin-bottom: 8px;">New Blogs</h3>
             <table style="width: 100%; font-size: 16px; color: #222; border-collapse: collapse; background: #f6f6f6; border-radius: 8px; margin-bottom: 24px;">
               ${blogRows}
             </table>
-          ` : ''}
-          ${sermons.length > 0 ? `
+          `
+              : ""
+          }
+          ${
+            sermons.length > 0
+              ? `
             <h3 style="color: #A54E2B; margin-bottom: 8px;">New Sermons</h3>
             <table style="width: 100%; font-size: 16px; color: #222; border-collapse: collapse; background: #f6f6f6; border-radius: 8px;">
               ${sermonRows}
             </table>
-          ` : ''}
+          `
+              : ""
+          }
         </div>
         <div style="padding: 0 24px 24px 24px;">
           <p style="font-size: 13px; color: #888; margin: 0;">
@@ -66,33 +85,27 @@ export default async function sendWeeklyNewsletter() {
           </p>
         </div>
       </div>
-      <style>
-        @media only screen and (max-width: 600px) {
-          table, tr, td {
-            display: block !important;
-            width: 100% !important;
-            box-sizing: border-box;
-          }
-          td {
-            padding-left: 0 !important;
-            padding-right: 0 !important;
-          }
-        }
-      </style>
     </div>
-  `
+  `;
 
-  for (const sub of subscribers) {
+  for (const subscriber of subscribers) {
     await resend.emails.send({
-      from: 'EL Kratos Embassy <newsletter@elkratosembassy.org>',
-      to: [sub.email],
-      subject: 'Your Weekly Digest from EL Kratos Embassy',
-      html: html.replace('__EMAIL__', encodeURIComponent(sub.email)),
-    })
+      from: "EL Kratos Embassy <newsletter@elkratosembassy.org>",
+      to: [subscriber.email],
+      subject: "Your Weekly Digest from EL Kratos Embassy",
+      html: html.replace("__EMAIL__", encodeURIComponent(subscriber.email)),
+    });
   }
 }
 
-sendWeeklyNewsletter().then(() => {
-  console.log('Newsletter sent!')
-  process.exit();
-})
+sendWeeklyNewsletter()
+  .then(() => {
+    console.log("Newsletter sent!");
+  })
+  .catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });

@@ -1,23 +1,29 @@
-import clientPromise from '@/lib/mongodb';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 
 export async function POST(req: NextRequest) {
   try {
-    const { email } = await req.json();
-    if (!email || typeof email !== 'string' || !email.includes('@')) {
-      return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
+    const body = await req.json();
+    const email =
+      typeof body?.email === "string" ? body.email.trim().toLowerCase() : "";
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ error: "Invalid email" }, { status: 400 });
     }
-    const client = await clientPromise;
-    const db = client.db('church_website');
-    const result = await db.collection('subscribers').updateOne(
-      { email },
-      { $set: { subscribed: true, resubscribedAt: new Date() } }
-    );
-    if (result.matchedCount === 0) {
-      return NextResponse.json({ error: 'Email not found.' }, { status: 404 });
+
+    const existing = await prisma.subscriber.findUnique({ where: { email } });
+    if (!existing) {
+      return NextResponse.json({ error: "Email not found." }, { status: 404 });
     }
-    return NextResponse.json({ message: 'Resubscribed successfully' });
+
+    await prisma.subscriber.update({
+      where: { email },
+      data: { subscribed: true, unsubscribedAt: null },
+    });
+
+    return NextResponse.json({ message: "Resubscribed successfully" });
   } catch (error) {
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+    console.error("[resubscribe]", error);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

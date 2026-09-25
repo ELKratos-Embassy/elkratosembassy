@@ -1,0 +1,120 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// EL KRATOS EMBASSY — Prisma Schema
+// Database: PostgreSQL (hosted on Coolify)
+//
+// Tables:
+//   subscribers   — newsletter email list (migrated from MongoDB)
+//   quiz_attempts — BFC assessment results
+//   questions     — BFC question bank, one set per batch
+//   quiz_participants — members allowed to sit a batch
+//   quiz_settings — facilitator-controlled time limit per batch
+//
+// Future Cornerstone (EKE-CMS) tables will be added to this same schema.
+// The membershipId field on quiz_attempts is a stable FK to the future
+// members table — do not rename it.
+// ─────────────────────────────────────────────────────────────────────────────
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ── Newsletter subscribers ────────────────────────────────────────────────────
+// Replaces the MongoDB collection.
+// unsubscribedAt is nullable — null means currently subscribed.
+model Subscriber {
+  id             Int       @id @default(autoincrement())
+  email          String    @unique
+  subscribed     Boolean   @default(true)
+  subscribedAt   DateTime  @default(now())
+  unsubscribedAt DateTime?
+
+  @@map("subscribers")
+}
+
+// ── BFC Quiz attempts ─────────────────────────────────────────────────────────
+// membershipId = ELKE-YYYY-XXXX — stable FK for future Cornerstone migration.
+// One attempt per member per batch enforced at DB level.
+model QuizAttempt {
+  id           Int      @id @default(autoincrement())
+  membershipId String
+  name         String
+  batch        String
+  answers      Json
+  score        Int
+  percentage   Int
+  passed       Boolean
+  submittedAt  DateTime @default(now())
+
+  @@unique([membershipId, batch])
+  @@index([batch])
+  @@map("quiz_attempts")
+}
+
+// ── BFC question bank ─────────────────────────────────────────────────────────
+// Questions belong to a batch. order is the display sequence within that batch.
+// answerIndex is 0-based and is never returned by the public quiz fetch.
+model Question {
+  id          Int      @id @default(autoincrement())
+  batch       String
+  weekLabel   String
+  order       Int
+  text        String
+  options     Json
+  answerIndex Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([batch, order])
+  @@index([batch, order])
+  @@map("questions")
+}
+
+// ── Members allowed to sit a batch ────────────────────────────────────────────
+// Facilitators manage this list. membershipId stays stable for Cornerstone.
+model QuizParticipant {
+  id           Int      @id @default(autoincrement())
+  membershipId String
+  name         String
+  batch        String
+  createdAt    DateTime @default(now())
+
+  @@unique([membershipId, batch])
+  @@index([batch])
+  @@map("quiz_participants")
+}
+
+// ── Facilitator settings for a batch ──────────────────────────────────────────
+// durationMinutes is the personal countdown. opensAt/closesAt is the window
+// when candidates are allowed to begin. Null means the quiz is not open.
+model QuizSetting {
+  id              Int       @id @default(autoincrement())
+  batch           String    @unique
+  durationMinutes Int       @default(45)
+  opensAt         DateTime?
+  closesAt        DateTime?
+  updatedAt       DateTime  @updatedAt
+
+  @@map("quiz_settings")
+}
+
+// In-progress sitting. startedAt does not reset if the candidate refreshes
+// or closes the tab. Cleared once the attempt is submitted.
+model QuizProgress {
+  id            Int      @id @default(autoincrement())
+  membershipId  String
+  name          String
+  batch         String
+  startedAt     DateTime @default(now())
+  answers       Json
+  questionIndex Int      @default(0)
+  updatedAt     DateTime @updatedAt
+
+  @@unique([membershipId, batch])
+  @@index([batch])
+  @@map("quiz_progress")
+}

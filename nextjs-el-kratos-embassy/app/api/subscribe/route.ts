@@ -1,32 +1,32 @@
-import clientPromise from '@/lib/mongodb';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+
+function normalizeEmail(value: unknown): string | null {
+  if (typeof value !== "string") return null;
+  const email = value.trim().toLowerCase();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return null;
+  return email;
+}
 
 export async function POST(req: NextRequest) {
   try {
-    const { email } = await req.json();
+    const body = await req.json();
+    const email = normalizeEmail(body?.email);
 
-    if (!email || typeof email !== 'string' || !email.includes('@')) {
-      return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
+    if (!email) {
+      return NextResponse.json({ error: "Invalid email" }, { status: 400 });
     }
 
-    const client = await clientPromise;
-    const db = client.db('church_website');
-
-    // Avoid duplicates
-    const existing = await db.collection('subscribers').findOne({ email });
+    const existing = await prisma.subscriber.findUnique({ where: { email } });
     if (existing) {
-      return NextResponse.json({ error: 'Already subscribed' }, { status: 409 });
+      return NextResponse.json({ error: "Already subscribed" }, { status: 409 });
     }
 
-    await db.collection('subscribers').insertOne({
-      email,
-      subscribed: true,
-      createdAt: new Date(),
-    });
+    await prisma.subscriber.create({ data: { email } });
 
-    return NextResponse.json({ message: 'Subscribed successfully' }, { status: 201 });
+    return NextResponse.json({ message: "Subscribed successfully" }, { status: 201 });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+    console.error("[subscribe]", error);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
