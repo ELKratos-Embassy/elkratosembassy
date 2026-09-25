@@ -25,6 +25,11 @@ export async function PATCH(
       return NextResponse.json({ error: "Invalid question ID." }, { status: 400 });
     }
 
+    const existing = await prisma.question.findUnique({ where: { id: questionId } });
+    if (!existing) {
+      return NextResponse.json({ error: "Question not found." }, { status: 404 });
+    }
+
     const cleanedOptions = Array.isArray(options)
       ? options.map((option) => (typeof option === "string" ? option.trim() : ""))
       : undefined;
@@ -40,12 +45,11 @@ export async function PATCH(
       );
     }
 
-    if (answerIndex !== undefined) {
-      const answer = Number(answerIndex);
-      const limit = cleanedOptions?.length ?? 8;
-      if (!Number.isInteger(answer) || answer < 0 || answer >= limit) {
-        return NextResponse.json({ error: "Choose a correct answer within the options." }, { status: 400 });
-      }
+    const storedOptions = asOptions(existing.options);
+    const optionCount = cleanedOptions?.length ?? storedOptions.length;
+    const nextAnswer = answerIndex !== undefined ? Number(answerIndex) : existing.answerIndex;
+    if (!Number.isInteger(nextAnswer) || nextAnswer < 0 || nextAnswer >= optionCount) {
+      return NextResponse.json({ error: "Choose a correct answer within the options." }, { status: 400 });
     }
 
     const updated = await prisma.question.update({

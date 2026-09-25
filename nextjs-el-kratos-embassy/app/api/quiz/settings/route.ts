@@ -12,10 +12,9 @@ function cleanMinutes(value: unknown): number | null {
   return minutes;
 }
 
-export async function GET(req: NextRequest) {
-  const batch = req.nextUrl.searchParams.get("batch") ?? CURRENT_BATCH;
+export async function GET() {
   try {
-    const setting = await getQuizSetting(batch);
+    const setting = await getQuizSetting(CURRENT_BATCH);
     return NextResponse.json(publicSchedule(setting));
   } catch (error) {
     console.error("[settings GET]", error);
@@ -26,7 +25,7 @@ export async function GET(req: NextRequest) {
 export async function PATCH(req: NextRequest) {
   try {
     const body = await req.json();
-    const { passcode, batch, durationMinutes, opensAt, closesAt } = body ?? {};
+    const { passcode, durationMinutes, opensAt, closesAt } = body ?? {};
     if (!validateAccessor(passcode)) {
       return NextResponse.json({ error: "Unauthorised." }, { status: 403 });
     }
@@ -63,12 +62,11 @@ export async function PATCH(req: NextRequest) {
       return NextResponse.json({ error: "Nothing to update." }, { status: 400 });
     }
 
-    const targetBatch = batch || CURRENT_BATCH;
     const setting = await prisma.quizSetting.upsert({
-      where: { batch: targetBatch },
+      where: { batch: CURRENT_BATCH },
       update: data,
       create: {
-        batch: targetBatch,
+        batch: CURRENT_BATCH,
         durationMinutes: data.durationMinutes ?? 45,
         opensAt: data.opensAt ?? null,
         closesAt: data.closesAt ?? null,

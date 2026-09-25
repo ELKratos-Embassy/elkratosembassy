@@ -30,7 +30,8 @@ interface DBQuestion {
 }
 
 interface MemberInfo { membershipId: string; name: string; }
-interface ResultData  { score: number; total: number; percentage: number; passed: boolean; wrongIds: number[]; }
+interface WeekSection { label: string; total: number; correct: number; }
+interface ResultData  { score: number; total: number; percentage: number; passed: boolean; wrongIds: number[]; sections?: WeekSection[]; }
 
 function formatWhen(iso: string | null) {
   if (!iso) return "";
@@ -144,9 +145,9 @@ export default function BFCQuizPage() {
     return parsed;
   }
 
-  function showFinished(data: { membershipId: string; name: string; score: number; total: number; percentage: number; passed: boolean; wrongIds: number[]; message?: string; timedOut?: boolean }) {
+  function showFinished(data: { membershipId: string; name: string; score: number; total: number; percentage: number; passed: boolean; wrongIds: number[]; sections?: WeekSection[]; message?: string; timedOut?: boolean }) {
     setMember({ membershipId: data.membershipId, name: data.name });
-    setResult({ score: data.score, total: data.total, percentage: data.percentage, passed: data.passed, wrongIds: data.wrongIds ?? [] });
+    setResult({ score: data.score, total: data.total, percentage: data.percentage, passed: data.passed, wrongIds: data.wrongIds ?? [], sections: data.sections });
     setSaveError(data.message ?? "You have already completed this assessment. Your saved result is shown below.");
     setTimedOut(Boolean(data.timedOut));
     setPhase("result");
@@ -261,6 +262,7 @@ export default function BFCQuizPage() {
         percentage: data.percentage,
         passed: data.passed,
         wrongIds: data.wrongIds,
+        sections: data.sections,
       });
       if (data.duplicate) {
         setSaveError("This assessment was already submitted. The saved result is shown below.");
@@ -324,6 +326,31 @@ export default function BFCQuizPage() {
   }, [phase, member, answers, selected, current]);
 
   useEffect(() => {
+    if (phase !== "quiz") return;
+    const blockEvent = (event: Event) => event.preventDefault();
+    const blockKeys = (event: KeyboardEvent) => {
+      const key = event.key.toLowerCase();
+      if ((event.ctrlKey || event.metaKey) && ["a", "c", "x", "p", "s"].includes(key)) {
+        event.preventDefault();
+      }
+    };
+    document.addEventListener("copy", blockEvent);
+    document.addEventListener("cut", blockEvent);
+    document.addEventListener("contextmenu", blockEvent);
+    document.addEventListener("selectstart", blockEvent);
+    document.addEventListener("dragstart", blockEvent);
+    document.addEventListener("keydown", blockKeys);
+    return () => {
+      document.removeEventListener("copy", blockEvent);
+      document.removeEventListener("cut", blockEvent);
+      document.removeEventListener("contextmenu", blockEvent);
+      document.removeEventListener("selectstart", blockEvent);
+      document.removeEventListener("dragstart", blockEvent);
+      document.removeEventListener("keydown", blockKeys);
+    };
+  }, [phase]);
+
+  useEffect(() => {
     if (phase !== "quiz" || !endsAt) return;
     const tick = () => {
       const time = Date.now();
@@ -354,6 +381,11 @@ export default function BFCQuizPage() {
         .quiz-kicker { overflow-wrap: anywhere; }
         .option-btn { display: flex; align-items: flex-start; width: 100%; gap: 10px; }
         .quiz-nav { min-height: 48px; }
+        .quiz-secure, .quiz-secure * {
+          -webkit-user-select: none;
+          user-select: none;
+          -webkit-touch-callout: none;
+        }
         @media (max-width: 640px) {
           .quiz-title { font-size: 16px !important; letter-spacing: 0.3px !important; }
           .quiz-kicker { font-size: 11px !important; }
@@ -426,7 +458,13 @@ export default function BFCQuizPage() {
 
         {/* ── QUIZ ── */}
         {phase === "quiz" && member && q && (
-          <div>
+          <div
+            className="quiz-secure"
+            onCopy={(event) => event.preventDefault()}
+            onCut={(event) => event.preventDefault()}
+            onContextMenu={(event) => event.preventDefault()}
+            onDragStart={(event) => event.preventDefault()}
+          >
             <div style={{ background: C.white, borderRadius: 8, padding: "10px 16px", marginBottom: 16, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, boxShadow: "0 1px 4px rgba(0,0,0,0.06)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
                 <div style={{ width: 10, height: 10, borderRadius: "50%", background: C.success, flexShrink: 0 }} />
@@ -519,10 +557,12 @@ export default function BFCQuizPage() {
             </div>
             <div style={{ background: C.white, borderRadius: 12, padding: 20, boxShadow: "0 2px 12px rgba(0,0,0,0.08)", marginBottom: 16 }}>
               <div style={{ color: C.mirage, fontWeight: 700, fontSize: 15, marginBottom: 16 }}>Score Breakdown by Week</div>
-              {weekSections.map(({ label, ids }) => {
-                const total   = ids.length;
-                const correct = ids.filter(id => !result.wrongIds.includes(id)).length;
-                const pct     = Math.round((correct / total) * 100);
+              {(result.sections?.length ? result.sections : weekSections.map(({ label, ids }) => ({
+                label,
+                total: ids.length,
+                correct: ids.filter((id) => !result.wrongIds.includes(id)).length,
+              }))).map(({ label, total, correct }) => {
+                const pct = total === 0 ? 0 : Math.round((correct / total) * 100);
                 return (
                   <div key={label} style={{ marginBottom: 14 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>

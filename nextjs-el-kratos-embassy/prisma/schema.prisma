@@ -8,6 +8,7 @@
 //   questions     — BFC question bank, one set per batch
 //   quiz_participants — members allowed to sit a batch
 //   quiz_settings — facilitator-controlled time limit per batch
+//   quiz_attempts.questionSnapshot — the paper as it was when the attempt was scored
 //
 // Future Cornerstone (EKE-CMS) tables will be added to this same schema.
 // The membershipId field on quiz_attempts is a stable FK to the future
@@ -40,15 +41,16 @@ model Subscriber {
 // membershipId = ELKE-YYYY-XXXX — stable FK for future Cornerstone migration.
 // One attempt per member per batch enforced at DB level.
 model QuizAttempt {
-  id           Int      @id @default(autoincrement())
-  membershipId String
-  name         String
-  batch        String
-  answers      Json
-  score        Int
-  percentage   Int
-  passed       Boolean
-  submittedAt  DateTime @default(now())
+  id               Int      @id @default(autoincrement())
+  membershipId     String
+  name             String
+  batch            String
+  answers          Json
+  questionSnapshot Json?
+  score            Int
+  percentage       Int
+  passed           Boolean
+  submittedAt      DateTime @default(now())
 
   @@unique([membershipId, batch])
   @@index([batch])

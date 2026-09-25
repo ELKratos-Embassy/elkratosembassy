@@ -42,13 +42,12 @@ export const ALLOWED_MEMBERS: Record<string, string> = {
 // label    = shown in the dashboard header
 // passcode = what they type to log in
 //
-// Set FACILITATOR_PASSCODE in .env.local and Vercel. The fallback applies
-// only when that variable is unset.
+// Set FACILITATOR_PASSCODE in the server environment. There is no fallback.
 export const RESULTS_ACCESSORS: ResultsAccessor[] = [
   {
     id: "EKE-USR-0001",
     label: "Pastor Yunus",
-    passcode: process.env.FACILITATOR_PASSCODE ?? "EKE@Pastor2026",
+    passcode: "",
   },
 ];
 
@@ -77,6 +76,9 @@ export async function validateMember(raw: string): Promise<AllowedMember | null>
   return { membershipId: participant.membershipId, name: participant.name };
 }
 
-export function validateAccessor(passcode: string): ResultsAccessor | null {
-  return RESULTS_ACCESSORS.find((a) => a.passcode === passcode.trim()) ?? null;
+export function validateAccessor(passcode: unknown): ResultsAccessor | null {
+  const expected = process.env.FACILITATOR_PASSCODE?.trim();
+  if (!expected || typeof passcode !== "string" || passcode.trim() !== expected) return null;
+  const accessor = RESULTS_ACCESSORS.find((item) => item.id === "EKE-USR-0001");
+  return accessor ? { ...accessor, passcode: expected } : null;
 }
