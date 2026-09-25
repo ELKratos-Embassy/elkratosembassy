@@ -212,6 +212,11 @@ export default function BFCQuizPage() {
       if (data.membershipId) sessionStorage.setItem("bfc-quiz-member", data.membershipId);
       if (data.status === "finished") { showFinished(data); return; }
       if (!res.ok || !data.allowed) { setIdError(data.message ?? "This Membership ID is not on the participant list."); setPhase("intro"); return; }
+      if (!asQuestions(data.questions) && questions.length === 0) {
+        setIdError(data.message ?? "No questions have been published for this assessment yet.");
+        setPhase("intro");
+        return;
+      }
       beginSitting(data);
     } catch {
       if (gen !== sessionGen.current) return;
