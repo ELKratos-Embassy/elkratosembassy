@@ -132,6 +132,10 @@ export async function resultForAttempt(membershipId: string, batch: string) {
   return describeAttempt(attempt, questions);
 }
 
+export function hasFrozenPaper(value: unknown) {
+  return parsePaper(value) !== null;
+}
+
 export function publicQuestions(value: unknown) {
   const paper = parsePaper(value);
   if (!paper) return null;
