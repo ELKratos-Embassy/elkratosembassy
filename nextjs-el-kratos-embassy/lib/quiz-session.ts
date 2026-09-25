@@ -132,13 +132,28 @@ export async function resultForAttempt(membershipId: string, batch: string) {
   return describeAttempt(attempt, questions);
 }
 
+export function publicQuestions(value: unknown) {
+  const paper = parsePaper(value);
+  if (!paper) return null;
+  return paper.map(({ id, order, weekLabel, text, options }) => ({ id, order, weekLabel, text, options }));
+}
+
+export async function capturePaper(batch: string) {
+  return toPaper(await questionsFor(batch));
+}
+
 export async function finalizeSitting(
   membershipId: string,
   name: string,
   batch: string,
   rawAnswers: unknown
 ) {
-  const questions = await questionsFor(batch);
+  const [questions, progress] = await Promise.all([
+    questionsFor(batch),
+    prisma.quizProgress.findUnique({
+      where: { membershipId_batch: { membershipId, batch } },
+    }),
+  ]);
   const existing = await prisma.quizAttempt.findFirst({
     where: { membershipId, batch },
   });
@@ -147,7 +162,7 @@ export async function finalizeSitting(
     return { duplicate: true, ...describeAttempt(existing, questions) };
   }
 
-  const paper = toPaper(questions);
+  const paper = parsePaper(progress?.questionSnapshot) ?? toPaper(questions);
   const scored = scoreAnswers(paper, (rawAnswers ?? {}) as Record<string, number>);
   await prisma.quizAttempt.create({
     data: {

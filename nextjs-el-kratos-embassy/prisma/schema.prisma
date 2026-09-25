@@ -105,16 +105,18 @@ model QuizSetting {
 }
 
 // In-progress sitting. startedAt does not reset if the candidate refreshes
-// or closes the tab. Cleared once the attempt is submitted.
+// or closes the tab. questionSnapshot is the paper frozen at the start.
+// Cleared once the attempt is submitted.
 model QuizProgress {
-  id            Int      @id @default(autoincrement())
-  membershipId  String
-  name          String
-  batch         String
-  startedAt     DateTime @default(now())
-  answers       Json
-  questionIndex Int      @default(0)
-  updatedAt     DateTime @updatedAt
+  id               Int      @id @default(autoincrement())
+  membershipId     String
+  name             String
+  batch            String
+  startedAt        DateTime @default(now())
+  answers          Json
+  questionSnapshot Json?
+  questionIndex    Int      @default(0)
+  updatedAt        DateTime @updatedAt
 
   @@unique([membershipId, batch])
   @@index([batch])

@@ -2,9 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { CURRENT_BATCH, validateMember } from "@/lib/quiz-config";
 import {
+  capturePaper,
   deadlineMs,
   finalizeSitting,
   getQuizSetting,
+  publicQuestions,
   resultForAttempt,
   windowStatus,
 } from "@/lib/quiz-session";
@@ -75,6 +77,7 @@ export async function POST(req: NextRequest) {
         });
       }
 
+      const frozen = publicQuestions(progress.questionSnapshot);
       return NextResponse.json({
         allowed: true,
         status: "resume",
@@ -83,6 +86,7 @@ export async function POST(req: NextRequest) {
         startedAt: progress.startedAt.toISOString(),
         answers: progress.answers,
         questionIndex: progress.questionIndex,
+        ...(frozen ? { questions: frozen } : {}),
         durationMinutes: setting.durationMinutes,
         opensAt: setting.opensAt?.toISOString() ?? null,
         closesAt: setting.closesAt?.toISOString() ?? null,
@@ -103,12 +107,21 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const paper = await capturePaper(CURRENT_BATCH);
+    if (paper.length === 0) {
+      return NextResponse.json(
+        { allowed: false, message: "No questions have been published for this assessment yet." },
+        { status: 409 }
+      );
+    }
+
     const sitting = await prisma.quizProgress.create({
       data: {
         membershipId: member.membershipId,
         name: member.name,
         batch: CURRENT_BATCH,
         answers: {},
+        questionSnapshot: paper,
         questionIndex: 0,
       },
     });
@@ -121,6 +134,7 @@ export async function POST(req: NextRequest) {
       startedAt: sitting.startedAt.toISOString(),
       answers: {},
       questionIndex: 0,
+      questions: publicQuestions(paper),
       durationMinutes: setting.durationMinutes,
       opensAt: setting.opensAt?.toISOString() ?? null,
       closesAt: setting.closesAt?.toISOString() ?? null,

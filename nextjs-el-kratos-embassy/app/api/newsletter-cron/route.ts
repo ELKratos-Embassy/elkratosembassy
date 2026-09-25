@@ -105,12 +105,17 @@ export async function GET(req: NextRequest) {
 
     for (const subscriber of subscribers) {
       try {
-        await resend.emails.send({
+        const { error } = await resend.emails.send({
           from: "EL Kratos Embassy <newsletter@elkratosembassy.org>",
           to: [subscriber.email],
           subject: "Your Weekly Digest from EL Kratos Embassy",
           html: html.replace("__EMAIL__", encodeURIComponent(subscriber.email)),
         });
+        if (error) {
+          failed += 1;
+          console.error("[newsletter-cron] send failed:", error);
+          continue;
+        }
         sent += 1;
       } catch (error) {
         failed += 1;
