@@ -201,7 +201,6 @@ export default function BFCQuizPage() {
 
   async function handleVerify(rawId?: string) {
     const id = (rawId ?? membershipId).trim();
-    if (questions.length === 0) { setIdError(loadError || "Questions are not available yet."); return; }
     if (!id) { setIdError("Please enter your Membership ID to continue."); return; }
     setIdError("");
     setPhase("verifying");
@@ -213,6 +212,11 @@ export default function BFCQuizPage() {
       if (data.membershipId) sessionStorage.setItem("bfc-quiz-member", data.membershipId);
       if (data.status === "finished") { showFinished(data); return; }
       if (!res.ok || !data.allowed) { setIdError(data.message ?? "This Membership ID is not on the participant list."); setPhase("intro"); return; }
+      if (!asQuestions(data.questions) && questions.length === 0) {
+        setIdError(data.message ?? "No questions have been published for this assessment yet.");
+        setPhase("intro");
+        return;
+      }
       beginSitting(data);
     } catch {
       if (gen !== sessionGen.current) return;
@@ -304,13 +308,13 @@ export default function BFCQuizPage() {
   submitQuizRef.current = submitQuiz;
 
   useEffect(() => {
-    if (phase !== "intro" || questions.length === 0 || autoTried.current) return;
+    if (phase !== "intro" || autoTried.current) return;
     const stored = sessionStorage.getItem("bfc-quiz-member");
     if (!stored) return;
     autoTried.current = true;
     setMembershipId(stored);
     void handleVerifyRef.current(stored);
-  }, [phase, questions.length]);
+  }, [phase]);
 
   useEffect(() => {
     if (phase !== "quiz" || !member) return;
@@ -471,7 +475,7 @@ export default function BFCQuizPage() {
                 {idError && <div style={{ color: C.crimson, fontSize: 13, marginTop: 6 }}>⚠️ {idError}</div>}
               </div>
             </div>
-            <button onClick={() => handleVerify()} disabled={phase === "verifying" || questions.length === 0} style={{ width: "100%", padding: "16px", background: phase === "verifying" || questions.length === 0 ? C.lgray : C.crimson, color: C.white, border: "none", borderRadius: 10, fontSize: 16, fontWeight: 700, cursor: phase === "verifying" || questions.length === 0 ? "not-allowed" : "pointer", fontFamily: "inherit" }}>
+            <button onClick={() => handleVerify()} disabled={phase === "verifying"} style={{ width: "100%", padding: "16px", background: phase === "verifying" ? C.lgray : C.crimson, color: C.white, border: "none", borderRadius: 10, fontSize: 16, fontWeight: 700, cursor: phase === "verifying" ? "not-allowed" : "pointer", fontFamily: "inherit" }}>
               {phase === "verifying" ? "Verifying ID…" : "Verify & Begin Assessment →"}
             </button>
           </div>

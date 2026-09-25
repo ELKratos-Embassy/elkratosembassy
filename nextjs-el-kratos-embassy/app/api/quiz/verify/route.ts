@@ -58,6 +58,14 @@ export async function POST(req: NextRequest) {
     });
 
     if (progress) {
+      const frozen = publicQuestions(progress.questionSnapshot);
+      if (!frozen && (await capturePaper(CURRENT_BATCH)).length === 0) {
+        return NextResponse.json(
+          { allowed: false, message: "No questions have been published for this assessment yet." },
+          { status: 409 }
+        );
+      }
+
       const ends = deadlineMs(progress.startedAt, setting.durationMinutes);
       if (now.getTime() >= ends) {
         const result = await finalizeSitting(
@@ -77,7 +85,6 @@ export async function POST(req: NextRequest) {
         });
       }
 
-      const frozen = publicQuestions(progress.questionSnapshot);
       return NextResponse.json({
         allowed: true,
         status: "resume",

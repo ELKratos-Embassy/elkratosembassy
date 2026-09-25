@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { validateMember, CURRENT_BATCH } from "@/lib/quiz-config";
-import { deadlineMs, describeAttempt, finalizeSitting, getQuizSetting } from "@/lib/quiz-session";
+import { deadlineMs, describeAttempt, finalizeSitting, getQuizSetting, hasFrozenPaper } from "@/lib/quiz-session";
 
 async function questionsForBatch() {
   return prisma.question.findMany({
@@ -41,9 +41,6 @@ export async function POST(req: NextRequest) {
     membershipKey = member.membershipId;
 
     const questions = await questionsForBatch();
-    if (questions.length === 0) {
-      return NextResponse.json({ error: "No questions are published for this batch." }, { status: 409 });
-    }
 
     const existing = await prisma.quizAttempt.findFirst({
       where: { membershipId: member.membershipId, batch: CURRENT_BATCH },
@@ -55,6 +52,9 @@ export async function POST(req: NextRequest) {
     const progress = await prisma.quizProgress.findUnique({
       where: { membershipId_batch: { membershipId: member.membershipId, batch: CURRENT_BATCH } },
     });
+    if (questions.length === 0 && !hasFrozenPaper(progress?.questionSnapshot)) {
+      return NextResponse.json({ error: "No questions are published for this batch." }, { status: 409 });
+    }
     if (!progress) {
       return NextResponse.json({ error: "Start the assessment before submitting." }, { status: 403 });
     }
