@@ -124,11 +124,11 @@ export default function ResultsDashboard() {
   }, [activeTab, batch, passcode]);
 
   useEffect(() => {
-    if (phase !== "dashboard" || !data) return;
+    if (phase !== "dashboard" || !batch) return;
     let stop = false;
     const tick = async () => {
       const [people, results, settings] = await Promise.all([
-        fetch(`/api/quiz/participants?batch=${data.batch}`, {
+        fetch(`/api/quiz/participants?batch=${batch}`, {
           headers: { "x-facilitator-passcode": passcode },
         }).then((response) => response.json()),
         fetch("/api/quiz/results", {
@@ -136,7 +136,7 @@ export default function ResultsDashboard() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ passcode }),
         }).then((response) => response.json()),
-        fetch(`/api/quiz/settings?batch=${data.batch}`).then((response) => response.json()),
+        fetch(`/api/quiz/settings?batch=${batch}`).then((response) => response.json()),
       ]);
       if (stop) return;
       if (Array.isArray(people.participants)) setParticipants(people.participants);
@@ -156,7 +156,7 @@ export default function ResultsDashboard() {
       stop = true;
       clearInterval(timer);
     };
-  }, [phase, data?.batch, passcode]);
+  }, [phase, batch, passcode]);
 
   function openAdd() {
     setFWeekLabel("");
