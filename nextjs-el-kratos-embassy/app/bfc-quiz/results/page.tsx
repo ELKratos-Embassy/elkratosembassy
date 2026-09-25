@@ -100,6 +100,7 @@ export default function ResultsDashboard() {
   const [fAnswerIndex, setFAnswerIndex] = useState(0);
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [pModal, setPModal] = useState(false);
+  const [pEditing, setPEditing] = useState<Participant | null>(null);
   const [pName, setPName] = useState("");
   const [pId, setPId] = useState("");
   const [pError, setPError] = useState("");
@@ -340,21 +341,38 @@ export default function ResultsDashboard() {
     setError("");
     closeModal();
     setPModal(false);
+    setPEditing(null);
   }
 
-  async function addParticipant() {
+  function openAddParticipant() {
+    setPEditing(null);
+    setPName("");
+    setPId("");
+    setPError("");
+    setPModal(true);
+  }
+
+  function openEditParticipant(person: Participant) {
+    setPEditing(person);
+    setPName(person.name);
+    setPId(person.membershipId);
+    setPError("");
+    setPModal(true);
+  }
+
+  async function saveParticipant() {
     if (!data) return;
     setPSaving(true);
     setPError("");
     try {
-      const response = await fetch("/api/quiz/participants", {
-        method: "POST",
+      const response = await fetch(pEditing ? `/api/quiz/participants/${pEditing.id}` : "/api/quiz/participants", {
+        method: pEditing ? "PATCH" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ passcode, membershipId: pId, name: pName, batch: data.batch }),
       });
       const json = await response.json();
       if (!response.ok) {
-        setPError(json.error ?? "Could not add this participant.");
+        setPError(json.error ?? (pEditing ? "Could not update this participant." : "Could not add this participant."));
         setPSaving(false);
         return;
       }
@@ -362,7 +380,14 @@ export default function ResultsDashboard() {
         headers: { "x-facilitator-passcode": passcode },
       }).then((result) => result.json());
       setParticipants(fresh.participants ?? []);
+      const results = await fetch("/api/quiz/results", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ passcode, batch: data.batch }),
+      }).then((result) => result.json());
+      if (Array.isArray(results.attempts)) setData(results);
       setPModal(false);
+      setPEditing(null);
       setPName("");
       setPId("");
     } catch {
@@ -860,7 +885,7 @@ export default function ResultsDashboard() {
                   <div style={{ color: C.mirage, fontWeight: 700, fontSize: 16 }}>
                     Participants — {data.batch} ({participants.length})
                   </div>
-                  <button onClick={() => { setPName(""); setPId(""); setPError(""); setPModal(true); }} style={{ background: C.crimson, color: C.white, border: "none", borderRadius: 8, padding: "10px 20px", fontWeight: 700, fontSize: 14, cursor: "pointer", fontFamily: "inherit" }}>
+                  <button onClick={openAddParticipant} style={{ background: C.crimson, color: C.white, border: "none", borderRadius: 8, padding: "10px 20px", fontWeight: 700, fontSize: 14, cursor: "pointer", fontFamily: "inherit" }}>
                     + Add participant
                   </button>
                 </div>
@@ -874,7 +899,10 @@ export default function ResultsDashboard() {
                           <div style={{ color: C.mirage, fontWeight: 700, fontSize: 14 }}>{person.name}</div>
                           <div style={{ color: C.lgray, fontSize: 12, fontFamily: "monospace", marginTop: 2 }}>{person.membershipId}</div>
                         </div>
-                        <button onClick={() => removeParticipant(person)} style={{ background: C.crimsonL, color: C.crimson, border: "none", borderRadius: 6, padding: "6px 12px", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Remove</button>
+                        <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
+                          <button onClick={() => openEditParticipant(person)} style={{ background: "#F5F5F5", color: C.mirage, border: "none", borderRadius: 6, padding: "6px 12px", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Edit</button>
+                          <button onClick={() => removeParticipant(person)} style={{ background: C.crimsonL, color: C.crimson, border: "none", borderRadius: 6, padding: "6px 12px", fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Remove</button>
+                        </div>
                       </div>
                     ))
                   )}
@@ -886,8 +914,8 @@ export default function ResultsDashboard() {
                   <div className="modal-sheet" style={{ position: "fixed", inset: 0, background: "rgba(15,27,45,0.55)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000, padding: 16 }}>
                     <div className="modal-card" style={{ background: C.white, borderRadius: 14, padding: 28, maxWidth: 480, boxShadow: "0 8px 32px rgba(0,0,0,0.2)" }}>
                       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-                        <div style={{ color: C.mirage, fontWeight: 800, fontSize: 18 }}>Add participant</div>
-                        <button onClick={() => setPModal(false)} style={{ background: "none", border: "none", fontSize: 22, cursor: "pointer", color: C.lgray, lineHeight: 1 }}>×</button>
+                        <div style={{ color: C.mirage, fontWeight: 800, fontSize: 18 }}>{pEditing ? "Edit participant" : "Add participant"}</div>
+                        <button onClick={() => { setPModal(false); setPEditing(null); }} style={{ background: "none", border: "none", fontSize: 22, cursor: "pointer", color: C.lgray, lineHeight: 1 }}>×</button>
                       </div>
                       <label style={{ display: "block", color: C.mirage, fontWeight: 700, fontSize: 13, marginBottom: 6 }}>Full name *</label>
                       <input value={pName} onChange={(e) => setPName(e.target.value)} placeholder="Participant name" style={{ width: "100%", padding: "10px 12px", border: `1.5px solid ${C.lgray}`, borderRadius: 7, fontSize: 14, fontFamily: "inherit", outline: "none", boxSizing: "border-box", marginBottom: 14 }} />
@@ -895,8 +923,8 @@ export default function ResultsDashboard() {
                       <input value={pId} onChange={(e) => setPId(e.target.value.toUpperCase())} placeholder="ELKE-YYYY-XXXX" style={{ width: "100%", padding: "10px 12px", border: `1.5px solid ${C.lgray}`, borderRadius: 7, fontSize: 14, fontFamily: "inherit", outline: "none", boxSizing: "border-box", letterSpacing: 1, textTransform: "uppercase" }} />
                       {pError && <div style={{ color: C.crimson, fontSize: 13, marginTop: 10 }}>⚠️ {pError}</div>}
                       <div style={{ display: "flex", gap: 10, marginTop: 18 }}>
-                        <button onClick={() => setPModal(false)} style={{ flex: 1, padding: "12px", background: "#F5F5F5", color: C.mgray, border: "none", borderRadius: 8, fontWeight: 700, fontSize: 14, cursor: "pointer", fontFamily: "inherit" }}>Cancel</button>
-                        <button onClick={addParticipant} disabled={pSaving} style={{ flex: 2, padding: "12px", background: pSaving ? C.lgray : C.crimson, color: C.white, border: "none", borderRadius: 8, fontWeight: 700, fontSize: 14, cursor: pSaving ? "not-allowed" : "pointer", fontFamily: "inherit" }}>{pSaving ? "Saving…" : "Add to list"}</button>
+                        <button onClick={() => { setPModal(false); setPEditing(null); }} style={{ flex: 1, padding: "12px", background: "#F5F5F5", color: C.mgray, border: "none", borderRadius: 8, fontWeight: 700, fontSize: 14, cursor: "pointer", fontFamily: "inherit" }}>Cancel</button>
+                        <button onClick={saveParticipant} disabled={pSaving} style={{ flex: 2, padding: "12px", background: pSaving ? C.lgray : C.crimson, color: C.white, border: "none", borderRadius: 8, fontWeight: 700, fontSize: 14, cursor: pSaving ? "not-allowed" : "pointer", fontFamily: "inherit" }}>{pSaving ? "Saving…" : pEditing ? "Save changes" : "Add to list"}</button>
                       </div>
                     </div>
                   </div>
