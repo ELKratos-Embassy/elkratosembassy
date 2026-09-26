@@ -9,6 +9,7 @@
 //   quiz_participants — members allowed to sit a batch
 //   quiz_settings — facilitator-controlled time limit per batch
 //   quiz_attempts.questionSnapshot — the paper as it was when the attempt was scored
+//   fruit_game_* — live Fruit Games arena for one session code
 //
 // Future Cornerstone (EKE-CMS) tables will be added to this same schema.
 // The membershipId field on quiz_attempts is a stable FK to the future
@@ -79,11 +80,12 @@ model Question {
 // ── Members allowed to sit a batch ────────────────────────────────────────────
 // Facilitators manage this list. membershipId stays stable for Cornerstone.
 model QuizParticipant {
-  id           Int      @id @default(autoincrement())
-  membershipId String
-  name         String
-  batch        String
-  createdAt    DateTime @default(now())
+  id            Int      @id @default(autoincrement())
+  membershipId  String
+  name          String
+  batch         String
+  fruitAlliance String?
+  createdAt     DateTime @default(now())
 
   @@unique([membershipId, batch])
   @@index([batch])
@@ -121,4 +123,109 @@ model QuizProgress {
   @@unique([membershipId, batch])
   @@index([batch])
   @@map("quiz_progress")
+}
+
+// ── Fruit Games ───────────────────────────────────────────────────────────────
+// One session per event. Alliance screens and the public board share that code.
+model FruitGameSession {
+  id         String   @id @default(cuid())
+  code       String   @unique
+  label      String
+  isActive   Boolean  @default(false)
+  isLocked   Boolean  @default(false)
+  revealMode Boolean  @default(false)
+  prize1     String   @default("🏆 Fruit Games 2026 Champions — The Living Epistles")
+  prize2     String   @default("🥈 Walking in the Spirit — Well Done")
+  prize3              String   @default("🥉 The Comeback is Coming 💪")
+  defaultTimerSeconds Int      @default(60)
+  createdAt           DateTime @default(now())
+
+  scores       FruitGameScore[]
+  questions    FruitGameQuestion[]
+  buzzEvents   FruitGameBuzz[]
+  attestations FruitGameAttestation[]
+  knowYourself FruitGameKnowYourself[]
+
+  @@map("fruit_game_sessions")
+}
+
+model FruitGameScore {
+  id        String   @id @default(cuid())
+  sessionId String
+  alliance  String
+  points    Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  session FruitGameSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, alliance])
+  @@map("fruit_game_scores")
+}
+
+model FruitGameQuestion {
+  id           String    @id @default(cuid())
+  sessionId    String
+  order        Int
+  text         String
+  section      String    @default("Round")
+  mode         String    @default("buzzer")
+  points       Int       @default(10)
+  doublePoints Boolean   @default(false)
+  timerSeconds Int       @default(30)
+  options      Json?
+  answerIndex  Int?
+  isActive     Boolean   @default(false)
+  isDone       Boolean   @default(false)
+  openedAt     DateTime?
+  createdAt    DateTime  @default(now())
+
+  session    FruitGameSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  buzzEvents FruitGameBuzz[]
+
+  @@index([sessionId, order])
+  @@map("fruit_game_questions")
+}
+
+// One winning buzz per question. Reset deletes the row so the next attempt can land.
+model FruitGameBuzz {
+  id         String   @id @default(cuid())
+  sessionId  String
+  questionId String   @unique
+  alliance      String
+  memberName    String
+  selectedIndex Int?
+  buzzedAt      DateTime @default(now())
+
+  session  FruitGameSession  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  question FruitGameQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@map("fruit_game_buzz_events")
+}
+
+model FruitGameKnowYourself {
+  id         String   @id @default(cuid())
+  sessionId  String
+  memberName String
+  alliance   String
+  isActive   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  session FruitGameSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@map("fruit_game_know_yourself")
+}
+
+// One reaction per member per hot-seat call.
+model FruitGameAttestation {
+  id          String   @id @default(cuid())
+  sessionId   String
+  subjectName String
+  memberName  String
+  reaction    String
+  createdAt   DateTime @default(now())
+
+  session FruitGameSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, subjectName, memberName])
+  @@map("fruit_game_attestations")
 }
