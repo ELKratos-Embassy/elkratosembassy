@@ -309,6 +309,11 @@ export default function HostPanel() {
             <p>Final places</p>
             <h2>Show the places from the scores so far?</h2>
             <span>Skipped questions stay off the board.</span>
+            <ul>
+              {state.prize1 ? <li>1st — {state.prize1}</li> : null}
+              {state.prize2 ? <li>2nd — {state.prize2}</li> : null}
+              {state.prize3 ? <li>3rd — {state.prize3}</li> : null}
+            </ul>
             <div className="host-row">
               <button type="button" onClick={() => setRevealAsk(false)}>Cancel</button>
               <button className="host-gold" type="submit">Show places</button>
@@ -775,6 +780,8 @@ function HostStyles() {
       .host-ask p { margin: 0; color: #ffcc29; letter-spacing: 0.16em; font-size: 12px; font-weight: 800; text-transform: uppercase; }
       .host-ask h2 { font-size: 26px; line-height: 1.25; }
       .host-ask span { color: #c5cad1; line-height: 1.4; }
+      .host-ask ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; color: #f4f1ea; }
+      .host-ask li { line-height: 1.35; }
       .host-ask .host-row { justify-content: flex-end; margin-top: 6px; }
       @keyframes host-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
       @keyframes host-zoom { from { opacity: 0; transform: translateY(18px) scale(0.96); } to { opacity: 1; transform: none; } }
