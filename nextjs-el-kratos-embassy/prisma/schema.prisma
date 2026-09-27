@@ -134,9 +134,9 @@ model FruitGameSession {
   isActive   Boolean  @default(false)
   isLocked   Boolean  @default(false)
   revealMode Boolean  @default(false)
-  prize1     String   @default("🏆 Fruit Games 2026 Champions — The Living Epistles")
-  prize2     String   @default("🥈 Walking in the Spirit — Well Done")
-  prize3              String   @default("🥉 The Comeback is Coming 💪")
+  prize1     String   @default("Fruit Games 2026 Champions — ₦10,000 🎉")
+  prize2     String   @default("Walking in the Spirit — ₦6,000 💪")
+  prize3     String   @default("The Comeback is Coming — ₦4,000 😊")
   defaultTimerSeconds Int      @default(60)
   createdAt           DateTime @default(now())
 
